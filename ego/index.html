@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EGo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="../commons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    <link rel="stylesheet" href="../commons/styles.css" type="text/css">
+
+    <meta name="description" content="EGo enables you to build and run Go code for secure enclaves with zero code changes. Confidential computing has never been simpler.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="_assets/apple-touch-icon.png">
+    <link rel="manifest" href="_assets/site.webmanifest">
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:title" content="EGo - Build confidential Go apps with ease​">
+    <meta property="og:description" content="EGo enables you to build and run Go code for secure enclaves with zero code changes. Confidential computing has never been simpler.​">
+    <meta property="og:image" content="https://docs.edgeless.systems/ego/_assets/social.png">
+
+    <meta name="twitter:title" content="EGo - Build confidential Go apps with ease​">
+    <meta name="twitter:description" content="EGo enables you to build and run Go code for secure enclaves with zero code changes.">
+    <meta name="twitter:image" content="https://docs.edgeless.systems/ego/_assets/social.png">
+    <meta name="twitter:card" content="EGo">
+
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        window.$docsify = {
+            name: '<img src="_assets/logo.svg" alt="EGo logo" class="sidebar-logo">',
+            repo: 'edgelesssys/ego',
+
+            auto2top: true,
+            loadSidebar: true,
+            alias: {
+                '/.*/_sidebar.md': '/_sidebar.md'
+            },
+            subMaxLevel: 2,
+            pagination: {
+                crossChapter: true,
+                crossChapterText: true,
+            },
+            search: {
+                paths: 'auto',
+                hideOtherSidebarContent: true,
+            }
+        }
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-go.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+</body>
+
+</html>
