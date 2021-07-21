@@ -15,6 +15,7 @@
     --text-color-base: #2E2E46;
     --text-color-secondary: #646473;
     --text-color-tertiary: #81818E;
+    --text-color-url: #6315A0;
 }
 
 ::selection {
@@ -252,7 +253,9 @@ th {
 }
 
 .markdown-section a {
-    text-decoration: none;
+    color: var(--text-color-url) !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
     border-bottom: 0.1rem solid var(--theme-color-secondary);
     transition: all 0.3s ease;
 }
