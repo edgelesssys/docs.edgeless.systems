@@ -1,8 +1,33 @@
-# This is the landing page of the Docs!
+# Introduction
 
-## TODOs:
+![logo](_assets/logo.svg)
 
-- Fill SEO fields in `index.html` and uncomment block.
-- Replace logos in `/_assets` folder with EDB logos.
-- Create some markdown files in the `/content` folder.
-- Add new sites to the `_sidebar.md`.
+Marblerun is a framework for creating distributed confidential computing apps.
+
+Build your confidential microservices with [EGo or another runtime](content/features/runtimes.md), distribute them with Kubernetes on an SGX-enabled cluster, and let Marblerun take care of the rest. Deploy end-to-end secure and verifiable AI pipelines or crunch on sensitive big data in the cloud. Confidential computing at scale has never been easier.
+
+Marblerun guarantees that the topology of your distributed app adheres to a manifest specified in simple JSON. Marblerun verifies the integrity of services, bootstraps them, and sets up encrypted connections between them. If a node fails, Marblerun will seamlessly substitute it with respect to the rules defined in the manifest.
+
+To keep things simple, Marblerun issues one concise remote-attestation statement for your whole distributed app. This can be used by anyone to verify the integrity of your distributed app.
+
+## Key features
+
+:lock: Authentication and integrity verification of microservices based on the manifest
+
+
+:key: Secrets management for microservices
+
+
+:package: Provisioning of certificates, configurations, and parameters
+
+
+:globe_with_meridians: Remote attestation of the entire cluster
+
+## Overview
+
+Logically, Marblerun consists of two parts, the control plane called *Coordinator* and the data plane called *Marbles*.
+The Coordinator needs to be deployed once in your cluster and the Marble layer needs to be integrated with each service.
+Marblerun is configured with a simple JSON document called the *manifest*.
+It specifies the topology of the distributed app, the infrastructure properties, and provides configuration parameters for each service.
+
+![overview](_media/overview.svg)
