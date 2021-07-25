@@ -39,7 +39,7 @@
             auto2top: true,
             loadSidebar: true,
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md'
+                '/.*/_sidebar.md': '/_sidebar.md',
             },
             subMaxLevel: 2,
             pagination: {
@@ -49,6 +49,14 @@
             search: {
                 paths: 'auto',
                 hideOtherSidebarContent: true,
+            },
+            markdown: {
+                // https://github.com/docsifyjs/docsify/issues/850
+                renderer: {
+                    image: function(href, title) {
+                        return `<img src="${href}" data-origin="${href}" alt="${title}">`
+                    }
+                }
             }
         }
     </script>
