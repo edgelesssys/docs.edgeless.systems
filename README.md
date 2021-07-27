@@ -2,4 +2,4 @@
 
 ## Development
 
-Serve with `python -m SimpleHTTPServer 3000`
+Serve with `python3 -m http.server 8080` or open in [Gitpod](https://gitpod.io/#github.com/edgelesssys/docs.edgeless.systems).

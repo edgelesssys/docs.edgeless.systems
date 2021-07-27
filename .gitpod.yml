@@ -1,0 +1,3 @@
+tasks:
+  - name: serve
+    command: python3 -m http.server 8080
