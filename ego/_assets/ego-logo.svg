@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="1040"
+   width="990"
    height="560"
-   viewBox="0 0 275.16668 148.16667"
+   viewBox="0 0 261.93752 148.16667"
    version="1.1"
    id="svg8"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="EGopgherlogo.svg"
+   sodipodi:docname="ego-logo.svg"
    inkscape:export-filename="C:\Users\FelixSchuster\Edgeless Services\edgeless - Documents\Corporate Design\Products\EGo\logo.png"
    inkscape:export-xdpi="196.22363"
    inkscape:export-ydpi="196.22363"
@@ -110,7 +110,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="397.49503"
+     inkscape:cx="531.84532"
      inkscape:cy="321.22851"
      inkscape:document-units="mm"
      inkscape:current-layer="g841"
@@ -152,7 +152,7 @@
       <g
          id="g843"
          style="fill:#00010d;fill-opacity:1"
-         transform="translate(33)">
+         transform="translate(7.5)">
         <g
            id="g845"
            clip-path="url(#clipPath849)"
@@ -174,7 +174,7 @@
       <g
          id="g863"
          style="fill:#00010d;fill-opacity:1"
-         transform="translate(33)">
+         transform="translate(7.5)">
         <g
            id="g865"
            clip-path="url(#clipPath869)"
@@ -196,7 +196,7 @@
       <g
          id="g883"
          style="fill:#00010d;fill-opacity:1"
-         transform="translate(33)">
+         transform="translate(7.5)">
         <g
            id="g885"
            clip-path="url(#clipPath889)"
@@ -216,7 +216,8 @@
         </g>
       </g>
       <g
-         id="g903">
+         id="g903"
+         transform="translate(-25.5)">
         <g
            id="g905"
            clip-path="url(#clipPath909)">
