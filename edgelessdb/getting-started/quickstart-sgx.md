@@ -48,13 +48,9 @@ Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 ## Initialize EDB with the manifest
 Obtain the attested EDB root certificate so that you can send the manifest securely to EDB.
 
-Install the Edgeless remote attestation (era) tool:
-```sh
-wget -P ~/.local/bin https://github.com/edgelesssys/era/releases/latest/download/era
-chmod +x ~/.local/bin/era
-```
+Install the [Edgeless remote attestation (era)](https://github.com/edgelesssys/era) tool.
 
-Get the EDB attestation configuration and use `era` to get the root certificate of your EDB instance:
+Then get the EDB attestation configuration and use `era` to get the root certificate of your EDB instance:
 ```console
 $ wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgelessdb-sgx.json
 $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem
