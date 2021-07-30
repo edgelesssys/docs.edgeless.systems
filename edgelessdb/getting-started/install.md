@@ -1,10 +1,10 @@
 # Install EDB
 
 EDB is provided as a Docker image. There are two flavors:
-* `ghcr.io/edgelesssys/edb-sgx-1gb` with 1 GB of enclave heap memory
-* `ghcr.io/edgelesssys/edb-sgx-4gb` with 4 GB of enclave heap memory
+* `ghcr.io/edgelesssys/edgelessdb-sgx-1gb` with 1 GB of enclave heap memory
+* `ghcr.io/edgelesssys/edgelessdb-sgx-4gb` with 4 GB of enclave heap memory
 
-Use `edb-sgx-1gb` primarily to test EDB on machines with limited resources. Prefer `edb-sgx-4gb` for production deployments.
+Use `edgelessdb-sgx-1gb` primarily to test EDB on machines with limited resources. Prefer `edgelessdb-sgx-4gb` for production deployments.
 
 ?> A future version of EDB will have a dynamic heap size.
 
@@ -46,7 +46,7 @@ docker run -t \
   -p3306:3306 \
   -p8080:8080 \
   --privileged -v /dev/sgx:/dev/sgx \
-  ghcr.io/edgelesssys/edb-sgx-1gb
+  ghcr.io/edgelesssys/edgelessdb-sgx-1gb
 ```
 
 Or try it in simulation mode on any system:
@@ -56,7 +56,7 @@ docker run -t \
   -p3306:3306 \
   -p8080:8080 \
   -e OE_SIMULATION=1 \
-  ghcr.io/edgelesssys/edb-sgx-1gb
+  ghcr.io/edgelesssys/edgelessdb-sgx-1gb
 ```
 
 This exposes two services:
