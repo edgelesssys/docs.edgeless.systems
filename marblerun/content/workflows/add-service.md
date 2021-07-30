@@ -2,9 +2,9 @@
 
 Adding a service to your application requires three steps, which are described in the following.
 
-## **Step 1:** Get your service ready for Marblerun
+## **Step 1:** Get your service ready for MarbleRun
 
-To get your service ready for Marblerun, you need to rebuild it with one of the supported [runtimes](content/features/runtimes.md):
+To get your service ready for MarbleRun, you need to rebuild it with one of the supported [runtimes](content/features/runtimes.md):
 * [EGo](content/building-services/ego.md)
 * [Edgeless RT](https://github.com/edgelesssys/marblerun/blob/master/samples/helloc%2B%2B)
 * [Graphene](content/building-services/graphene.md)
@@ -13,7 +13,7 @@ To get your service ready for Marblerun, you need to rebuild it with one of the 
 
 Skip this step, when using EGo with [TTLS](content/features/transparent-TLS.md).
 
-Quick refresher: Marblerun's Coordinator issues TLS credentials for each verified Marble (i.e., a service running in a secure enclave) as is described in our [secrets management chapter](content/features/secrets-management.md#tls-credentials).
+Quick refresher: MarbleRun's Coordinator issues TLS credentials for each verified Marble (i.e., a service running in a secure enclave) as is described in our [secrets management chapter](content/features/secrets-management.md#tls-credentials).
 
 The TLS X.509 certificate and the corresponding private key can be securely passed to a service through files, environment variables, or command line arguments. This is defined in the manifest as is described in our [writing a manifest hands-on](content/workflows/define-manifest.md#manifestmarbles).
 
@@ -66,7 +66,7 @@ erthost enclave.signed
 
 `erthost` is the generic host for Marbles, which will load your `enclave.signed`. The environment variables have the following purposes.
 
-* `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying Marblerun hands-on](content/deployment), the default address is `coordinator-mesh-api.marblerun:2001`.
+* `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying MarbleRun hands-on](content/deployment), the default address is `coordinator-mesh-api.marblerun:2001`.
 
 * `EDG_MARBLE_TYPE` needs to reference one entry from your manifest's `Marbles` section.
 
@@ -78,10 +78,10 @@ erthost enclave.signed
 
 Typically, you'll write a Kubernetes resource definition for your service, which you'll deploy with the Kubernetes CLI, Helm, or similar tools.
 
-For your services to take advantage of Marblerun, they need to be "added to the mesh" by having the data plane configuration injected into their pods.
+For your services to take advantage of MarbleRun, they need to be "added to the mesh" by having the data plane configuration injected into their pods.
 This is typically done by labeling the namespace, deployment, or pod with the `marblerun/inject=enabled` Kubernetes label.
 This label triggers automatic configuration injection when the resources are created. (See the [auto-injection page](content/features/auto-injection.md) for more on how this works.)
-Alternatively, you can enable a namespace for auto-injection using the Marblerun CLI:
+Alternatively, you can enable a namespace for auto-injection using the MarbleRun CLI:
 
 ```bash
 marblerun namespace add NAMESPACE [--no-sgx-injection]

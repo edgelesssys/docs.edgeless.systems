@@ -4,9 +4,9 @@ draft: false
 weight: 4
 ---
 
-# Kubernetes Marblerun deployment
+# Kubernetes MarbleRun deployment
 
-This guide walks you through setting up Marblerun in your Kubernetes cluster.
+This guide walks you through setting up MarbleRun in your Kubernetes cluster.
 
 ## Prerequisites
 
@@ -58,7 +58,7 @@ spec:
 
 Note, that every plugin uses its own way of injecting SGX resources into deployments. Please refer to the documentation for your plugin of choice. This is an example of the Intel plugin.
 
-Marblerun supports [automatic injection](content/features/auto-injection.md) of those values for a selection of popular plugins:
+MarbleRun supports [automatic injection](content/features/auto-injection.md) of those values for a selection of popular plugins:
 
 * [Intel](https://intel.github.io/intel-device-plugins-for-kubernetes/cmd/sgx_plugin/README.html) using `sgx.intel.com/epc`
 * [Azure](https://github.com/Azure/aks-engine/blob/master/docs/topics/sgx.md#deploying-the-sgx-device-plugin) using `kubernetes.azure.com/sgx_epc_mem_in_MiB`
@@ -77,10 +77,10 @@ If your confidential application uses out-of-process attestation, you will need 
 
 You can follow [the AKS guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-out-of-proc-attestation) to make your deployments able to use AESM for quote generation. Note, that in this case, your Kubernetes nodes need the AESM service installed. See the [Intel installation guide](https://download.01.org/intel-sgx/sgx-linux/2.12/docs/Intel_SGX_Installation_Guide_Linux_2.12_Open_Source.pdf) for more information.
 
-## Option 1: Install with the Marblerun CLI
+## Option 1: Install with the MarbleRun CLI
 
-Use Marblerun's [CLI](content/reference/cli.md) that facilitates the administrative tasks.
-You can install Marblerun using the CLI as follows:
+Use MarbleRun's [CLI](content/reference/cli.md) that facilitates the administrative tasks.
+You can install MarbleRun using the CLI as follows:
 
 * For a cluster with SGX support:
 
@@ -104,9 +104,9 @@ See the [how to add a service](content/workflows/add-service.md) documentation f
 
 ## Option 2: Install with Helm
 
-Make sure that you are using the latest release of Helm and have access to the Marblerun Helm repositories. For upgrade instructions, see the [Helm install docs](https://docs.helm.sh/using_helm/#installing-helm). For more information on configuring and using Helm, see [Install applications with Helm in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm).
+Make sure that you are using the latest release of Helm and have access to the MarbleRun Helm repositories. For upgrade instructions, see the [Helm install docs](https://docs.helm.sh/using_helm/#installing-helm). For more information on configuring and using Helm, see [Install applications with Helm in Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm).
 
-### Adding Marblerun's Helm repository
+### Adding MarbleRun's Helm repository
 
 ```bash
 helm repo add edgeless https://helm.edgeless.systems/stable

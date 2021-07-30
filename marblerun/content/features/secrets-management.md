@@ -18,7 +18,7 @@ The Coordinator derives virtual sealing keys from respective Marble's ID and a m
 
 ## Shared symmetric keys
 
-While virtual sealing keys are used by individual Marbles, Marblerun also allows for the sharing of symmetric encryption keys between Marbles via placeholders in the manifest. The Coordinator creates these keys once and provides them as parameters to corresponding Marbles. Marbles can use shared keys for a variety of tasks, including the bulk encryption of shared data.
+While virtual sealing keys are used by individual Marbles, MarbleRun also allows for the sharing of symmetric encryption keys between Marbles via placeholders in the manifest. The Coordinator creates these keys once and provides them as parameters to corresponding Marbles. Marbles can use shared keys for a variety of tasks, including the bulk encryption of shared data.
 
 As with virtual sealing keys, care has to be taken to not repeat nonces between Marbles when using shared keys with AES-GCM or similar encryption algorithms.
 

@@ -1,10 +1,10 @@
 # Verifying a deployment
 
-Marblerun provides a simple HTTP REST API for clients to verify the confidentiality and integrity of the Coordinator and the deployed Marbles.
+MarbleRun provides a simple HTTP REST API for clients to verify the confidentiality and integrity of the Coordinator and the deployed Marbles.
 
 ## Establishing trust in the Coordinator
 
-Marblerun exposes the `/quote` endpoint that returns a quote and a certificate chain consisting of a root and intermediate CA. The root CA is fixed for the lifetime of your deployment, while the intermediate CA changes in case you [update](content/workflows/update-manifest.md) the packages specified in your manifest.
+MarbleRun exposes the `/quote` endpoint that returns a quote and a certificate chain consisting of a root and intermediate CA. The root CA is fixed for the lifetime of your deployment, while the intermediate CA changes in case you [update](content/workflows/update-manifest.md) the packages specified in your manifest.
 
 The simplest way to verify the quote is via the Edgeless Remote Attestation ([era](https://github.com/edgelesssys/era)) tools:
 
@@ -31,7 +31,7 @@ After successful verification, you'll have `marblerun-chain.pem`, `marblerun-roo
 ## Verifying the manifest
 
 Establishing trust with the service mesh allows you to verify the deployed manifest in the second step.
-To that end, Marblerun exposes the endpoint `/manifest`.
+To that end, MarbleRun exposes the endpoint `/manifest`.
 Using the CLI you can get the manifest's signature aka its sha256 hash and compare it against your local version:
 
 ```bash

@@ -1,6 +1,6 @@
 # Coordinator
 
-The Coordinator is Marblerun's control plane.
+The Coordinator is MarbleRun's control plane.
 It communicates with the Marble's data plane through gRPC and provides an HTTP REST interface on the client-side.
 The Coordinator can be configured with several environment variables:
 

@@ -1,12 +1,12 @@
 # Attestation
 
-Hardware-rooted *remote attestation* is a key ingredient for distributed confidential apps. Marblerun relies heavily on the [*Data Center Attestation Primitives* (DCAP)](https://download.01.org/intel-sgx/sgx-dcap/1.9/linux/docs/Intel_SGX_DCAP_ECDSA_Orientation.pdf) of the latest SGX-enabled Intel Xeon processors.
+Hardware-rooted *remote attestation* is a key ingredient for distributed confidential apps. MarbleRun relies heavily on the [*Data Center Attestation Primitives* (DCAP)](https://download.01.org/intel-sgx/sgx-dcap/1.9/linux/docs/Intel_SGX_DCAP_ECDSA_Orientation.pdf) of the latest SGX-enabled Intel Xeon processors.
 At the time of writing, only Microsoft Azure had a public DCAP service deployed in their data centers. Hence, our demos are heavily tested and deployed on Azure Kubernetes Service (AKS).
-However, Marblerun works with any DCAP service complying with the SGX specification. You can read more about setting up your own DCAP infrastructure [in the Intel SGX development articles](https://software.intel.com/content/www/us/en/develop/articles/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html).
+However, MarbleRun works with any DCAP service complying with the SGX specification. You can read more about setting up your own DCAP infrastructure [in the Intel SGX development articles](https://software.intel.com/content/www/us/en/develop/articles/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html).
 
 ## Coordinator deployment
 
-Initially, the Marblerun Coordinator is deployed to the cluster.
+Initially, the MarbleRun Coordinator is deployed to the cluster.
 The Coordinator generates an X.509 certificate chain with a root and intermediate certificate authority (CA).
 It generates a remote attestation quote which contains the hash of the root certificate as well as a hardware measurement of its enclave.
 

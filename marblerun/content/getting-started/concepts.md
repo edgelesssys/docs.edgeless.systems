@@ -1,6 +1,6 @@
 # Concepts
 
-This article describes the concepts of [confidential computing](#confidential-computing) and [service meshes](#service-meshes) which are key to the [Marblerun approach](#marblerun-approach).
+This article describes the concepts of [confidential computing](#confidential-computing) and [service meshes](#service-meshes) which are key to the [MarbleRun approach](#marblerun-approach).
 
 ## Confidential computing
 
@@ -19,7 +19,7 @@ When we started looking into the concept of *confidential microservices*, we rea
 * How to establish secure connections between services within a cluster based on remote attestation?
 * How to securely and safely restart and migrate services between nodes?
 
-## Marblerun approach
+## MarbleRun approach
 
 Most general-purpose service meshes are implemented using so-called *sidecars*. The most prevalent sidecar is probably [Envoy](https://www.envoyproxy.io/).
 In essence, sidecars are network proxies that are injected into *pods* running application containers. Sidecars observe, control, and often encrypt the network communication between application containers. Sidecars are often referred to as the data plane, in relation to the so-called control plane.
@@ -28,8 +28,8 @@ The control plane manages and configures the sidecars to route traffic, enforce 
 Security-wise, conventional service meshes focus on protecting data in transit between application containers.
 In contrast, distributed confidential apps require a more comprehensive approach and careful consideration of security implications.
 
-In summary, Marblerun takes the following approach.
+In summary, MarbleRun takes the following approach.
 
-* Instead of relying on separate sidecars, Marblerun injects the data-plane logic directly into the application logic running inside secure enclaves. Through this tight coupling, secure connections always terminate inside secure enclaves. We refer to containers running such enclaves as *Marbles*.
-* Before bootstrapping Marbles, Marblerun verifies their integrity using Intel SGX remote attestation primitives. This way, Marblerun is able to guarantee that the topology of a  distributed confidential app adheres to the cluster's effective *manifest*. Such a manifest is defined in simple JSON and is set once.
-* Marblerun acts as a certificate authority for all Marble-based services and issues one concise remote attestation statement for the entire cluster. This can be used by anyone to verify the integrity of a distributed confidential app.
+* Instead of relying on separate sidecars, MarbleRun injects the data-plane logic directly into the application logic running inside secure enclaves. Through this tight coupling, secure connections always terminate inside secure enclaves. We refer to containers running such enclaves as *Marbles*.
+* Before bootstrapping Marbles, MarbleRun verifies their integrity using Intel SGX remote attestation primitives. This way, MarbleRun is able to guarantee that the topology of a  distributed confidential app adheres to the cluster's effective *manifest*. Such a manifest is defined in simple JSON and is set once.
+* MarbleRun acts as a certificate authority for all Marble-based services and issues one concise remote attestation statement for the entire cluster. This can be used by anyone to verify the integrity of a distributed confidential app.

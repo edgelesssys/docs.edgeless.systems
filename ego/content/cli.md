@@ -38,11 +38,11 @@ OE_SIMULATION=1 ego run helloworld
 ```
 
 ## marblerun
-Run a signed executable with [Marblerun](https://marblerun.sh/). Marblerun is an open-source and cloud-native framework for managing clusters of confidential microservices.
+Run a signed executable with [MarbleRun](https://marblerun.sh/). MarbleRun is an open-source and cloud-native framework for managing clusters of confidential microservices.
 ```
 ego marblerun <executable>
 ```
-Requires a running Marblerun Coordinator instance.
+Requires a running MarbleRun Coordinator instance.
 
 Environment variables are only readable from within the enclave if they start with "EDG_" and will be extended/overwritten with the ones specified in the manifest.
 

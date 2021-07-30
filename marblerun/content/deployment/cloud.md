@@ -1,6 +1,6 @@
 # Cloud deployment
 
-This guide walks you through setting up Marblerun on different CSP offerings individually.
+This guide walks you through setting up MarbleRun on different CSP offerings individually.
 
 ## Azure confidential computing VMs
 
@@ -12,10 +12,10 @@ The description below uses a VM running Ubuntu 18.04.
 * [Update and install EGo](https://github.com/edgelesssys/ego#install)
 * [Update and install the Azure DCAP client](https://docs.microsoft.com/en-us/azure/confidential-computing/quick-create-portal#3-install-the-intel-and-open-enclave-packages-and-dependencies)
 
-### Deploy Marblerun
+### Deploy MarbleRun
 
-You can run Marblerun standalone on your Azure DCsv2 VM, see our [standalone guide](content/deployment/standalone.md).
-Alternatively, you can install a Kubernetes cluster, probably the simplest option would be [minikube](https://minikube.sigs.k8s.io/docs/start/), see our [Kubernetes guide](content/deployment/kubernetes.md) on how to install Marblerun in minikube.
+You can run MarbleRun standalone on your Azure DCsv2 VM, see our [standalone guide](content/deployment/standalone.md).
+Alternatively, you can install a Kubernetes cluster, probably the simplest option would be [minikube](https://minikube.sigs.k8s.io/docs/start/), see our [Kubernetes guide](content/deployment/kubernetes.md) on how to install MarbleRun in minikube.
 
 ## Azure Kubernetes Services (AKS)
 
@@ -24,13 +24,13 @@ Azure's cloud resources. AKS hosts Kubernetes pods in Azure confidential compute
 VMs and exposes the underlying confidential compute hardware.
 
 This section describes the workflow to create an AKS cluster with confidential
-compute VMs and deploy Marblerun.
+compute VMs and deploy MarbleRun.
 
 ### Prerequisites
 
 Follow the instructions on the [AKS Confidential Computing Quick Start guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-aks-get-started)
 to provision an AKS cluster with Intel SGX enabled worker nodes.
 
-### Deploy Marblerun
+### Deploy MarbleRun
 
-See our [Kubernetes guide](content/deployment/kubernetes.md) on how to install Marblerun in your AKS cluster.
+See our [Kubernetes guide](content/deployment/kubernetes.md) on how to install MarbleRun in your AKS cluster.

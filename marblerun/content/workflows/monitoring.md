@@ -1,6 +1,6 @@
 # Monitoring and logging
 
-As of now, the monitoring capabilities of Marblerun are basic. For status information, the Coordinator provides the `/status` endpoint in the client API.
+As of now, the monitoring capabilities of MarbleRun are basic. For status information, the Coordinator provides the `/status` endpoint in the client API.
 It returns the following information.
 
 - **0 recovery mode**: Found a sealed state of an old seal key. Waiting for user input on [`/recover`](content/features/recovery.md).

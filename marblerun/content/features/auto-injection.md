@@ -1,10 +1,10 @@
 # Kubernetes integration
 
-Marblerun provides its data-plane configuration through Kubernetes resource definitions. For this, like regular service meshes, Marblerun uses Kubernetes' [admission controllers](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook).
+MarbleRun provides its data-plane configuration through Kubernetes resource definitions. For this, like regular service meshes, MarbleRun uses Kubernetes' [admission controllers](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook).
 
-Marblerun optionally injects [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) and [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for its SGX device plugin. See the [Kubernetes deployment](content/deployment/kubernetes.md#sgx-device-plugin-on-kubernetes) section for more information.
+MarbleRun optionally injects [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) and [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for its SGX device plugin. See the [Kubernetes deployment](content/deployment/kubernetes.md#sgx-device-plugin-on-kubernetes) section for more information.
 
-You can enable auto-injection of the data-plane configuration for a namespace using the Marblerun CLI:
+You can enable auto-injection of the data-plane configuration for a namespace using the MarbleRun CLI:
 
 ```bash
 marblerun namespace add NAMESPACE [--no-sgx-injection]
@@ -15,7 +15,7 @@ The flag `--no-sgx-injection` disables the label `marblerun/inject-sgx`. This is
 
 ## The Marbletype label
 
-In Marblerun, marbles (i.e, secure enclaves) are defined in the [manifest](content/workflows/define-manifest.md). You need to reference marbles in your Kubernetes resource description as follows using the `marblerun/marbletype` label:
+In MarbleRun, marbles (i.e, secure enclaves) are defined in the [manifest](content/workflows/define-manifest.md). You need to reference marbles in your Kubernetes resource description as follows using the `marblerun/marbletype` label:
 
 ```javascript
 {
@@ -37,8 +37,8 @@ metadata:
     marblerun/marbletype: voting-svc
 ```
 
-We use this label to map Kubernetes Pods to Marblerun Marbles.
-When you deploy your application, Marblerun will read out this label's value, `voting-svc` in the example above.
+We use this label to map Kubernetes Pods to MarbleRun Marbles.
+When you deploy your application, MarbleRun will read out this label's value, `voting-svc` in the example above.
 It will check the Marbles section of your manifest for an entry with the same name.
 If such entry is present in the manifest, the Pod is provided with the particular configuration for this Marble.
 If no such entry exists or a valid `marblerun/marbletype` label is missing, the Pod's creation is rejected.
@@ -48,7 +48,7 @@ If no such entry exists or a valid `marblerun/marbletype` label is missing, the 
 The webhook will inject the following environment variables into each container of a pod:
 
 * `EDG_MARBLE_TYPE`:  The value of the `marblerun/marbletype` label
-* `EDG_MARBLE_COORDINATOR_ADDR`:  The address of the Marblerun Coordinator running on the cluster
+* `EDG_MARBLE_COORDINATOR_ADDR`:  The address of the MarbleRun Coordinator running on the cluster
 * `EDG_MARBLE_DNS_NAMES`:  DNS names of the pod derived from marbletype and namespace: `marbletype, marbletype.namespace, marbletype.namespace.svc.cluster.local`
 * `EDG_MARBLE_UUID_FILE`:  The mounted UUID of the Marble
 

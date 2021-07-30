@@ -2,7 +2,7 @@
 
 The manifest is a JSON document that defines which services span the mesh and how they should be configured.
 It further defines what Infrastructure providers are allowed.
-You can set a manifest through Marblerun's Client HTTP REST API.
+You can set a manifest through MarbleRun's Client HTTP REST API.
 The endpoint for all manifest operations is `/manifest`.
 
 See the following manifest for example (`manifest.json`).

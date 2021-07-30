@@ -1,6 +1,6 @@
-# On-premises Marblerun deployment
+# On-premises MarbleRun deployment
 
-This guide walks you through setting up Marblerun for your on-premises deployment.
+This guide walks you through setting up MarbleRun for your on-premises deployment.
 
 ## Prerequisites
 
@@ -8,8 +8,8 @@ This guide walks you through setting up Marblerun for your on-premises deploymen
 
 #### CPU
 
-To deploy Marblerun with Intel SGX, the machine or VM has to support Intel SGX.
-Particularly, Marblerun requires support for the SGX Datacenter Attestation Primitives (DCAP).
+To deploy MarbleRun with Intel SGX, the machine or VM has to support Intel SGX.
+Particularly, MarbleRun requires support for the SGX Datacenter Attestation Primitives (DCAP).
 You can verify [if your CPU supports DCAP](https://www.intel.com/content/www/us/en/support/articles/000057420/software/intel-security-products.html).
 
 For more information read this article on [detecting Intel Software Guard Extensions](https://software.intel.com/content/www/us/en/develop/articles/properly-detecting-intel-software-guard-extensions-in-your-applications.html) in your applications.
@@ -27,7 +27,7 @@ If your BIOS/firmware is outdated, you will see errors as `Platform TCB (2) is n
 
 #### Hypervisor
 
-If you are using VMs for your Marblerun deployment, you need to make sure your hypervisor has SGX enabled.
+If you are using VMs for your MarbleRun deployment, you need to make sure your hypervisor has SGX enabled.
 Most of the popular hypervisors support SGX:
 
 * [QEMU/KVM](https://software.intel.com/content/www/us/en/develop/articles/virtualizing-intel-software-guard-extensions-with-kvm-and-qemu.html)
@@ -45,9 +45,9 @@ Azure provides the instructions on [how to install this driver](https://docs.mic
 
 DCAP is the new attestation mechanism for SGX [replacing EPID]((https://software.intel.com/content/www/us/en/develop/blogs/an-update-on-3rd-party-attestation.html)).
 You can find an overview of DCAP in the [official Intel docs](https://download.01.org/intel-sgx/dcap-1.1/linux/docs/Intel_SGX_DCAP_ECDSA_Orientation.pdf).
-Marblerun only supports DCAP and requires DCAP libraries installed and configured on your system.
+MarbleRun only supports DCAP and requires DCAP libraries installed and configured on your system.
 
-From the perspective of Marblerun and your workloads DCAP is accessed with a [Quote Generation Library (QGL)](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/README.md) and a [Quote Verification Library (QVL)](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteVerification/README.md) for generating and verifying quotes respectively.
+From the perspective of MarbleRun and your workloads DCAP is accessed with a [Quote Generation Library (QGL)](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/README.md) and a [Quote Verification Library (QVL)](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteVerification/README.md) for generating and verifying quotes respectively.
 The QGL and QVL libraries need to be configured to talk to a [Provisioning Certificate Caching Service (PCCS)](https://download.01.org/intel-sgx/dcap-1.0.1/docs/Intel_SGX_DCAP_ECDSA_Orientation.pdf).
 You currently have two options regarding PCCS for your on-premises machines and clusters:
 
@@ -89,14 +89,14 @@ You currently have two options regarding PCCS for your on-premises machines and 
 
     If refreshing CRL fails, you can manually delete the `pckcache.db` database (default location `/opt/intel/sgx-dcap-pccs/pckcache.db`) and restart your PCCS.
 
-?> Currently, the [Marblerun Coordinator](https://github.com/orgs/edgelesssys/packages?repo_name=marblerun) and [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) docker images are configured to always use the public Azure PCCS.
+?> Currently, the [MarbleRun Coordinator](https://github.com/orgs/edgelesssys/packages?repo_name=marblerun) and [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) docker images are configured to always use the public Azure PCCS.
 In the future, we will make this configurable, so you can define your own PCCS for our images.
 
-## Deploy Marblerun
+## Deploy MarbleRun
 
 You have made sure your hardware supports SGX, updated all firmware, installed the SGX driver, and configured DCAP on all your machines and VMs?
-Great! Now it is time to install Marblerun and get going.
+Great! Now it is time to install MarbleRun and get going.
 
-You can either follow our guide and [use Marblerun in standalone mode](content/deployment/standalone.md) .
+You can either follow our guide and [use MarbleRun in standalone mode](content/deployment/standalone.md) .
 
-Or you follow our instructions to [install Marblerun in your Kubernetes cluster](content/deployment/kubernetes.md).
+Or you follow our instructions to [install MarbleRun in your Kubernetes cluster](content/deployment/kubernetes.md).

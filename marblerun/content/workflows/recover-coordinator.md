@@ -13,7 +13,7 @@ You have two options:
     openssl pkeyutl -inkey private_key.pem -in recovery_key_encrypted -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 -decrypt -out recovery_key_decrypted
     ```
 
-    The extracted secret can then be uploaded using the Marblerun CLI.
+    The extracted secret can then be uploaded using the MarbleRun CLI.
 
     ```bash
     marblerun recover $MARBLERUN recovery_key_decrypted

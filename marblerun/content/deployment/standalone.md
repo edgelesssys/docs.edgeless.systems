@@ -1,6 +1,6 @@
-# Standalone Marblerun deployment
+# Standalone MarbleRun deployment
 
-This guide walks you through deploying Marblerun standalone.
+This guide walks you through deploying MarbleRun standalone.
 
 ## Prerequisites
 

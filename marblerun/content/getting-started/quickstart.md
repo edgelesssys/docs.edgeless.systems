@@ -1,13 +1,13 @@
 # Quickstart
 
-In this guide, you will install Marblerun into your Kubernetes cluster and deploy a sample confidential application to demonstrate the capabilities of Marblerun.
+In this guide, you will install MarbleRun into your Kubernetes cluster and deploy a sample confidential application to demonstrate the capabilities of MarbleRun.
 
-Installing Marblerun is easy. First, you will install the CLI (command-line interface) onto your local machine. Using this CLI, you’ll then install the control plane onto your Kubernetes cluster.
+Installing MarbleRun is easy. First, you will install the CLI (command-line interface) onto your local machine. Using this CLI, you’ll then install the control plane onto your Kubernetes cluster.
 Finally, you will add your own services and set up a corresponding manifest.
 
 
-!> A working SGX DCAP environment is required for Marblerun to work. For the ease of exploring and testing we provide a simulation mode with `--simulation` that runs without SGX hardware.
-In this quickstart, we deploy Marblerun in simulation mode. Be aware that this is not meant for production and runs without real SGX enclaves.
+!> A working SGX DCAP environment is required for MarbleRun to work. For the ease of exploring and testing we provide a simulation mode with `--simulation` that runs without SGX hardware.
+In this quickstart, we deploy MarbleRun in simulation mode. Be aware that this is not meant for production and runs without real SGX enclaves.
 
 ## Step 0: Setup
 
@@ -20,11 +20,11 @@ kubectl version --short
 ```
 
 You should see an output with both a Client Version and Server Version component.
-Now your cluster is ready and we’ll install the Marblerun CLI.
+Now your cluster is ready and we’ll install the MarbleRun CLI.
 
 ## Step 1: Install the CLI
 
-If this is your first time running Marblerun, you will need to download the marblerun command-line interface (CLI) onto your local machine. The CLI will allow you to interact with your Marblerun deployment.
+If this is your first time running MarbleRun, you will need to download the marblerun command-line interface (CLI) onto your local machine. The CLI will allow you to interact with your MarbleRun deployment.
 
 To install the CLI, run:
 
@@ -52,14 +52,14 @@ marblerun
 
 Now that you have the CLI running locally and a cluster that is ready to go, it’s time to install the control plane.
 
-Install Marblerun's *Coordinator* control plane by running:
+Install MarbleRun's *Coordinator* control plane by running:
 
 ```bash
 marblerun install --simulation
 ```
 
 The `marblerun install` command generates a Kubernetes manifest with all the necessary control plane resources.
-The simulation flag tells Marblerun that real SGX hardware might not be present and the SGX-layer should be emulated.
+The simulation flag tells MarbleRun that real SGX hardware might not be present and the SGX-layer should be emulated.
 
 Wait for the control plane to finish installing:
 
@@ -67,7 +67,7 @@ Wait for the control plane to finish installing:
 marblerun check
 ```
 
-This command will wait until all components of Marblerun are ready to be used or return an error after a timeout period is reached.
+This command will wait until all components of MarbleRun are ready to be used or return an error after a timeout period is reached.
 
 ## Step 3: Initialize and verify the Coordinator
 
@@ -96,7 +96,7 @@ It can also be used as a root of trust for [authenticating your confidential app
 
 ## Step 4: Deploy the demo application
 
-To get a feel for how Marblerun would work for one of your services, you can install a demo application.
+To get a feel for how MarbleRun would work for one of your services, you can install a demo application.
 The emojivoto application is a standalone Kubernetes application that uses a mix of gRPC and HTTP calls to allow the users to vote on their favorite emojis.
 Created as a demo application for the popular [Linkerd](https://linkerd.io) service mesh, we've made a confidential variant that uses a confidential service mesh for all gRPC and HTTP connections.
 Clone the [demo application's repository]( https://github.com/edgelesssys/emojivoto.git) from the GitHub by running:
@@ -105,15 +105,15 @@ Clone the [demo application's repository]( https://github.com/edgelesssys/emojiv
 git clone https://github.com/edgelesssys/emojivoto.git && cd emojivoto
 ```
 
-Marblerun guarantees that the topology of your distributed app adheres to a manifest specified in simple JSON.
-Marblerun verifies the integrity of services, bootstraps them, and sets up encrypted connections between them.
-The emojivoto demo already comes with a [manifest](https://github.com/edgelesssys/emojivoto/blob/main/tools/manifest.json), which you can deploy onto Marblerun by running:
+MarbleRun guarantees that the topology of your distributed app adheres to a manifest specified in simple JSON.
+MarbleRun verifies the integrity of services, bootstraps them, and sets up encrypted connections between them.
+The emojivoto demo already comes with a [manifest](https://github.com/edgelesssys/emojivoto/blob/main/tools/manifest.json), which you can deploy onto MarbleRun by running:
 
 ```bash
 marblerun manifest set tools/manifest.json $MARBLERUN --insecure
 ```
 
-You can check that the state of Marblerun changed and is now ready to authenticate your services by running:
+You can check that the state of MarbleRun changed and is now ready to authenticate your services by running:
 
 ```bash
 marblerun status $MARBLERUN
@@ -136,7 +136,7 @@ helm install -f ./kubernetes/nosgx_values.yaml emojivoto ./kubernetes --create-n
 
 ## Step 5: Watch it run
 
-You can now check the Marblerun log and see the services being authenticated by the Coordinator.
+You can now check the MarbleRun log and see the services being authenticated by the Coordinator.
 
 ```bash
 kubectl -n marblerun logs -f -l edgeless.systems/control-plane-component=coordinator
@@ -149,17 +149,17 @@ sudo kubectl -n emojivoto port-forward svc/web-svc 443:443 --address 0.0.0.0
 ```
 
 Now visit [https://localhost](https://localhost).
-You'll be presented with a certificate warning because your browser does not know Marblerun's root certificate as a root of trust.
+You'll be presented with a certificate warning because your browser does not know MarbleRun's root certificate as a root of trust.
 You can safely ignore this error for now and proceed to the website.
 Voila! Your emoji votes have never been safer!
 
 ## That’s it! 👏
 
-Congratulations, you’re now a Marblerun user! Here are some suggested next steps:
+Congratulations, you’re now a MarbleRun user! Here are some suggested next steps:
 
-* Explore how [Marblerun takes care of your secrets](content/features/secrets-management.md)
-* [Add your own service](content/workflows/add-service.md) to Marblerun
-* Learn more about [Marblerun’s architecture](content/getting-started/concepts.md)
+* Explore how [MarbleRun takes care of your secrets](content/features/secrets-management.md)
+* [Add your own service](content/workflows/add-service.md) to MarbleRun
+* Learn more about [MarbleRun’s architecture](content/getting-started/concepts.md)
 * Chat with us on [Discord](https://discord.gg/rH8QTH56JN)
 
-Welcome to the Marblerun community!
+Welcome to the MarbleRun community!

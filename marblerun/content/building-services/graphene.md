@@ -1,5 +1,5 @@
 # Building a service: Graphene
-Running a Graphene app with Marblerun requires some changes to its manifest. These are explained in the following. See also the [helloworld example](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-hello).
+Running a Graphene app with MarbleRun requires some changes to its manifest. These are explained in the following. See also the [helloworld example](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-hello).
 
 ## Requirements
 First, get Graphene up and running. You can use either the [Building](https://graphene.readthedocs.io/en/latest/building.html) or [Cloud Deployment](https://graphene.readthedocs.io/en/latest/cloud-deployment.html) guide to build and initially set up Graphene.
@@ -10,7 +10,7 @@ sudo apt install libsgx-quote-ex-dev
 ```
 ## Configuration
 ### Entrypoint and argv
-We provide the `premain-libos` executable with the [Marblerun Releases](https://github.com/edgelesssys/marblerun/releases). It will contact the Coordinator, set up the environment, and run the actual application.
+We provide the `premain-libos` executable with the [MarbleRun Releases](https://github.com/edgelesssys/marblerun/releases). It will contact the Coordinator, set up the environment, and run the actual application.
 
 Set the premain executable as the entry point of the Graphene project and place the actual entry point in argv0:
 ```toml
@@ -57,7 +57,7 @@ A Marble's secrets, e.g. a certificate and private key, can be provisioned as fi
 sgx.protected_files.cert = "file:server.crt"
 sgx.protected_files.privkey = "file:server.key"
 ```
-You can specify the files' content in the Marblerun manifest:
+You can specify the files' content in the MarbleRun manifest:
 ```javascript
 ...
     "Parameters": {

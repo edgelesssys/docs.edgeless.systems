@@ -1,11 +1,11 @@
 # Command Line Interface (CLI)
 
-We provide a command-line interface (CLI) for Marblerun.
-This CLI allows you to install Marblerun on your cluster and interacts with the control plane through the Client API for all administrative tasks in the service mesh.
+We provide a command-line interface (CLI) for MarbleRun.
+This CLI allows you to install MarbleRun on your cluster and interacts with the control plane through the Client API for all administrative tasks in the service mesh.
 
 ## Installation
 
-To install the Marblerun CLI on your machine you can use our pre-built binaries.
+To install the MarbleRun CLI on your machine you can use our pre-built binaries.
 
 **For the current user**
 
@@ -21,7 +21,7 @@ sudo wget -O /usr/local/bin/marblerun https://github.com/edgelesssys/marblerun/r
 sudo chmod +x /usr/local/bin/marblerun
 ```
 
-To build the Marblerun CLI, [Edgeless RT](https://github.com/edgelesssys/edgelessrt) needs to be installed on your machine.
+To build the MarbleRun CLI, [Edgeless RT](https://github.com/edgelesssys/edgelessrt) needs to be installed on your machine.
 
 ```bash
 go build -o marblerun github.com/edgelesssys/marblerun/cli
@@ -35,20 +35,20 @@ Usage:
   marblerun [command]
 
 Available Commands:
-  certificate      Retrieves the certificate of the Marblerun Coordinator
-  check            Check the status of Marbleruns control plane
+  certificate      Retrieves the certificate of the MarbleRun Coordinator
+  check            Check the status of MarbleRuns control plane
   completion       Output script for specified shell to enable autocompletion
-  graphene-prepare Modifies a Graphene manifest for use with Marblerun
+  graphene-prepare Modifies a Graphene manifest for use with MarbleRun
   help             Help about any command
   install          Installs marblerun on a kubernetes cluster
-  manifest         Manages manifest for the Marblerun Coordinator
-  namespace        Manages namespaces associated with Marblerun installations
+  manifest         Manages manifest for the MarbleRun Coordinator
+  namespace        Manages namespaces associated with MarbleRun installations
   precheck         Check if your kubernetes cluster supports SGX
-  recover          Recovers the Marblerun Coordinator from a sealed state
-  secret           Manages secrets for the Marblerun Coordinator
+  recover          Recovers the MarbleRun Coordinator from a sealed state
+  secret           Manages secrets for the MarbleRun Coordinator
   status           Gives information about the status of the marblerun Coordinator
-  uninstall        Removes Marblerun from a kubernetes cluster
-  version          Display version of this CLI and (if running) the Marblerun Coordinator
+  uninstall        Removes MarbleRun from a kubernetes cluster
+  version          Display version of this CLI and (if running) the MarbleRun Coordinator
 
 Flags:
   -h, --help   help for marblerun
@@ -69,7 +69,7 @@ sudo apt -y install az-dcap-client
 
 ## Command `certificate`
 
-Get the root and/or intermediate certificates of the Marblerun Coordinator.
+Get the root and/or intermediate certificates of the MarbleRun Coordinator.
 
 **Flags**
 These flags apply to all `certificate` subcommands
@@ -83,7 +83,7 @@ These flags apply to all `certificate` subcommands
 
 * ### `root`
 
-  Gets the root certificate of the Marblerun Coordinator.
+  Gets the root certificate of the MarbleRun Coordinator.
 
   **Usage**
 
@@ -93,7 +93,7 @@ These flags apply to all `certificate` subcommands
 
 * ### `intermediate`
 
-  Gets the intermediate certificate of the Marblerun Coordinator.
+  Gets the intermediate certificate of the MarbleRun Coordinator.
 
   **Usage**
 
@@ -103,7 +103,7 @@ These flags apply to all `certificate` subcommands
 
 * ### `chain`
 
-  Gets the certificate chain of the Marblerun Coordinator.
+  Gets the certificate chain of the MarbleRun Coordinator.
 
   **Usage**
 
@@ -113,8 +113,8 @@ These flags apply to all `certificate` subcommands
 
 ## Command `check`
 
-  Check the status of Marbleruns control plane.
-  This command will check if the Marblerun Coordinator and/or the Marblerun webhook are deployed on a Kubernetes cluster and wait until all replicas of the deployment have the `available` status.
+  Check the status of MarbleRuns control plane.
+  This command will check if the MarbleRun Coordinator and/or the MarbleRun webhook are deployed on a Kubernetes cluster and wait until all replicas of the deployment have the `available` status.
 
   **Usage**
 
@@ -155,16 +155,16 @@ Once enabled, command completion is just one keypress away:\
 
 
 ## Command `graphene-prepare`
-This command helps you if you want to add Graphene-based services to your Marblerun service mesh.
+This command helps you if you want to add Graphene-based services to your MarbleRun service mesh.
 It prepares your Graphene project to be used as a Marble by replacing the original entrypoint of your application with the bootstrapping Marble premain process which eventually spawns your application.
 Given your [Graphene manifest template](https://graphene.readthedocs.io/en/latest/manifest-syntax.html), it will suggest the required adjustments needed and adds our bootstrapping data-plane code to your Graphene image.
-See [Building a service: Graphene](content/building-services/graphene.md) for detailed information on Marblerun’s Graphene integration and our changes in your Graphene manifest.
+See [Building a service: Graphene](content/building-services/graphene.md) for detailed information on MarbleRun’s Graphene integration and our changes in your Graphene manifest.
 
 Please note that this only works on a best-effort basis and may not instantly work correctly.
 While suggestions should be made for every valid TOML Graphene configuration, changes can only be performed for non-hierarchically sorted configurations. as the official Graphene examples.
 The unmodified manifest is saved as a backup under the old path with an added ".bak" suffix, allowing you to try out and roll back any changes performed.
 
-Remember, you need to create a [Marblerun manifest](content/workflows/define-manifest.md) in addition to the Graphene manifest. Adding Graphene packages to your manifest is straightforward and follows the same principles as any other SGX enclave. If you configured the arguments to your Graphene application through the [Graphene manifest](https://graphene.readthedocs.io/en/latest/manifest-syntax.html#command-line-arguments) before, you need to transfer those to the [Marblerun manifest](content/workflows/define-manifest.md#manifestmarbles">}}).
+Remember, you need to create a [MarbleRun manifest](content/workflows/define-manifest.md) in addition to the Graphene manifest. Adding Graphene packages to your manifest is straightforward and follows the same principles as any other SGX enclave. If you configured the arguments to your Graphene application through the [Graphene manifest](https://graphene.readthedocs.io/en/latest/manifest-syntax.html#command-line-arguments) before, you need to transfer those to the [MarbleRun manifest](content/workflows/define-manifest.md#manifestmarbles">}}).
 
   **Usage**
 
@@ -181,7 +181,7 @@ Remember, you need to create a [Marblerun manifest](content/workflows/define-man
   ```bash
   Reading file: nginx.manifest.template
 
-  Marblerun suggests the following changes to your Graphene manifest:
+  MarbleRun suggests the following changes to your Graphene manifest:
   libos.entrypoint = "file:premain-libos"
   loader.argv0_override = "$(INSTALL_DIR)/sbin/nginx"
   loader.insecure__use_host_env = 1
@@ -194,16 +194,16 @@ Remember, you need to create a [Marblerun manifest](content/workflows/define-man
   Applying changes...
   Saving original manifest as nginx.manifest.template.bak...
   Saving changes to nginx.manifest.template...
-  Downloading Marblerun premain from GitHub...
+  Downloading MarbleRun premain from GitHub...
   Successfully downloaded premain-libos.
 
-  Done! You should be good to go for Marblerun!
+  Done! You should be good to go for MarbleRun!
   ```
 
 ## Command `install`
 
-Install Marblerun on your Kubernetes cluster.
-This command will add Marblerun to your local helm repository if it is not present yet, optionally you can provide a path to your own helm chart.
+Install MarbleRun on your Kubernetes cluster.
+This command will add MarbleRun to your local helm repository if it is not present yet, optionally you can provide a path to your own helm chart.
 
 **Usage**
 
@@ -222,12 +222,12 @@ marblerun install [flags]
 | --marblerun-chart-path   |                   | Path to marblerun helm chart                                                                                                                                 |
 | --mesh-sever-port        | 2001              | Set the mesh server port. Needs to be configured to the same <br> port as in the data-plane marbles                                                          |
 | --resource-key           | sgx.intel.com/epc | Resource providing SGX, different depending on used device plugin. Use this to set tolerations/resources if your device plugin is not supported by marblerun |
-| --simulation             |                   | Set Marblerun to start in simulation mode, needed when not <br> running on an SGX enabled cluster                                                            |
+| --simulation             |                   | Set MarbleRun to start in simulation mode, needed when not <br> running on an SGX enabled cluster                                                            |
 | --version                |                   | Version of the Coordinator to install, latest by default                                                                                                     |
 
 **Examples**
 
-* Install Marblerun on a cluster with SGX Support
+* Install MarbleRun on a cluster with SGX Support
 
     ```bash
     marblerun install --domain=mycluster.uksouth.cloudapp.azure.com
@@ -238,11 +238,11 @@ marblerun install [flags]
     ```bash
     Did not find marblerun helm repository on system, adding now...
     edgeless has been added to your helm repositories
-    Setting up Marblerun Webhook... Done
-    Marblerun installed successfully
+    Setting up MarbleRun Webhook... Done
+    MarbleRun installed successfully
     ```
 
-* Install Marblerun on a cluster without SGX Support (simulation mode)
+* Install MarbleRun on a cluster without SGX Support (simulation mode)
 
     ```bash
     marblerun install --simulation
@@ -251,8 +251,8 @@ marblerun install [flags]
   The output is similar to the following:
 
   ```bash
-  Setting up Marblerun Webhook... Done
-  Marblerun installed successfully
+  Setting up MarbleRun Webhook... Done
+  MarbleRun installed successfully
   ```
 
 ## Command `manifest`
@@ -270,7 +270,7 @@ These flags apply to all subcommands of manifest
 
 * ### `set`
 
-  Uploads a manifest in json or yaml format to the Marblerun Coordinator.
+  Uploads a manifest in json or yaml format to the MarbleRun Coordinator.
   If a recovery key was set in the manifest, a recovery secret will be sent back.
 
   **Usage**
@@ -300,7 +300,7 @@ These flags apply to all subcommands of manifest
 
 * ### `update`
 
-  Update a manifest by uploading an update manifest to the Marblerun Coordinator.
+  Update a manifest by uploading an update manifest to the MarbleRun Coordinator.
   The original manifest has to define one or multiple Users who are allowed to update the manifest.
   For more information see [Update](content/workflows/update-manifest.md)
 
@@ -332,7 +332,7 @@ These flags apply to all subcommands of manifest
 
 * ### `get`
 
-  Retrieves the manifest and signature from the Marblerun Coordinator.
+  Retrieves the manifest and signature from the MarbleRun Coordinator.
   This allows a user to verify what configuration is running on the Coordinator.
 
   Using the `display-update` flag, users can generate a manifest, including all applied updates up to that point.
@@ -413,7 +413,7 @@ These flags apply to all subcommands of manifest
 
 * ### `signature`
 
-  Print the signature of a Marblerun manifest.
+  Print the signature of a MarbleRun manifest.
   The manifest can be in either JSON or YAML format.
 
   **Usage**
@@ -422,7 +422,7 @@ These flags apply to all subcommands of manifest
   marblerun manifest signature manifest.json
   ```
 
-  The output is the sha256 hash in base64 encoding of the manifest as it would be interpreted by the Marblerun Coordinator.
+  The output is the sha256 hash in base64 encoding of the manifest as it would be interpreted by the MarbleRun Coordinator.
   Note, that Internally, the Coordinator handles the manifest in JSON format. Hence, the signature is always based on the JSON format of your manifest.
 
 * ### `verify`
@@ -453,12 +453,12 @@ These flags apply to all subcommands of manifest
 
 ## Command `namespace`
 
-Add namespaces to Marblerun.
-If the auto-injection feature is enabled. All new pods in those namespaces will get their Marblerun configuration automatically injected.
+Add namespaces to MarbleRun.
+If the auto-injection feature is enabled. All new pods in those namespaces will get their MarbleRun configuration automatically injected.
 
 * ### `add`
 
-  Add a namespace to the Marblerun mesh by creating a new label
+  Add a namespace to the MarbleRun mesh by creating a new label
 
   **Usage**
 
@@ -481,13 +481,13 @@ If the auto-injection feature is enabled. All new pods in those namespaces will 
   The output is the following:
 
   ```bash
-  Added namespace [default] to Marblerun mesh
-  Added namespace [testspace] to Marblerun mesh
+  Added namespace [default] to MarbleRun mesh
+  Added namespace [testspace] to MarbleRun mesh
   ```
 
 * ### `remove`
 
-  Remove a namespace from the Marblerun mesh
+  Remove a namespace from the MarbleRun mesh
 
   **Usage**
 
@@ -504,12 +504,12 @@ If the auto-injection feature is enabled. All new pods in those namespaces will 
   The output is the following:
 
   ```bash
-  Namespace [default] successfully removed from the Marblerun mesh
+  Namespace [default] successfully removed from the MarbleRun mesh
   ```
 
 * ### `list`
 
-  List all namespaces currently associated with the Marblerun mesh
+  List all namespaces currently associated with the MarbleRun mesh
 
   **Usage**
 
@@ -552,20 +552,20 @@ If the auto-injection feature is enabled. All new pods in those namespaces will 
   * If your cluster does not support SGX the output is the following:
 
   ```bash
-  Cluster does not support SGX, you may still run Marblerun in simulation mode
-  To install Marblerun run [marblerun install --simulation]
+  Cluster does not support SGX, you may still run MarbleRun in simulation mode
+  To install MarbleRun run [marblerun install --simulation]
   ```
 
   * If your cluster does support SGX the output is similar to the following
 
   ```bash
   Cluster supports SGX on 2 nodes
-  To install Marblerun run [marblerun install]
+  To install MarbleRun run [marblerun install]
   ```
 
 ## Command `recover`
 
-Recover the Marblerun Coordinator from a sealed state by uploading a recovery key.
+Recover the MarbleRun Coordinator from a sealed state by uploading a recovery key.
 For more information about Coordinator recovery see [Recovery](content/workflows/recover-coordinator.md)
 
 **Usage**
@@ -592,7 +592,7 @@ The output is similar to the following:
 
 ```bash
 Successfully verified Coordinator, now uploading key
-Successfully uploaded recovery key and unsealed the Marblerun Coordinator
+Successfully uploaded recovery key and unsealed the MarbleRun Coordinator
 ```
 
 ## Command `secret`
@@ -604,10 +604,10 @@ These flags apply to all `secret` subcommands
 
 | Name, shorthand | Default | Description                                                                                                                 |
 | --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
-| --cert, -c      |         | PEM encoded Marblerun user certificate file (required)                                                                      |
+| --cert, -c      |         | PEM encoded MarbleRun user certificate file (required)                                                                      |
 | --era-config    |         | Path to remote attestation config file in json format, if none provided the newest configuration will be loaded from github |
 | --insecure, -i  |         | Set to skip quote verification, needed when running in simulation mode                                                      |
-| --key, -k       |         | PEM encoded Marblerun user key file (required)                                                                              |
+| --key, -k       |         | PEM encoded MarbleRun user key file (required)                                                                              |
 
 * ### `get`
 
@@ -713,7 +713,7 @@ Got latest config
 
 ## Command `uninstall`
 
-  Remove Marblerun from your Kubernetes cluster.
+  Remove MarbleRun from your Kubernetes cluster.
   This command will remove all resources added by the installation command.
 
   **Usage**
@@ -724,12 +724,12 @@ Got latest config
 
   The output is the following:
   ```bash
-  Marblerun successfully removed from your cluster
+  MarbleRun successfully removed from your cluster
   ```
 
 ## Command `version`
 
-  Display version information of CLI, and the Marblerun Coordinator running on a Kubernetes cluster.
+  Display version information of CLI, and the MarbleRun Coordinator running on a Kubernetes cluster.
 
   **Usage**
 
