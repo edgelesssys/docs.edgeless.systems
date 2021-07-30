@@ -1,4 +1,4 @@
-# CLI reference ⌨
+# CLI reference
 
 After you've compiled your app with `ego-go`, use the `ego` tool to sign, run, and examine your enclave app.
 

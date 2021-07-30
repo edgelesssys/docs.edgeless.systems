@@ -1,4 +1,4 @@
-# Configuration file 📄
+# Configuration file
 Your enclave's configuration is defined in JSON and applied when signing an executable via `ego sign`.
 
 Here's an example configuration:
