@@ -1,6 +1,4 @@
-# Introduction
-
-![logo](_assets/logo.svg)
+# Welcome to Marblerun! 🎉
 
 Marblerun is a framework for creating distributed confidential computing apps.
 
@@ -12,16 +10,16 @@ To keep things simple, Marblerun issues one concise remote-attestation statement
 
 ## Key features
 
-:lock: Authentication and integrity verification of microservices based on the manifest
+🔒 Authentication and integrity verification of microservices based on the manifest
 
 
-:key: Secrets management for microservices
+🔑 Secrets management for microservices
 
 
-:package: Provisioning of certificates, configurations, and parameters
+📃 Provisioning of certificates, configurations, and parameters
 
 
-:globe_with_meridians: Remote attestation of the entire cluster
+🔬 Remote attestation of the entire cluster
 
 ## Overview
 
