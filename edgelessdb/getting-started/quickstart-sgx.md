@@ -56,7 +56,7 @@ chmod +x ~/.local/bin/era
 
 Get the EDB attestation configuration and use `era` to get the root certificate of your EDB instance:
 ```console
-$ wget https://github.com/edgelesssys/era/releases/latest/download/edgelessdb-sgx.json
+$ wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgelessdb-sgx.json
 $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem
 
 Root certificate writen to edb.pem
