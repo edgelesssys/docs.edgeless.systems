@@ -10,7 +10,7 @@ ego-go build
 
 ## Sign and run
 
-After you've built your app, sign it with the [`ego sign`](content/cli.md#sign) command. Just insert the name of your binary in the following command:
+After you've built your app, sign it with the [`ego sign`](../reference/cli.md#sign) command. Just insert the name of your binary in the following command:
 
 ```bash
 ego sign <executable>
@@ -23,4 +23,4 @@ ego run <executable>
 ```
 You can set the `OE_SIMULATION=1` environment variable if you want to simulate the enclave, e.g. for development on hardware that does not support enclaves.
 
-Look at our [example collection](content/examples.md) if you want to see the build process in action.
+Look at our [example collection](../getting-started/examples.md) if you want to see the build process in action.

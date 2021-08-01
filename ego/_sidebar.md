@@ -1,12 +1,13 @@
-* **Getting Started**
-    * [Install](content/install.md)
-    * [Examples](content/examples.md)
-    * [Build your app](content/build.md)
-    * [Debug your app](content/debug.md)
-    * [Troubleshooting](content/troubleshoot.md)
+* **Getting started**
+    * [Install](/getting-started/install.md)
+    * [Examples](/getting-started/examples.md)
+    * [Troubleshooting](/getting-started/troubleshoot.md)
+* **Workflows**
+    * [Build your app](/workflows/build.md)
+    * [Debug your app](/workflows/debug.md)
 * **Reference**
-    * [CLI](content/cli.md)
-    * [Configuration file](content/config.md)
-    * [Quote provider](content/quoteprov.md)
+    * [CLI](/reference/cli.md)
+    * [Configuration file](/reference/config.md)
     * [Go library ↗](https://pkg.go.dev/github.com/edgelesssys/ego)
-    * [Changelog ↗](https://github.com/edgelesssys/ego/releases)
+    * [Quote provider](/reference/quoteprov.md)
+* [Changelog ↗](https://github.com/edgelesssys/ego/releases)
