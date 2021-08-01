@@ -64,4 +64,4 @@ This exposes two services:
 * The HTTP REST API on port 8080
 
 ## Storage
-If EdgelessDB is run with one of the commands above, all data is stored inside the docker container. For a production deployment, consider using one of the [data management approaches of Docker](https://docs.docker.com/storage). E.g., to mount a directory on the host system, add `-v /my/own/datadir:/data` to the command line.
+If EdgelessDB is run with one of the commands above, all data is stored inside the docker container in the `/data` directory. For a production deployment, consider using one of the [data management approaches of Docker](https://docs.docker.com/storage). E.g., to mount a directory on the host system, add `-v /my/own/datadir:/data` to the command line.

@@ -60,7 +60,7 @@ $ wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgele
 $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem -skip-quote
 
 WARNING: Skipping quote verification
-Root certificate writen to edb.pem
+Root certificate written to edb.pem
 ```
 In simulation mode you must skip quote verification with `-skip-quote`.
 

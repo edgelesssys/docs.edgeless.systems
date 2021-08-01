@@ -55,7 +55,7 @@ Then get the EdgelessDB attestation configuration and use `era` to get the root 
 $ wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgelessdb-sgx.json
 $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem
 
-Root certificate writen to edb.pem
+Root certificate written to edb.pem
 ```
 
 Initialize EdgelessDB with the manifest:
