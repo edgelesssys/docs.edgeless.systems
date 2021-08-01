@@ -1,10 +1,10 @@
 # Quickstart: SGX mode
-In this guide, you will set up EDB with a minimal manifest and connect to it with the `mysql` client.
+In this guide, you will set up EdgelessDB with a minimal manifest and connect to it with the `mysql` client.
 
 !> The following steps require an SGX machine. If you don't have one available, continue with [simulation mode](quickstart-simulation.md).
 
-## Start EDB
-Run the EDB Docker image:
+## Start EdgelessDB
+Run the EdgelessDB Docker image:
 ```console
 $ docker run --name my-edb -p3306:3306 -p8080:8080 --privileged -v /dev/sgx:/dev/sgx -t ghcr.io/edgelesssys/edgelessdb-sgx-1gb
 
@@ -13,7 +13,7 @@ $ docker run --name my-edb -p3306:3306 -p8080:8080 --privileged -v /dev/sgx:/dev
 [EDB] 2021/07/27 15:50:12 DB has not been initialized, waiting for manifest.
 ```
 
-Note that EDB is now waiting for the [manifest](concepts.md#manifest).
+Note that EdgelessDB is now waiting for the [manifest](concepts.md#manifest).
 
 ## Generate certificates and create a manifest
 You will now create a manifest that defines a root user. This user is authenticated by an X.509 certificate.
@@ -45,12 +45,12 @@ Create a file `manifest.json`:
 
 Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 
-## Initialize EDB with the manifest
-Obtain the attested EDB root certificate so that you can send the manifest securely to EDB.
+## Initialize EdgelessDB with the manifest
+Obtain the attested EdgelessDB root certificate so that you can send the manifest securely to EdgelessDB.
 
 Install the [Edgeless remote attestation (era)](https://github.com/edgelesssys/era) tool.
 
-Then get the EDB attestation configuration and use `era` to get the root certificate of your EDB instance:
+Then get the EdgelessDB attestation configuration and use `era` to get the root certificate of your EdgelessDB instance:
 ```console
 $ wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgelessdb-sgx.json
 $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem
@@ -58,15 +58,15 @@ $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem
 Root certificate writen to edb.pem
 ```
 
-Initialize EDB with the manifest:
+Initialize EdgelessDB with the manifest:
 ```sh
 curl --cacert edb.pem --data-binary @manifest.json https://localhost:8080/manifest
 ```
 
-## Use EDB
-Now you can use EDB like any other SQL database:
+## Use EdgelessDB
+Now you can use EdgelessDB like any other SQL database:
 ```sh
 mysql -h127.0.0.1 -uroot --ssl-ca edb.pem --ssl-cert cert.pem --ssl-key key.pem
 ```
 
-For a more advanced example of EDB's CC features, see the [demo that shows a secure multi-party data processing](https://github.com/edgelesssys/edgelessdb/tree/main/demo) scenario.
+For a more advanced example of EdgelessDB's CC features, see the [demo that shows a secure multi-party data processing](https://github.com/edgelesssys/edgelessdb/tree/main/demo) scenario.

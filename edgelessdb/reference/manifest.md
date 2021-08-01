@@ -1,5 +1,5 @@
 # Manifest
-The manifest defines the initial database state. Clients can verify that an EDB instance was initialized with a specific manifest. Here's a sample manifest:
+The manifest defines the initial database state. Clients can verify that an EdgelessDB instance was initialized with a specific manifest. Here's a sample manifest:
 ```json
 {
     "sql": [

@@ -1,5 +1,5 @@
 # Configuration
-EDB is configured via environment variables. Add them as flags `-e NAME=value` to the `docker run` command line.
+EdgelessDB is configured via environment variables. Add them as flags `-e NAME=value` to the `docker run` command line.
 
 * `EDG_EDB_DATABASE_ADDR`: The network address of the MySQL interface. Defaults to `0.0.0.0:3306`.
 * `EDG_EDB_API_ADDR`: The network address of the HTTP REST API. Defaults to `0.0.0.0:8080`.

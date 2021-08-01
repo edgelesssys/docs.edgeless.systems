@@ -9,8 +9,8 @@ For information about confidential computing, see the Confidential Computing Con
 Before an instance of EdgelessDB becomes operational, it needs to be initialized with a manifest. The manifest is a simple JSON file that defines how the data stored in EdgelessDB can be accessed by different parties. Clients can (and should) verify that a given instance of EdgelessDB adheres to a certain manifest before they connect via TLS.
 
 ## Remote attestation
-Remote attestation cryptographically proves that the EDB instance
+Remote attestation cryptographically proves that the EdgelessDB instance
 * runs in a secure enclave on legit hardware
 * and has been initialized with a specific manifest.
 
-The *attestation report* (or *quote*) binds these facts to EDB's TLS certificate.
+The *attestation report* (or *quote*) binds these facts to EdgelessDB's TLS certificate.

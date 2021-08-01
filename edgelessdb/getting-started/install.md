@@ -1,15 +1,15 @@
-# Install EDB
+# Install EdgelessDB
 
-EDB is provided as a Docker image. There are two flavors:
+EdgelessDB is provided as a Docker image. There are two flavors:
 * `ghcr.io/edgelesssys/edgelessdb-sgx-1gb` with 1 GB of enclave heap memory
 * `ghcr.io/edgelesssys/edgelessdb-sgx-4gb` with 4 GB of enclave heap memory
 
-Use `edgelessdb-sgx-1gb` primarily to test EDB on machines with limited resources. Prefer `edgelessdb-sgx-4gb` for production deployments.
+Use `edgelessdb-sgx-1gb` primarily to test EdgelessDB on machines with limited resources. Prefer `edgelessdb-sgx-4gb` for production deployments.
 
-?> A future version of EDB will have a dynamic heap size.
+?> A future version of EdgelessDB will have a dynamic heap size.
 
 ## Prepare the SGX system
-Skip this section if you want to run EDB in simulation mode.
+Skip this section if you want to run EdgelessDB in simulation mode.
 
 ### Hardware
 The hardware must support SGX-FLC and it must be enabled in the BIOS:
@@ -39,7 +39,7 @@ sudo ./sgx_linux_x64_driver_1.36.2.bin
 ```
 
 ## Run the Docker image
-Run EDB on an SGX-capable system:
+Run EdgelessDB on an SGX-capable system:
 ```sh
 docker run -t \
   --name my-edb \
@@ -64,4 +64,4 @@ This exposes two services:
 * The HTTP REST API on port 8080
 
 ## Storage
-If EDB is run with one of the commands above, all data is stored inside the docker container. For a production deployment, consider using one of the [data management approaches of Docker](https://docs.docker.com/storage). E.g., to mount a directory on the host system, add `-v /my/own/datadir:/data` to the command line.
+If EdgelessDB is run with one of the commands above, all data is stored inside the docker container. For a production deployment, consider using one of the [data management approaches of Docker](https://docs.docker.com/storage). E.g., to mount a directory on the host system, add `-v /my/own/datadir:/data` to the command line.
