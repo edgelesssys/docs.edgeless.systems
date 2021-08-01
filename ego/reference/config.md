@@ -40,7 +40,7 @@ Here's an example configuration:
 
 `key` is the path to the private RSA key of the signer. When invoking `ego sign` and the key file does not exist, a key with the required parameters is automatically generated. You can also generate it yourself with:
 
-```sh
+```bash
 openssl genrsa -out private.pem -3 3072
 ```
 
@@ -62,7 +62,7 @@ If `debug` is true, the enclave will be debuggable.
 
 By default, `/` is initialized as an empty `memfs` file system. To expose certain directories to the enclave, you can use the `hostfs` mounts with the options mentioned above. You can also choose to define additional `memfs` mount points, but note that there is no explicit isolation between them. They can be accessed either via the path specified in `target` or also via `/edg/mnt/<target>`, which is where the files of the additional `memfs` mount are stored internally.
 
-!> **It is not recommended to use the mount options to remount '/' as `hostfs` other than for testing purposes**. You might involuntarily expose files to the host which should stay inside the enclave, risking the confidentiality of your data.
+!> It is not recommended to use the mount options to remount `/` as `hostfs` other than for testing purposes. You might involuntarily expose files to the host which should stay inside the enclave, risking the confidentiality of your data.
 
 ## Environment variables
 `env` holds environment variables to set or take over from the host inside the enclave. By default, all environment variables not starting with `EDG_` are dropped when entering the enclave.

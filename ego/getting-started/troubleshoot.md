@@ -8,13 +8,13 @@ EGo currently supports Ubuntu 18.04 and 20.04.
 
 ### Hardware
 The hardware must support SGX and it must be enabled in the BIOS:
-```bash
+```shell-session
 $ sudo apt install cpuid
 $ cpuid | grep SGX
       SGX: Software Guard Extensions supported = true
       SGX_LC: SGX launch config supported      = true
    SGX capability (0x12/0):
-      SGX1 supported                           = true
+      SGX1 supported                         = true
 ```
 * `SGX: Software Guard Extensions supported` is true if the hardware supports it.
 * `SGX_LC: SGX launch config supported` is true if the hardware also supports FLC. This is required for attestation.
@@ -48,3 +48,12 @@ wget -qO- https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | 
 sudo add-apt-repository "deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu `lsb_release -cs` main"
 sudo apt install libsgx-launch
 ```
+
+## Attestation
+If EGo works in SGX mode (i.e., without `OE_SIMULATION`), but attestation fails, check the following.
+
+### FLC
+Attestation only works on [SGX-FLC](#hardware) systems.
+
+### Quote provider
+You must install a [quote provider](../reference/quoteprov.md).

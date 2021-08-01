@@ -6,7 +6,7 @@ An EGo executable can be run as a normal host process without an enclave. Thus, 
 
 ## Inside an enclave
 EGo comes with `ego-gdb` that augments `gdb` with enclave support. The `console` interface is the same as `gdb`:
-```sh
+```bash
 ego-gdb --args ./helloworld
 ```
 
