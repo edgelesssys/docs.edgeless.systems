@@ -13,7 +13,7 @@ Skip this section if you want to run EdgelessDB in simulation mode.
 
 ### Hardware
 The hardware must support SGX-FLC and it must be enabled in the BIOS:
-```sh
+```shell-session
 $ sudo apt install cpuid
 $ cpuid | grep SGX
       SGX: Software Guard Extensions supported = true
@@ -27,12 +27,12 @@ $ cpuid | grep SGX
 
 ### Driver
 The SGX driver exposes a device:
-```sh
+```bash
 ls /dev/*sgx*
 ```
 
 If the output is empty, install the driver:
-```sh
+```bash
 wget https://download.01.org/intel-sgx/sgx-linux/2.12/distro/ubuntu`lsb_release -rs`-server/sgx_linux_x64_driver_1.36.2.bin
 chmod +x sgx_linux_x64_driver_1.36.2.bin
 sudo ./sgx_linux_x64_driver_1.36.2.bin
@@ -40,7 +40,7 @@ sudo ./sgx_linux_x64_driver_1.36.2.bin
 
 ## Run the Docker image
 Run EdgelessDB on an SGX-capable system:
-```sh
+```bash
 docker run -t \
   --name my-edb \
   -p3306:3306 \
@@ -50,7 +50,7 @@ docker run -t \
 ```
 
 Or try it in simulation mode on any system:
-```sh
+```bash
 docker run -t \
   --name my-edb \
   -p3306:3306 \

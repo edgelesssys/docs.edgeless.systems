@@ -5,7 +5,7 @@ In this guide, you will set up EdgelessDB with a minimal manifest and connect to
 
 ## Start EdgelessDB
 Run the EdgelessDB Docker image:
-```console
+```shell-session
 $ docker run --name my-edb -p3306:3306 -p8080:8080 -e OE_SIMULATION=1 -t ghcr.io/edgelesssys/edgelessdb-sgx-1gb
 
 [erthost] running in simulation mode
@@ -23,14 +23,14 @@ Note that EdgelessDB is now waiting for the [manifest](concepts.md#manifest). Al
 You will now create a manifest that defines a root user. This user is authenticated by an X.509 certificate.
 
 Generate a CA to issue user certificates. Generate a user certificate and sign it:
-```sh
+```bash
 openssl req -x509 -newkey rsa -nodes -subj '/CN=My CA' -keyout ca-key.pem -out ca-cert.pem
 openssl req -newkey rsa -nodes -subj '/CN=rootuser' -keyout key.pem -out csr.pem
 openssl x509 -req -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -in csr.pem -out cert.pem
 ```
 
 Escape the line breaks of the CA certificate:
-```sh
+```bash
 awk 1 ORS='\\n' ca-cert.pem
 ```
 
@@ -55,7 +55,7 @@ Obtain the attested EdgelessDB root certificate so that you can send the manifes
 Install the [Edgeless remote attestation (era)](https://github.com/edgelesssys/era) tool.
 
 Then get the EdgelessDB attestation configuration and use `era` to get the root certificate of your EdgelessDB instance:
-```console
+```shell-session
 $ wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgelessdb-sgx.json
 $ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb.pem -skip-quote
 
@@ -65,13 +65,13 @@ Root certificate written to edb.pem
 In simulation mode you must skip quote verification with `-skip-quote`.
 
 Initialize EdgelessDB with the manifest:
-```sh
+```bash
 curl --cacert edb.pem --data-binary @manifest.json https://localhost:8080/manifest
 ```
 
 ## Use EdgelessDB
 Now you can use EdgelessDB like any other SQL database:
-```sh
+```bash
 mysql -h127.0.0.1 -uroot --ssl-ca edb.pem --ssl-cert cert.pem --ssl-key key.pem
 ```
 
