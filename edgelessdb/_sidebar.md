@@ -4,6 +4,7 @@
     * [Install](/getting-started/install.md)
     * [Concepts](/getting-started/concepts.md)
     * [Recovery](/getting-started/recovery.md)
+    * [Marblerun](/getting-started/marblerun.md)
 * **Reference**
     * [Configuration](/reference/configuration.md)
     * [Manifest](/reference/manifest.md)
