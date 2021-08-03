@@ -38,17 +38,17 @@ Most of the popular hypervisors support SGX:
 
 #### Driver
 
-You need to install the [SGX Driver for systems supporting the Launch Control Configuration](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/Intel_SGX_DCAP_Linux_SW_Installation_Guide.pdf).
+You need to install the [DCAP SGX Driver](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/Intel_SGX_SW_Installation_Guide_for_Linux.pdf).
 Azure provides the instructions on [how to install this driver](https://docs.microsoft.com/en-us/azure/confidential-computing/quick-create-portal#2-install-the-intel-sgx-dcap-driver) that you can use for your on-premises machines.
 
 ### SGX Datacenter Attestation Primitives (DCAP)
 
-DCAP is the new attestation mechanism for SGX [replacing EPID]((https://software.intel.com/content/www/us/en/develop/blogs/an-update-on-3rd-party-attestation.html)).
-You can find an overview of DCAP in the [official Intel docs](https://download.01.org/intel-sgx/dcap-1.1/linux/docs/Intel_SGX_DCAP_ECDSA_Orientation.pdf).
+DCAP is the new attestation mechanism for SGX [replacing EPID](https://software.intel.com/content/www/us/en/develop/blogs/an-update-on-3rd-party-attestation.html).
+You can find an overview of DCAP in the [official Intel docs](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/DCAP_ECDSA_Orientation.pdf).
 MarbleRun only supports DCAP and requires DCAP libraries installed and configured on your system.
 
 From the perspective of MarbleRun and your workloads DCAP is accessed with a [Quote Generation Library (QGL)](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/README.md) and a [Quote Verification Library (QVL)](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteVerification/README.md) for generating and verifying quotes respectively.
-The QGL and QVL libraries need to be configured to talk to a [Provisioning Certificate Caching Service (PCCS)](https://download.01.org/intel-sgx/dcap-1.0.1/docs/Intel_SGX_DCAP_ECDSA_Orientation.pdf).
+The QGL and QVL libraries need to be configured to talk to a [Provisioning Certificate Caching Service (PCCS)](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/DCAP_ECDSA_Orientation.pdf).
 You currently have two options regarding PCCS for your on-premises machines and clusters:
 
 1. Use a public PCCS service by configuring your QGL and QVL to point to the public endpoints. Currently, only Azure provides such a service that can be used by installing the [Azure-DCAP-Client](https://github.com/microsoft/Azure-DCAP-Client) package on your system:
@@ -65,7 +65,7 @@ You currently have two options regarding PCCS for your on-premises machines and 
 
     Follow these steps to set up your machines for your PCCS:
 
-      * Install the [DCAP client libraries](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/Intel_SGX_DCAP_Linux_SW_Installation_Guide.pdf)
+      * Install the [DCAP client libraries](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/Intel_SGX_SW_Installation_Guide_for_Linux.pdf)
       * Install a [configuration that points to your PCCS](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/qpl/README.md#configuration)
 
     The PCCS is a cache, so you need to make sure it stays up to date. In case your cache is outdated, you might see error messages as:
@@ -89,7 +89,7 @@ You currently have two options regarding PCCS for your on-premises machines and 
 
     If refreshing CRL fails, you can manually delete the `pckcache.db` database (default location `/opt/intel/sgx-dcap-pccs/pckcache.db`) and restart your PCCS.
 
-?> Currently, the [MarbleRun Coordinator](https://github.com/orgs/edgelesssys/packages?repo_name=marblerun) and [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) docker images are configured to always use the public Azure PCCS.
+?> Currently, the [MarbleRun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) and [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) docker images are configured to always use the public Azure PCCS.
 In the future, we will make this configurable, so you can define your own PCCS for our images.
 
 ## Deploy MarbleRun

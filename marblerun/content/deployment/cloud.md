@@ -23,9 +23,6 @@ Azure Kubernetes Service (AKS) offers a popular deployment technique relying on
 Azure's cloud resources. AKS hosts Kubernetes pods in Azure confidential compute
 VMs and exposes the underlying confidential compute hardware.
 
-This section describes the workflow to create an AKS cluster with confidential
-compute VMs and deploy MarbleRun.
-
 ### Prerequisites
 
 Follow the instructions on the [AKS Confidential Computing Quick Start guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-aks-get-started)

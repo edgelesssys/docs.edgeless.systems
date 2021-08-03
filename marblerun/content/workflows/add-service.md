@@ -8,6 +8,7 @@ To get your service ready for MarbleRun, you need to rebuild it with one of the 
 * [EGo](content/building-services/ego.md)
 * [Edgeless RT](https://github.com/edgelesssys/marblerun/blob/master/samples/helloc%2B%2B)
 * [Graphene](content/building-services/graphene.md)
+* [Occlum](content/building-services/occlum.md)
 
 ### Make your service use the provided TLS credentials
 
@@ -50,7 +51,7 @@ Use `UniqueID` (i.e., `MRENCLAVE` in Intel SGX speak) or the triplet of `SignerI
 
 Now you can define with which parameters (i.e., files, environment variables, and command line arguments) your service is allowed to run. This is done in the `Marbles` section of the manifest as is described in our [writing a manifest hands-on](content/workflows/define-manifest.md#manifestmarbles). When using EGo, define all TTLS connections as described in the [manifest hands-on](content/workflows/define-manifest.md#manifesttls).
 
-Otherwise, as discussed in [Step #1.1](#step-11-make-your-service-use-the-provided-tls-credentials), you need to make sure that the TLS credentials for your service (i.e., `Marblerun.MarbleCert.Cert` and `Marblerun.MarbleCert.Private`) are injected such that your service will find them at runtime.
+Otherwise, as discussed in [Step #1](#make-your-service-use-the-provided-tls-credentials), you need to make sure that the TLS credentials for your service (i.e., `Marblerun.MarbleCert.Cert` and `Marblerun.MarbleCert.Private`) are injected such that your service will find them at runtime.
 
 ## **Step 3:** Start your service
 
@@ -66,7 +67,7 @@ erthost enclave.signed
 
 `erthost` is the generic host for Marbles, which will load your `enclave.signed`. The environment variables have the following purposes.
 
-* `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying MarbleRun hands-on](content/deployment), the default address is `coordinator-mesh-api.marblerun:2001`.
+* `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying Marblerun hands-on](content/deployment/kubernetes.md), the default address is `coordinator-mesh-api.marblerun:2001`.
 
 * `EDG_MARBLE_TYPE` needs to reference one entry from your manifest's `Marbles` section.
 

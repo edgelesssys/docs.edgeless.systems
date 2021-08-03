@@ -1,5 +1,7 @@
 * **Getting Started**
     * [Quickstart](content/getting-started/quickstart.md)
+        * [Quickstart SGX](content/getting-started/quickstart-sgx.md)
+        * [Quickstart Simulation](content/getting-started/quickstart-simulation.md)
     * [Concepts](content/getting-started/concepts.md)
     * [Coordinator](content/getting-started/coordinator.md)
     * [Marbles](content/getting-started/marbles.md)
