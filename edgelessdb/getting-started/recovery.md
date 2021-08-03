@@ -2,14 +2,14 @@
 # Recovery
 
 ## Information
-!> Recovery is only available when EdgelessDB is running standalone. When used with MarbleRun, consider using its [recovery feature](https://docs.edgeless.systems/marblerun/#/content/features/recovery).
+!> Recovery is only available when EdgelessDB is running standalone, and only when a recovery key has been defined in the manifest. When used with MarbleRun, consider using its [recovery feature](https://docs.edgeless.systems/marblerun/#/content/features/recovery).
 
 Persistent storage for confidential applications requires a bit of attention.
 By design, SGX sealing keys are unique to a single CPU, which means using the default SGX sealing methods has some caveats.
 For example, sealing data while running on one host could mean the data can't be unsealed when running on another host later on.
 
 EdgelessDB makes persistence straightforward by using a so-called *virtual sealing key*, which is a randomly generated encryption key which is stored on disk with the help of the SGX sealing key. However, when EdgelessDB is moved to another physical host, a manual step is required to ensure the database can be recovered.
-Therefore, [the manifest allows for specifying a designated *Recovery Key*](reference/manifest.md). The Recovery Key is a public RSA key. During the initial upload of the manifest, EdgelessDB generates its symmetric state-encryption key and returns an Base64 encoded, RSA encrypted version of it using the public key specified in the manifest. **If no recovery key was specified in the manifest, Recovery is not available.**
+Therefore, [the manifest allows for specifying a designated *Recovery Key*](reference/manifest.md). The Recovery Key is a public RSA key. During the initial upload of the manifest, EdgelessDB generates its symmetric state-encryption key and returns an Base64 encoded, RSA encrypted version of it using the public key specified in the manifest.
 
 !> The holder of the corresponding private key can recover the database and therefore, access the content of the database. It is important that this key is kept somewhere safe. After the initial upload of the manifest, EdgelessDB will not release the encryption key.
 
