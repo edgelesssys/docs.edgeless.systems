@@ -1,9 +1,3 @@
----
-title: "Kubernetes"
-draft: false
-weight: 4
----
-
 # Kubernetes MarbleRun deployment
 
 This guide walks you through setting up MarbleRun in your Kubernetes cluster.
