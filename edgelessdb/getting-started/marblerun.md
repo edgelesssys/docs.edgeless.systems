@@ -3,11 +3,11 @@
 If you want to run EdgelessDB as a distributed application in a confidential cluster, you can combine it with [MarbleRun](https://marblerun.sh).
 
 ## Changes
-When you are running EdgelessDB as a Marble, it will work slightly different. Rather than generating an encryption key based on the SGX sealing key, MarbleRun will have to provide a key and a root certificate which EdgelessDB can use to sign its own ones. Ideally, you can use MarbleRun's [Secrets management](https://docs.edgeless.systems/marblerun/#/content/features/secrets-management) to accomplish this. Given now MarbleRun will handle EdgelessDB's certificate and key management, Recovery will be unavailable, as it is expected that this is handled on MarbleRun's level for the whole cluster and not just for a single EdgelessDB instance.
+When you are running EdgelessDB as a Marble, keys and credentials will be managed by MarbleRun. EdgelessDB will no longer generate its own root certificate nor its sealing key. Instead, they will be provided by MarbleRun's [Secrets management](https://docs.edgeless.systems/marblerun/#/content/features/secrets-management). The root certificate for EdgelessDB needs to be explicitly defined in MarbleRun's manifest. We explain this in more detail in the next section below. Given now MarbleRun will handle EdgelessDB's certificate and key management, EdgelessDB's own recovery method will be unavailable. Instead, MarbleRun will handle recovery for your entire cluster.
 
 ## Setup
 ### Launch the MarbleRun Coordinator
-Setup and launch the MarbleRun Coordinator by following the [quickstart guide](https://docs.edgeless.systems/marblerun/#/content/getting-started/quickstart) until Step 3. Alternatively, you can run the Coordinator without Kubernetes by following the [standalone deployment guide](https://docs.edgeless.systems/marblerun/#/content/deployment/standalone) until it is waiting for a manifest to be uploaded.
+Setup and launch the MarbleRun Coordinator, by following the [Deployment guide](https://docs.edgeless.systems/marblerun/#/content/deployment/cloud?id=deploy-marblerun) until it is waiting for a manifest to be uploaded.
 
 ### Deploy the manifest
 You can use the [example MarbleRun manifest from the repository](https://github.com/edgelesssys/edgelessdb/blob/main/demo/marblerun-manifest.json) to see how a minimal configuration could look like.
@@ -41,4 +41,4 @@ docker run \
 For 4 GB of enclave heap memory, replace `edgelessdb-sgx-1gb` with `edgelessdb-sgx-4gb`.
 
 ## Remote attestation
-When running as a Marble, you can either attest an EdgelessDB instance by itself as running standalone, or also by attesting the whole cluster once through the MarbleRun Coordinator. Given that EdgelessDB's certificates are issued and provided by MarbleRun, you can establish trust all the down from the whole cluster to the single EdgelessDB instances themselves.
+When running as a Marble, you can either attest an EdgelessDB instance by itself or by attesting the whole cluster once through the MarbleRun Coordinator. Given that EdgelessDB's certificates are issued and provided by MarbleRun, you can establish trust via MarbleRun's public key infrastructure (PKI) to your EdgelessDB instances.
