@@ -21,7 +21,7 @@ This command can be used in different modes:
   Searches in the current directory for `enclave.json` and signs the therein provided executable.
 
 * `ego sign <config.json>`\
-  Signs an executable according to a given [configuration]({{< ref "docs/reference/config.md" >}}).
+  Signs an executable according to a given [configuration](config.md).
 
 ## run
 Run a signed executable in an enclave.
