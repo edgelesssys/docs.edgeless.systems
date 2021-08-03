@@ -1,6 +1,6 @@
 # Secrets management
 
-The generation and the management of cryptographic keys and certificates for Marbles (i.e., containers running enclaves) are central duties of the Coordinator. Keys and certificates are passed to Marbles on startup via placeholders defined in the manifest. You can learn more about this mechanism in the `Secrets` section from our [manifest definition hands-on](workflows/define-manifest.md?id=secrets"). Specifically, the Coordinator provides the following to Marbles.
+The generation and the management of cryptographic keys and certificates for Marbles (i.e., containers running enclaves) are central duties of the Coordinator. Keys and certificates are passed to Marbles on startup via placeholders defined in the manifest. You can learn more about this mechanism in the `Secrets` section from our [manifest definition hands-on](workflows/define-manifest.md?id=secrets). Specifically, the Coordinator provides the following to Marbles.
 
 * [Virtual sealing keys](#virtual-sealing-keys)
 * [Shared symmetric keys](#shared-symmetric-keys)
