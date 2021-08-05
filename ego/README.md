@@ -1,3 +1,13 @@
+<div class="shields">
+
+[![License](https://img.shields.io/github/license/edgelesssys/ego)](https://github.com/edgelesssys/ego/blob/master/LICENSE)
+[![GoReportCard](https://goreportcard.com/badge/github.com/edgelesssys/ego)](https://goreportcard.com/report/github.com/edgelesssys/ego)
+[![Go Reference](https://pkg.go.dev/badge/github.com/edgelesssys/ego.svg)](https://pkg.go.dev/github.com/edgelesssys/ego)
+[![Discord](https://img.shields.io/discord/823900998606651454?label=chat%20on%20discord)](https://discord.gg/rH8QTH56JN)
+[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems)](https://twitter.com/EdgelessSystems)
+
+</div>
+
 # Welcome to EGo! 🎉
 
 EGo is a framework for building *confidential apps* in Go. Confidential apps run in secure execution environments called *enclaves*. Enclaves are strongly isolated, runtime encrypted, and attestable. Enclaves can be created on Intel processors that have the SGX (Software Guard Extensions) feature.

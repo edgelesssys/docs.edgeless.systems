@@ -1,3 +1,11 @@
+<div class="shields">
+
+[![License](https://img.shields.io/github/license/edgelesssys/edgelessdb)](https://github.com/edgelesssys/edgelessdb/blob/master/LICENSE)
+[![Discord](https://img.shields.io/discord/823900998606651454?label=chat%20on%20discord)](https://discord.gg/rH8QTH56JN)
+[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems)](https://twitter.com/EdgelessSystems)
+
+</div>
+
 # Welcome to EdgelessDB
 
 In a nutshell, EdgelessDB is a SQL database architected for the SGX environment. Like a normal SQL database, EdgelessDB writes a transaction log to disk and also keeps cold data on disk. With EdgelessDB, all data on disk is strongly encrypted. Data is only ever decrypted inside SGX enclaves.

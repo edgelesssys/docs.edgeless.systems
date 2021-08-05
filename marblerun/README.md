@@ -1,3 +1,13 @@
+<div class="shields">
+
+[![License](https://img.shields.io/github/license/edgelesssys/marblerun)](https://github.com/edgelesssys/marblerun/blob/master/LICENSE)
+[![GoReportCard](https://goreportcard.com/badge/github.com/edgelesssys/marblerun)](https://goreportcard.com/report/github.com/edgelesssys/marblerun)
+[![Go Reference](https://pkg.go.dev/badge/github.com/edgelesssys/marblerun.svg)](https://pkg.go.dev/github.com/edgelesssys/marblerun)
+[![Discord](https://img.shields.io/discord/823900998606651454?label=chat%20on%20discord)](https://discord.gg/rH8QTH56JN)
+[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems)](https://twitter.com/EdgelessSystems)
+
+</div>
+
 # Welcome to MarbleRun! 🎉
 
 MarbleRun is a framework for creating distributed confidential computing apps.
