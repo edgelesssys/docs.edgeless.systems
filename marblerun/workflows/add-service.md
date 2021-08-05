@@ -67,7 +67,7 @@ erthost enclave.signed
 
 `erthost` is the generic host for Marbles, which will load your `enclave.signed`. The environment variables have the following purposes.
 
-* `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying Marblerun hands-on](deployment/kubernetes.md), the default address is `coordinator-mesh-api.marblerun:2001`.
+* `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying MarbleRun hands-on](deployment/kubernetes.md), the default address is `coordinator-mesh-api.marblerun:2001`.
 
 * `EDG_MARBLE_TYPE` needs to reference one entry from your manifest's `Marbles` section.
 

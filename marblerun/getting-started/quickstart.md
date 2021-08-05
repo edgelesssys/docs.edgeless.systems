@@ -23,7 +23,7 @@ Now your cluster is ready and we’ll install the MarbleRun CLI.
 
 ## Step 0.5: Install the CLI
 
-If this is your first time running MarbleRun, you will need to download the marblerun command-line interface (CLI) onto your local machine. The CLI will allow you to interact with your MarbleRun deployment.
+If this is your first time running MarbleRun, you will need to download the MarbleRun command-line interface (CLI) onto your local machine. The CLI will allow you to interact with your MarbleRun deployment.
 
 To install the CLI, run:
 
