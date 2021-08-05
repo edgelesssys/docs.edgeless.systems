@@ -13,17 +13,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="_assets/apple-touch-icon.png">
     <link rel="manifest" href="_assets/site.webmanifest">
 
-    <meta name="description" content="MarbleRun makes it easy to deploy, scale, and verify your SGX-based apps on vanilla Kubernetes.">
+    <meta name="description"
+        content="MarbleRun makes it easy to deploy, scale, and verify your SGX-based apps on vanilla Kubernetes.">
 
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
     <meta property="og:title" content="MarbleRun - The control plane for confidential computing">
-    <meta property="og:description" content="MarbleRun makes it easy to deploy, scale, and verify your SGX-based apps on vanilla Kubernetes. Think Istio/Consul/Linkerd for confidential computing.​">
+    <meta property="og:description"
+        content="MarbleRun makes it easy to deploy, scale, and verify your SGX-based apps on vanilla Kubernetes. Think Istio/Consul/Linkerd for confidential computing.​">
     <meta property="og:image" content="https://docs.edgeless.systems/marblerun/_assets/social.png">
 
     <meta name="twitter:title" content="MarbleRun - The control plane for confidential computing">
-    <meta name="twitter:description" content="MarbleRun makes it easy to deploy, scale, and verify your SGX-based apps on vanilla Kubernetes.">
+    <meta name="twitter:description"
+        content="MarbleRun makes it easy to deploy, scale, and verify your SGX-based apps on vanilla Kubernetes.">
     <meta name="twitter:image" content="https://docs.edgeless.systems/marblerun/_assets/social.png">
     <meta name="twitter:card" content="MarbleRun">
 
@@ -48,12 +51,13 @@
             },
             search: {
                 paths: 'auto',
+                namespace: '/marblerun',
                 hideOtherSidebarContent: true,
             },
             markdown: {
                 // https://github.com/docsifyjs/docsify/issues/850
                 renderer: {
-                    image: function(href, title) {
+                    image: function (href, title) {
                         return `<img src="${href}" data-origin="${href}" alt="${title}">`
                     }
                 }
