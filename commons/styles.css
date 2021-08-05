@@ -219,6 +219,10 @@ th {
     display: none;
 }
 
+.markdown-section>:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) code {
+    font-size: .9rem;
+}
+
 .markdown-section pre,
 .markdown-section pre>code {
     font-size: 1em;
@@ -229,8 +233,7 @@ th {
     display: inline-block;
     font-family: 'Source Code Pro', monospace;
     color: inherit;
-    font-size: 0.9em;
-    padding: 0.1em 0.3em;
+    padding: 0 .3em;
 }
 
 .markdown-section pre {
@@ -239,6 +242,7 @@ th {
 
 .markdown-section pre>code {
     padding: 0;
+    font-size: .8rem !important;
 }
 
 .markdown-section hr {
