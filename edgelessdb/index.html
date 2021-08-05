@@ -53,13 +53,13 @@
             },
             search: {
                 paths: 'auto',
-                pathNamespaces: ['/edgelessdb'],
+                namespace: '/edgelessdb',
                 hideOtherSidebarContent: true,
             },
             markdown: {
                 // https://github.com/docsifyjs/docsify/issues/850
                 renderer: {
-                    image: function(href, title) {
+                    image: function (href, title) {
                         return `<img src="${href}" data-origin="${href}" alt="${title}">`
                     }
                 }
