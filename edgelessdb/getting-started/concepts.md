@@ -10,7 +10,8 @@ Before an instance of EdgelessDB becomes operational, it needs to be initialized
 
 ## Remote attestation
 Remote attestation cryptographically proves that the EdgelessDB instance
-* runs in a secure enclave on legit hardware
+* has a certain version or hash,
+* runs in a secure enclave on legit hardware,
 * and has been initialized with a specific manifest.
 
 The *attestation report* (or *quote*) binds these facts to EdgelessDB's TLS certificate.
