@@ -9,7 +9,7 @@ Use `edgelessdb-sgx-1gb` primarily to test EdgelessDB on machines with limited r
 ?> A future version of EdgelessDB will have a dynamic heap size.
 
 ## Prepare the SGX system
-Skip this section if you want to run EdgelessDB in simulation mode.You may also skip this section if you are running on an SGX-enabled VM in Azure (DC2 series).
+Skip this section if you want to run EdgelessDB in simulation mode. You may also skip this section if you are running on an SGX-enabled VM in Azure (DC2 series).
 
 ### Hardware
 The hardware must support SGX-FLC and it must be enabled in the BIOS. Use the following commands to check:
@@ -20,10 +20,10 @@ cpuid | grep SGX
 
 This should give you output like the following:
 ```shell-session
-SGX: Software Guard Extensions supported = true
-SGX_LC: SGX launch config supported      = true
-SGX capability (0x12/0):
-  SGX1 supported                         = true
+      SGX: Software Guard Extensions supported = true
+      SGX_LC: SGX launch config supported      = true
+   SGX capability (0x12/0):
+      SGX1 supported                         = true
 ```
 
 * `SGX: Software Guard Extensions supported` is true if the hardware supports it.
