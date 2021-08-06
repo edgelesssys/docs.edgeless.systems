@@ -304,7 +304,7 @@ th {
 }
 
 .markdown-section .shields p {
-    margin-top: 0.8em;
+    margin-top: 0.9em;
 }
 
 .markdown-section .shields a {
@@ -312,7 +312,7 @@ th {
 }
 
 .shields img {
-    height: 1.15em;
+    height: 1.1em;
 }
 
 /* Badges */

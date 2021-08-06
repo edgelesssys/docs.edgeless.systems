@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/edgelesssys/edgelessdb)](https://github.com/edgelesssys/edgelessdb/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/823900998606651454?label=chat%20on%20discord)](https://discord.gg/rH8QTH56JN)
-[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems)](https://twitter.com/EdgelessSystems)
+[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems?label=Follow)](https://twitter.com/EdgelessSystems)
 
 </div>
 

@@ -4,7 +4,7 @@
 [![GoReportCard](https://goreportcard.com/badge/github.com/edgelesssys/ego)](https://goreportcard.com/report/github.com/edgelesssys/ego)
 [![Go Reference](https://pkg.go.dev/badge/github.com/edgelesssys/ego.svg)](https://pkg.go.dev/github.com/edgelesssys/ego)
 [![Discord](https://img.shields.io/discord/823900998606651454?label=chat%20on%20discord)](https://discord.gg/rH8QTH56JN)
-[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems)](https://twitter.com/EdgelessSystems)
+[![Twitter](https://img.shields.io/twitter/follow/EdgelessSystems?label=Follow)](https://twitter.com/EdgelessSystems)
 
 </div>
 
