@@ -169,3 +169,25 @@ If you're using an ingress-controller or gateway for managing access to the `coo
 
 * For the NGINX ingress controller add the [`nginx.ingress.kubernetes.io/ssl-passthrough`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-passthrough) annotation.
 * For Istio Gateways set the [tls-mode PASSTHROUGH](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-sni-passthrough/#configure-an-ingress-gateway)
+
+## DCAP configuration
+
+By default the Coordinator will generate its quote using the [Azure-DCAP-Client](https://github.com/microsoft/Azure-DCAP-Client). If you choose to use this, no additional steps are required.
+If you want to use a PCCS other than Azure's you can do so by setting the [necessary configuration](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/qpl/README.md#configuration) during installation:
+
+
+* Using the CLI
+  ```bash
+  marblerun install --dcap-qpl intel --dcap-pccs-url <PCCS_URL> --dcap-secure-cert <TRUE/FALSE>
+  ```
+
+* Using Helm
+  ```bash
+  helm install marblerun-coordinator edgeless/marblerun-coordinator \
+        --create-namespace \
+        -n marblerun \
+        --set coordinator.hostname=mycluster.uksouth.cloudapp.azure.com \
+        --set coordinator.dcapQpl=intel \
+        --set dcap.pccsUrl=<PCCS_URL> \
+        --set dcap.useSecureCert=<TRUE/FALSE>
+  ```
