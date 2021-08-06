@@ -1,13 +1,10 @@
 # Running EdgelessDB under MarbleRun
 
-If you want to run EdgelessDB as a distributed application in a confidential cluster, you can combine it with [MarbleRun](https://marblerun.sh).
+To run EdgelessDB as a service in a confidential cluster, combine it with [MarbleRun](https://marblerun.sh).
 
-## Changes
-When you are running EdgelessDB as a Marble, keys and credentials will be managed by MarbleRun. EdgelessDB will no longer generate its own root certificate nor its sealing key. Instead, they will be provided by MarbleRun's [Secrets management](https://docs.edgeless.systems/marblerun/#/content/features/secrets-management). The root certificate for EdgelessDB needs to be explicitly defined in MarbleRun's manifest. We explain this in more detail in the next section below. Given now MarbleRun will handle EdgelessDB's certificate and key management, EdgelessDB's own recovery method will be unavailable. Instead, MarbleRun will handle recovery for your entire cluster.
+When running EdgelessDB as a Marble, secrets will be [managed by MarbleRun](https://docs.edgeless.systems/marblerun/#/features/secrets-management). EdgelessDB will no longer generate its own root certificate nor its sealing key. The root certificate for EdgelessDB needs to be defined in MarbleRun's manifest. Furthermore, EdgelessDB's own recovery method will be unavailable. MarbleRun will handle recovery for your entire cluster.
 
-## Setup
-
-### Extend the MarbleRun manifest
+## Extend the MarbleRun manifest
 To add EdgelessDB to your MarbleRun cluster, add to the [MarbleRun manifest](https://docs.edgeless.systems/marblerun/#/workflows/define-manifest)
 * the `edgelessdb` package
 * an encryption key `edb_masterkey`
@@ -57,32 +54,25 @@ Here's a template:
 }
 ```
 
-### Launch the MarbleRun Coordinator
+## Launch the MarbleRun Coordinator
 [Set up the MarbleRun Coordinator](https://docs.edgeless.systems/marblerun/#/deployment/cloud?id=deploy-marblerun) and [set the MarbleRun manifest](https://docs.edgeless.systems/marblerun/#/workflows/set-manifest).
 
 ## Launch as a Marble
-To run EdgelessDB as a Marble, you have to add `-marble` as a parameter and define the required Marble definitions as environment variables. Assuming you are using the default settings for the MarbleRun coordinator deployed with the example manifest shown above, you can do this in the following way:
+To run EdgelessDB as a Marble, add `-marble` as a parameter and define the required Marble definitions as environment variables:
 
-```sh
-docker run \
---name my-edb \
---privileged \
---network host \
--p3306:3306 \
--p8080:8080 \
--e EDG_MARBLE_TYPE=edb_marble \
--e EDG_MARBLE_COORDINATOR_ADDR=localhost:2001 \
--e EDG_MARBLE_UUID_FILE=uuid \
--e EDG_MARBLE_DNS_NAMES=localhost \
--v /dev/sgx:/dev/sgx \
--t ghcr.io/edgelesssys/edgelessdb-sgx-1gb \
--marble
+```bash
+docker run -t \
+  --name my-edb \
+  -p3306:3306 \
+  -p8080:8080 \
+  -e EDG_MARBLE_TYPE=edb_marble \
+  -e EDG_MARBLE_COORDINATOR_ADDR=172.17.0.1:2001 \
+  --privileged -v /dev/sgx:/dev/sgx \
+  ghcr.io/edgelesssys/edgelessdb-sgx-1gb \
+  -marble
 ```
 
-!> The example command uses `--network host` to simplify the required network configuration to discover the coordinator. **This is not necessarily safe for production**, as this disables Docker's network isolation. For production use, please configure adequately such that the EdgelessDB container is able to access the MarbleRun coordinator.
-
-
-For 4 GB of enclave heap memory, replace `edgelessdb-sgx-1gb` with `edgelessdb-sgx-4gb`.
+Set `EDG_MARBLE_COORDINATOR_ADDR` to the address of your Coordinator instance. Keep `172.17.0.1` (the gateway of Docker's default network bridge) if the Coordinator runs on the same host.
 
 ## Remote attestation
 When running as a Marble, you can either attest an EdgelessDB instance by itself or by attesting the whole cluster once through the MarbleRun Coordinator. Given that EdgelessDB's certificates are issued and provided by MarbleRun, you can establish trust via MarbleRun's public key infrastructure (PKI) to your EdgelessDB instances.
