@@ -19,7 +19,8 @@
 }
 
 ::selection {
-    background: var(--theme-color-secondary);
+    background: var(--gray-400);
+    color: var(--white);
 }
 
 body {
