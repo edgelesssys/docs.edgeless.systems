@@ -34,6 +34,6 @@
     * [Occlum](building-services/occlum.md)
 * [**Examples**](examples.md)
 * **Reference**
-    * [Coordinator API](reference/coordinator.md)
+    * [Coordinator Client API](reference/coordinator.md)
     * [CLI](reference/cli.md)
 * [Changelog ↗](https://github.com/edgelesssys/marblerun/releases)
