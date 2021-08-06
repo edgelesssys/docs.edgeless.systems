@@ -51,17 +51,9 @@ From the perspective of MarbleRun and your workloads DCAP is accessed with a [Qu
 The QGL and QVL libraries need to be configured to talk to a [Provisioning Certificate Caching Service (PCCS)](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/DCAP_ECDSA_Orientation.pdf).
 You currently have two options regarding PCCS for your on-premises machines and clusters:
 
-1. Use a public PCCS service by configuring your QGL and QVL to point to the public endpoints. Currently, only Azure provides such a service that can be used by installing the [Azure-DCAP-Client](https://github.com/microsoft/Azure-DCAP-Client) package on your system:
+1. Use a public PCCS service by configuring your QGL and QVL to point to the public endpoints. Currently, Azure and Alibaba Cloud provide such a service, but require using infrastructure by these providers to make full use of the service.
 
-    ```bash
-    echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/intel-sgx.list
-    wget -qO - https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | sudo apt-key add -
-    echo "deb [arch=amd64] https://packages.microsoft.com/ubuntu/18.04/prod bionic main" | sudo tee /etc/apt/sources.list.d/msprod.list
-    wget -qO - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-    sudo apt update && sudo apt install -y libsgx-dcap-ql libsgx-dcap-ql-dev az-dcap-client
-    ```
-
-2. Run your own PCCS and expose it to your machine or cluster. See [Intel's demo reference implementation](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/pccs/README.md) and  [design guide](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/SGX_DCAP_Caching_Service_Design_Guide.pdf) for more information.
+1. Run your own PCCS and expose it to your machine or cluster. See [Intel's demo reference implementation](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/pccs/README.md) and [design guide](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/SGX_DCAP_Caching_Service_Design_Guide.pdf) for more information.
 
     Follow these steps to set up your machines for your PCCS:
 
@@ -77,20 +69,21 @@ You currently have two options regarding PCCS for your on-premises machines and 
     You can inspect the Intel Root CA CRL of your PCCS:
 
     ```bash
-    curl --insecure --request GET --url https://<YOUR_PCCS_DOMAIN>:<YOUR_PCCS_PORT>/sgx/certification/v2/rootcacrl > rootca.crl
-    openssl crl -inform PEM -text -noout -in rootca.crl
+    curl --insecure --request GET --url https://<YOUR_PCCS_DOMAIN>:<YOUR_PCCS_PORT>/sgx/certification/v3/rootcacrl > rootca.crl
+    openssl crl -inform DER -text -noout -in rootca.crl
     ```
 
     You can refresh all SGX collaterals for your PCCS:
 
     ```bash
-    curl --insecure --request GET -H "admin-token: <my password>" --url https://<YOUR_PCCS_DOMAIN>:<YOUR_PCCS_PORT>/sgx/certification/v2/refresh
+    curl --insecure --request GET -H "admin-token: <my password>" --url https://<YOUR_PCCS_DOMAIN>:<YOUR_PCCS_PORT>/sgx/certification/v3/refresh
     ```
 
     If refreshing CRL fails, you can manually delete the `pckcache.db` database (default location `/opt/intel/sgx-dcap-pccs/pckcache.db`) and restart your PCCS.
 
-?> Currently, the [MarbleRun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) and [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) docker images are configured to always use the public Azure PCCS.
-In the future, we will make this configurable, so you can define your own PCCS for our images.
+Our docker image for the [Marlberun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) comes with both the Azure-DCAP-Client and the default quote provider library by Intel.
+If you wish to use your own PCCS, you can instruct the image to use the Intel library by starting a container with the environmental variable `DCAP_LIBRARY=intel`, and by mounting the desired configuration to `/etc/sgx_default_qcnl.conf`.
+Similarly our [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) image comes preinstalled with both libraries.
 
 ## Deploy MarbleRun
 

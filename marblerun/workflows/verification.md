@@ -2,6 +2,51 @@
 
 MarbleRun provides a simple HTTP REST API for clients to verify the confidentiality and integrity of the Coordinator and the deployed Marbles.
 
+## Requirements
+
+Verifying remote attestation quotes does not require an SGX capable machine, however, quote provider libraries are still necessary to perform remote attestation.
+
+### Azure QPL
+
+If the quote was generated on Azure infrastructure, all you need is the [Azure-DCAP-Client](https://github.com/microsoft/Azure-DCAP-Client), which is already configured to connect to the correct Azure-provided [Provisioning Certificate Caching Service (PCCS)](https://download.01.org/intel-sgx/latest/dcap-latest/linux/docs/DCAP_ECDSA_Orientation.pdf) endpoints.
+
+You can install it via Microsoft's Ubuntu package repository:
+
+```bash
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/ubuntu/`lsb_release -rs`/prod `lsb_release -cs` main"
+sudo apt install az-dcap-client
+```
+
+### Intel QPL
+
+Otherwise, you can use the [Intel DCAP Quote Provider Library](https://github.com/intel/SGXDataCenterAttestationPrimitives/tree/master/QuoteGeneration/qpl).
+You can install the library via Intel's Ubuntu package repository:
+```bash
+# Add the repository and key
+wget -qO - https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | sudo apt-key add -
+echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/intel-sgx.list
+# Install the qpl
+sudo apt install libsgx-dcap-default-qpl
+```
+
+Our tools build on [OpenEnclave](https://github.com/openenclave/openenclave) for quote verification, which expects the QPL as `libdcap_quoteprov.so`.
+We need to create a link to Intel's library:
+```bash
+cd /usr/lib/x86_64-linux-gnu/
+sudo ln -s libdcap_quoteprov.so.1 libdcap_quoteprov.so
+```
+
+To make sure the QPL connects to the correct PCCS we need to edit the [configuration](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/qpl/README.md#configuration) in `/etc/sgx_default_qcnl.conf`.
+```
+# PCCS server address
+PCCS_URL=<YOUR_PCCS_URL>
+# To accept insecure HTTPS cert, set this option to FALSE
+USE_SECURE_CERT=<TRUE/FALSE>
+```
+
+
+
 ## Establishing trust in the Coordinator
 
 MarbleRun exposes the `/quote` endpoint that returns a quote and a certificate chain consisting of a root and intermediate CA. The root CA is fixed for the lifetime of your deployment, while the intermediate CA changes in case you [update](workflows/update-manifest.md) the packages specified in your manifest.
