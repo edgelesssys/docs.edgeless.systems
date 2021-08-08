@@ -14,6 +14,26 @@ To obtain the master key, [the manifest allows for specifying a designated *reco
 
 !> The holder of the corresponding private key can recover the database and therefore, access the content of the database. It is important that this key is kept somewhere safe. After the initial upload of the manifest, EdgelessDB will not release the master key.
 
+## Adding a recovery key to the manifest
+Generate an RSA key pair:
+```bash
+openssl genrsa -out private.pem 3072
+openssl rsa -in private.pem -pubout -out public.pem
+```
+
+Escape the line breaks of the public key:
+```bash
+awk 1 ORS='\\n' public.pem
+```
+
+Copy the escaped public key into the manifest:
+```json
+{
+    ...
+    "recovery": "-----BEGIN PUBLIC KEY-----\n...\n------END PUBLIC KEY-----\n"
+}
+```
+
 ## Performing the recovery
 If EdgelessDB is unable to unseal the master key upon launch, it will enter recovery mode. You will have to upload the key via the `/recovery` endpoint of the HTTP REST API.
 
@@ -26,7 +46,7 @@ Assuming you saved the output from the manifest upload step in a file called `ma
 
 ```bash
 base64 -d master_key \
-  | openssl pkeyutl -inkey private_key.pem -decrypt \
+  | openssl pkeyutl -inkey private.pem -decrypt \
     -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 \
   | curl -k --data-binary @- https://localhost:8080/recovery
 ```
