@@ -28,6 +28,8 @@ Whereas an error (HTTP Code 4xx or 5xx) might look like this:
 ```
 For errors, `data` will always be `null`, and `message` contains the specific error the Coordinator ran into when processing the request.
 
+## Endpoints
+
 The API currently contains the following endpoints. If an endpoint specifies *Returns* for either HTTP GET or HTTP POST, it means that the specified data can be found encoded inside the `data` block if the response was successful. If no returns are specified for a given endpoint, or in case all possible return values for an endpoint are declared as optional, `data` can just be `null`.
 
 ## /manifest

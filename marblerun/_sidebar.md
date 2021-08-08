@@ -1,7 +1,7 @@
 * **Getting Started**
     * [Quickstart](getting-started/quickstart.md)
-        * [Quickstart SGX](getting-started/quickstart-sgx.md)
-        * [Quickstart Simulation](getting-started/quickstart-simulation.md)
+    * [Quickstart SGX](getting-started/quickstart-sgx.md)
+    * [Quickstart Simulation](getting-started/quickstart-simulation.md)
     * [Concepts](getting-started/concepts.md)
     * [Coordinator](getting-started/coordinator.md)
     * [Marbles](getting-started/marbles.md)
@@ -36,4 +36,4 @@
 * **Reference**
     * [Coordinator API](reference/coordinator.md)
     * [CLI](reference/cli.md)
-* [**Changelog**](https://github.com/edgelesssys/marblerun/releases)
+* [Changelog ↗](https://github.com/edgelesssys/marblerun/releases)

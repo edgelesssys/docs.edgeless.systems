@@ -36,7 +36,7 @@ Usage:
 
 Available Commands:
   certificate      Retrieves the certificate of the MarbleRun Coordinator
-  check            Check the status of MarbleRuns control plane
+  check            Check the status of MarbleRun's control plane
   completion       Output script for specified shell to enable autocompletion
   graphene-prepare Modifies a Graphene manifest for use with MarbleRun
   help             Help about any command
@@ -58,7 +58,7 @@ Use "marblerun [command] --help" for more information about a command.
 
 ### Requirements
 
-If the coordinator is running on an Azure VM, the CLI relies on the [Azure DCAP Client](https://github.com/microsoft/Azure-DCAP-Client) to verify quotes.
+If the Coordinator is running on an Azure VM, the CLI relies on the [Azure DCAP Client](https://github.com/microsoft/Azure-DCAP-Client) to verify quotes.
 To install the dependency run:
 ```bash
 echo "deb [arch=amd64] https://packages.microsoft.com/ubuntu/18.04/prod bionic main" | sudo tee /etc/apt/sources.list.d/msprod.list
@@ -113,7 +113,7 @@ These flags apply to all `certificate` subcommands
 
 ## Command `check`
 
-  Check the status of MarbleRuns control plane.
+  Check the status of MarbleRun's control plane.
   This command will check if the MarbleRun Coordinator and/or the MarbleRun webhook are deployed on a Kubernetes cluster and wait until all replicas of the deployment have the `available` status.
 
   **Usage**

@@ -15,7 +15,7 @@ marblerun manifest set manifest.json $MARBLERUN
 ```
 
 If the manifest contains a `RecoveryKeys` entry, you will receive a JSON reply including a recovery secret, encrypted with the public key supplied in `RecoveryKeys`. The reply will look like this, with `[base64]` as your encrypted recovery secret.
-This secret is the coordinator's state-encryption key.
+This secret is the Coordinator's state-encryption key.
 
 `{"EncryptionKey":"[base64]"}`
 
