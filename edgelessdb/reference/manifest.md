@@ -20,6 +20,6 @@ The manifest defines the initial database state. Clients can verify that an Edge
 
 `ca` is a CA certificate in PEM format with escaped line breaks. It is used to verify user certificates. The user certificates therefore must be signed with the CA's private key. You can also sign user certificates by different CAs and concatenate the CA certificates.
 
-`debug` enables the use of the debug logging [configuration](configuration.md) options. Note that this could potentially leak data, so it is disabled by default.
+`debug` (optional) enables the use of the debug logging [configuration](configuration.md) options. Note that this could potentially leak data, so it is disabled by default.
 
-`recovery` (optional) holds a RSA public key in PEM format with escaped line breaks. It allows the user to decrypt the data stored on disk and start EdgelessDB again after the host machine was changed.
+`recovery` (optional) holds an RSA public key in PEM format with escaped line breaks. If set, EdgelessDB will return the master key RSA-encrypted with this key when setting the manifest. Use it to perform [recovery](../getting-started/recovery.md) after the host machine was changed.
