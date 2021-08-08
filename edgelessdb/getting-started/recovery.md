@@ -1,8 +1,6 @@
-
 # Recovery
 
-## Information
-!> Recovery is only available when EdgelessDB is running standalone, and only when a recovery key has been defined in the manifest. When used with MarbleRun, consider using its [recovery feature](https://docs.edgeless.systems/marblerun/#/content/features/recovery).
+!> Recovery is only available when EdgelessDB is running standalone, and only when a recovery key has been defined in the manifest. When used with MarbleRun, consider using its [recovery feature](https://docs.edgeless.systems/marblerun/#/features/recovery).
 
 Persistent storage for confidential applications requires a bit of attention.
 By design, SGX sealing keys are unique to a single CPU, which means using the default SGX sealing methods has some caveats.
@@ -12,7 +10,7 @@ EdgelessDB generates a *master key* for encryption. This key is then sealed to d
 
 To obtain the master key, [the manifest allows for specifying a designated *recovery key*](../reference/manifest.md). The recovery key is a public RSA key. During the initial upload of the manifest, EdgelessDB returns the master key RSA-encrypted with the public key specified in the manifest.
 
-!> The holder of the corresponding private key can recover the database and therefore, access the content of the database. It is important that this key is kept somewhere safe. After the initial upload of the manifest, EdgelessDB will not release the master key.
+!> The holder of the corresponding private key can recover the database and, therefore, access the contents of the database. It's important that this key is kept secure. After the initial upload of the manifest, EdgelessDB will not release the master key.
 
 ## Adding a recovery key to the manifest
 Generate an RSA key pair:
@@ -43,7 +41,7 @@ To do so, you need to:
 * Decrypt the decoded output with the corresponding RSA private key of the key defined in the manifest
 * Upload the binary decoded and decrypted key to the `/recovery` endpoint
 
-Assuming you saved the output from the manifest upload step in a file called `master_key`, you can accomplish the recovery process like this:
+Assuming you saved the output from the manifest upload step in a file called `master_key`, perform recovery like this:
 
 ```bash
 era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb_temp.pem
