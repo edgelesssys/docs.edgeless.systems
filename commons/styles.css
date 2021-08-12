@@ -242,7 +242,8 @@ th {
     display: inline-block;
     font-family: 'Source Code Pro', monospace;
     color: inherit;
-    padding: 0 .3em;
+    padding: 0 5px;
+    margin: 0;
 }
 
 .markdown-section pre {
@@ -276,6 +277,15 @@ th {
 .markdown-section a:hover {
     border-color: var(--theme-color-background);
     /* color: var(--theme-color-secondary); */
+}
+
+.markdown-section a>code {
+    border-bottom: 0.1rem solid var(--theme-color-secondary);
+    transition: all 0.3s ease;
+}
+
+.markdown-section a>code:hover {
+    border-color: var(--theme-color-background);
 }
 
 .alert {
