@@ -241,7 +241,7 @@ th {
 .markdown-section code {
     display: inline-block;
     font-family: 'Source Code Pro', monospace;
-    color: inherit;
+    color: var(--primary);
     margin: 0;
 }
 
