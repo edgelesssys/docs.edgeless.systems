@@ -24,6 +24,6 @@ As with virtual sealing keys, care has to be taken to not repeat nonces between 
 
 ## TLS credentials
 
-The Coordinator will generate a private TLS key for each new Marble and issue a corresponding X.509 certificate. Both are injected through placeholders in the manifest. The certificate is signed by the Coordinator's root CA. Marbles use their TLS credentials to establish secure communication channels with other Marbles and external clients (i.e., users of your app). Clients only need to verify the Coordinator's root CA once before they can securely communicate with any Marble, as is described in more detail in our [verification hands-on](workflows/verification.md).
+The Coordinator will generate a private TLS key for each new Marble and issue a corresponding X.509 certificate. Both are injected through placeholders in the manifest. The certificate is signed with the Coordinator's intermediate CA. Marbles use their TLS credentials to establish secure communication channels with other Marbles and external clients (i.e., users of your app). Clients only need to verify the Coordinator's root CA once before they can securely communicate with any Marble, as is described in more detail in our [verification hands-on](workflows/verification.md).
 
 !> A Marble always receives fresh TLS credentials after a restart.

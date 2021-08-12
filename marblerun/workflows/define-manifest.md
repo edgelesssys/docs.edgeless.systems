@@ -21,11 +21,11 @@ The following gives an example of a simple `Packages` section with made-up value
 {
     // ...
     "Packages": {
-        "pkg0": {
+        "backend": {
             "UniqueID": "6b2822ac2585040d4b9397675d54977a71ef292ab5b3c0a6acceca26074ae585",
             "Debug": false
         },
-        "pkg1": {
+        "frontend": {
             "SignerID": "43361affedeb75affee9baec7e054a5e14883213e5a121b67d74a0e12e9d2b7a",
             "ProductID": 43,
             "SecurityVersion": 3,
@@ -36,9 +36,9 @@ The following gives an example of a simple `Packages` section with made-up value
 }
 ```
 
-In this example, `pkg0` is identified through `UniqueID`. Since `UniqueID` is the hash of the enclave software package, this means that `pkg0` cannot be updated. (That is because any update to the package will change the hash.)
+In this example, `backend` is identified through `UniqueID`. Since `UniqueID` is the hash of the enclave software package, this means that `backend` cannot be updated. (That is because any update to the package will change the hash.)
 
-In contrast, `pkg1` is identified through the triplet `SignerID`, `ProductID`, and `SecurityVersion`. `SignerID` cryptographically identifies the vendor of the package; `ProductID` is an arbitrary product ID chosen by the vendor, and `SecurityVersion` is the security-patch level of the product. See our [adding a service hands-on](workflows/add-service.md#step-21-define-the-enclave-software package) on how to get these values for a given service.
+In contrast, `frontend` is identified through the triplet `SignerID`, `ProductID`, and `SecurityVersion`. `SignerID` cryptographically identifies the vendor of the package; `ProductID` is an arbitrary product ID chosen by the vendor, and `SecurityVersion` is the security-patch level of the product. See our [adding a service hands-on](workflows/add-service.md#step-21-define-the-enclave-software package) on how to get these values for a given service.
 
 ## Marbles
 

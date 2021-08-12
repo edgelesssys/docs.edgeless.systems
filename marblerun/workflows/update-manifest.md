@@ -18,11 +18,11 @@ For example, the current `Packages` section of your original manifest looks like
 {
     // ...
     "Packages": {
-        "pkg0": {
+        "backend": {
             "UniqueID": "6b2822ac2585040d4b9397675d54977a71ef292ab5b3c0a6acceca26074ae585",
             "Debug": false
         },
-        "pkg1": {
+        "frontend": {
             "SignerID": "43361affedeb75affee9baec7e054a5e14883213e5a121b67d74a0e12e9d2b7a",
             "ProductID": 43,
             "SecurityVersion": 3,
@@ -33,13 +33,13 @@ For example, the current `Packages` section of your original manifest looks like
 }
 ```
 
-If you now want to update the minimum required version for `pkg1`, the complete definition for the update manifest just needs to be as short as this example:
+If you now want to update the minimum required version for `frontend`, the complete definition for the update manifest just needs to be as short as this example:
 
 
 ```javascript
 {
     "Packages": {
-        "pkg1": {
+        "frontend": {
             "SecurityVersion": 5
         }
     }
