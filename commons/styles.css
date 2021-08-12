@@ -242,7 +242,7 @@ th {
     display: inline-block;
     font-family: 'Source Code Pro', monospace;
     color: inherit;
-    padding: 0 .3em;
+    margin: 0;
 }
 
 .markdown-section pre {
