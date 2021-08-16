@@ -15,4 +15,4 @@ jobs:
       with:
         destination_branch: "main"
         pr_title: "Update OpenAPI specification"
-        github_token: ${{ secrets.CI_GITHUB_REPOSITORY }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
