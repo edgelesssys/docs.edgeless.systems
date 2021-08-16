@@ -3,7 +3,6 @@ on:
   push:
     branches:
     - action/marblerun/update-swagger
-    - feat/publish-swagger #debug
 
 jobs:
   pull-request:
@@ -15,4 +14,6 @@ jobs:
       with:
         destination_branch: "main"
         pr_title: "Update OpenAPI specification"
+        pr_body: |
+          :robot: *This is an automated PR.*
         github_token: ${{ secrets.GITHUB_TOKEN }}
