@@ -30,30 +30,27 @@ For errors, `data` will always be `null`, and `message` contains the specific er
 
 ## Endpoints
 
-The API currently contains the following endpoints. If an endpoint specifies *Returns* for either HTTP GET or HTTP POST, it means that the specified data can be found encoded inside the `data` block if the response was successful. If no returns are specified for a given endpoint, or in case all possible return values for an endpoint are declared as optional, `data` can just be `null`.
+The API currently contains the following endpoints. If an endpoint specifies *Returns* for either HTTP GET or HTTP POST, it means that the specified data can be found encoded inside the `data` block if the response was successful. If no Returns are specified for a given endpoint, or in case all possible return values for an endpoint are declared as optional, `data` can just be `null`.
 
 ## /manifest
 
 For deploying and verifying the manifest.
-
-* Before deploying the application to the cluster the manifest needs to be set once by the provider
-* Users can retrieve and inspect the manifest through this endpoint before interacting with the application
+Before deploying the application to the cluster the manifest needs to be set once by the provider.
+Users can retrieve and inspect the manifest through this endpoint before interacting with the application.
 
 ### GET
 **Returns**:
-
-| Field value       | Type   | Description                                                                                     |
-| ----------------- | ------ | ----------------------------------------------------------------------------------------------- |
-| ManifestSignature | string | A SHA-256 of the currently set manifest. Does not change when an update has been applied.       |
-| Manifest          | bytes  | The currently set manifest in base64 encoding. Does not change when an update has been applied. |
-
+| Field value       | Type   | Description                                                                                                |
+| ----------------- | ------ | ---------------------------------------------------------------------------------------------------------- |
+| ManifestSignature | string | The SHA-256 ckecksum of the currently set manifest. Does not change when an update has been applied.       |
+| Manifest          | bytes  | The currently set manifest, base64 encoded. Does not change when an update has been applied.               |
 
 ### POST
 **Returns**:
 
-| Field value     | Type             | Description                                                                                                                                                                                                |
-| --------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| RecoverySecrets | array (optional) | An array containing key-value mapping for encrypted secrets to be used for recovering the Coordinator in case of disaster recovery. The key matches each supplied key from `RecoveryKeys` in the manifest. |
+| Field value     | Type             | Description                                                                                                                                                                                                 |
+| --------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RecoverySecrets | array (optional) | An array containing key-value mappings for encrypted secrets to be used for recovering the Coordinator in case of disaster recovery. The key matches each supplied key from `RecoveryKeys` in the manifest. |
 
 
 Example for setting the manifest (HTTP POST):
@@ -76,12 +73,10 @@ Both the provider and the users of the confidential application can use this end
 
 ### GET
 **Returns**:
-
 | Field value | Type   | Description                                                                                                                                                               |
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Cert        | string | A PEM-encoded certificate chain containing the Coordinator's Root CA and Intermediate CA, which can be used for trust establishment between a client and the Coordinator. |
-| Quote       | string | Base64-encoded quote which can be used for Remote Attestation, as described in [Verifying a deployment](workflows/verification.md)                     |
-
+| Quote       | string | Base64-encoded quote which can be used for Remote Attestation, as described in [Verifying a deployment](workflows/verification.md)                                        |
 
 Example for retrieving a quote
 
@@ -103,9 +98,10 @@ sudo chmod +x /usr/local/bin/era
 era -c coordinator-era.json -h $MARBLERUN -o marblerun.crt
 ```
 
-?> On Ubuntu, `~/.local/bin` is only added to PATH when the directory exists when initializing your bash environment during login. You might need to re-login after creating the directory. Also, non-default shells such as `zsh` do not add this path by default. Therefore, if you receive `command not found: era` as an error message for a local user installation, either make sure `~/.local/bin` was added to your PATH successfully or simply use the machine-wide installation method.
+?> On Ubuntu, `~/.local/bin` is added to PATH only if the directory exists when the bash environment is initialized during login. You might need to re-login after creating the directory. Also, non-default shells such as `zsh` do not add this path by default. Therefore, if you receive `command not found: era` as an error message for a local user installation, make sure `~/.local/bin` was added to your PATH successfully, or simply use the machine-wide installation method.
 
-The file `coordinator-era.json` contains the *Packages* information for the Coordinator. For our testing image this can be pulled from our GitHub releases:
+The file `coordinator-era.json` contains the [Packages](workflows/define-manifest.md#manifestpackages) information for the Coordinator.
+The example `coordinator-era.json` for our provided testing image can be downloaded from GitHub:
 
 ```bash
 wget https://github.com/edgelesssys/marblerun/releases/latest/download/coordinator-era.json
@@ -113,7 +109,7 @@ wget https://github.com/edgelesssys/marblerun/releases/latest/download/coordinat
 
 ## /recover
 
-For recovering the Coordinator in case unsealing the existing state failed.
+To recover the Coordinator when unsealing of the existing state failed.
 
 ### POST
 
@@ -139,9 +135,9 @@ This API endpoint only works when `Users` were defined in the manifest. For more
 | \<SecretName\> (one or more) | map  | A map containing key-value pairs for the requested secret. |
 
 
-Each GET requests allows specifying one or more secrets in the form of a query string, where each parameter `s` specifies one secret.
-A query string for the secrets `symmetric_key_shared` and `cert_shared` may look like the following:
-```
+Each GET request allows specifying one or more secrets in the form of a query string, where each parameter `s` specifies one secret.
+A query string for the secrets `symmetric_key_shared` and `cert_shared` may look like this:
+```php
 s=symmetric_key_shared&s=cert_shared
 ```
 
@@ -151,7 +147,8 @@ curl --cacert marblerun.crt --cert user_certificate.crt --key user_private.key h
 ```
 
 ### POST
-Setting secrets requires uploading them in JSON format using a POST request. For more information refer to [Managing secrets](workflows/managing-secrets.md).
+Secrets can be uploaded in JSON format using a HTTP POST request.
+For more information refer to [Managing secrets](workflows/managing-secrets.md).
 
 Example for setting secrets from the file `secrets.json`:
 ```bash
@@ -187,7 +184,7 @@ Example for getting the status:
 curl -k "https://$MARBLERUN/status"
 ```
 
-It may be useful to use this API endpoint and use it for other monitoring tools. More information can be found under [Monitoring and Logging](workflows/monitoring.md)
+This API endpoint can be useful for monitoring tools. For more information see [Monitoring and Logging](workflows/monitoring.md)
 
 ## /update
 
@@ -198,13 +195,13 @@ For updating the packages specified in the currently set manifest or retrieving 
 
 A structured log of all updates performed via the `/update` or `/secrets` endpoint, including timestamp, author, and affected resources.
 
-Example for getting the update log:
+Example request to get the update log:
 ```bash
 curl -k "https://$MARBLERUN/update"
 ```
 
 ### POST
-This API endpoint only works when `Users` were defined in the manifest. For more information, look up ["updating a manifest"](workflows/update-manifest.md)
+This API endpoint only works if `Users` are defined in the manifest. For more information, have a look at ["updating a manifest"](workflows/update-manifest.md)
 
 Example for updating the manifest:
 
