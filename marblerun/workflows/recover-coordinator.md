@@ -4,12 +4,14 @@ As described in the [recovery chapter](features/recovery.md), different situatio
 If the Coordinator finds a sealed state during its startup which it is unable to unseal using the host-specific SGX sealing key, it will wait for further instructions.
 You have two options:
 
-1. Recover the sealed state by uploading the recovery secret, which was encrypted for the `RecoveryKeys` defined in the manifest
+1. Recover the sealed state by uploading the recovery secret, which was encrypted for the `RecoveryKeys` defined in the manifest.
+
+    !> If no `RecoveryKeys` were defined in the manifest, recovery cannot be performed.
 
     The recovery secret can be uploaded through the `/recover` client API endpoint. To do so, you need to:
 
     * Get the temporary root certificate (valid only during recovery mode)
-    * Decode the Base64 encoded output that was returned to you during the upload of the manifest
+    * Decode the Base64 encoded output that was returned to you during the initial upload of the manifest
     * Decrypt the decoded output with the corresponding RSA private key of the key defined in the manifest
     * Upload the binary decoded and decrypted key to the `/recover` endpoint
 
