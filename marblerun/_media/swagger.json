@@ -85,6 +85,19 @@
                 ],
                 "summary": "Recover the Coordinator when unsealing the existing state fails.",
                 "operationId": "recoverPost",
+                "parameters": [
+                    {
+                        "name": "RecoverySecret",
+                        "in": "body",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "format": "uint8"
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/RecoveryStatusResponse"
@@ -95,14 +108,14 @@
                 }
             }
         },
-        "/secret": {
+        "/secrets": {
             "get": {
                 "description": "Each requests allows specifying one or more secrets in the form of a query string, where each parameter `s` specifies one secret.\nA query string for the secrets `symmetric_key_shared` and `cert_shared` may look like the following:\n\n```\ns=symmetric_key_shared\u0026s=cert_shared\n```\n\nThis API endpoint only works when `Users` were defined in the manifest.\nThe user connects via mutual TLS using the user client certificate in the TLS Handshake.\nFor more information, look up [Managing secrets](../#/workflows/managing-secrets.md).\n\nExample for retrieving the secrets `symmetric_key_shared` and `cert_shared`:\n\n```bash\ncurl --cacert marblerun.crt --cert user_certificate.crt --key user_private.key https://$MARBLERUN/secrets?s=symmetric_key_shared\u0026s=cert_shared\n```",
                 "tags": [
-                    "secret"
+                    "secrets"
                 ],
                 "summary": "Retrieve secrets.",
-                "operationId": "secretGet",
+                "operationId": "secretsGet",
                 "parameters": [
                     {
                         "type": "array",
@@ -130,10 +143,22 @@
             "post": {
                 "description": "Setting secrets requires uploading them in JSON format.\n\nThis API endpoint only works when `Users` were defined in the manifest.\nThe user connects via mutual TLS using the user client certificate in the TLS Handshake.\nFor more information, look up [Managing secrets](../#/workflows/managing-secrets.md).\n\nExample for setting secrets from the file `secrets.json`:\n\n```bash\ncurl --cacert marblerun.crt --cert user_certificate.crt --key user_private.key --data-binary @secrets.json https://$MARBLERUN/secrets\n```",
                 "tags": [
-                    "secret"
+                    "secrets"
                 ],
                 "summary": "Set secrets.",
-                "operationId": "secretPost",
+                "operationId": "secretsPost",
+                "parameters": [
+                    {
+                        "name": "Secrets",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/UserSecret"
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/SecretsMapResponse"
@@ -152,7 +177,7 @@
         },
         "/status": {
             "get": {
-                "description": "The status indicates the current state of the coordinator, and can be one of the following:\n1. Coordinator is in recovery mode. Either upload a key to unseal the saved state, or set a new manifest. Waiting for user input on [/recover](../#/features/recovery.md).\n1. Coordinator is ready to as.ccept a manifest on [/manifest](workflows/set-manifest.md)\n1. Coordinator is running correctly and ready to as.ccept marbles through the [Marble API](../#/workflows/add-service.md)",
+                "description": "The status indicates the current state of the coordinator, and can be one of the following:\n1. Coordinator is in recovery mode. Either upload a key to unseal the saved state, or set a new manifest. Waiting for user input on [/recover](../#/features/recovery.md).\n1. Coordinator is ready to accept a manifest on [/manifest](workflows/set-manifest.md)\n1. Coordinator is running correctly and ready to accept marbles through the [Marble API](../#/workflows/add-service.md)",
                 "tags": [
                     "status"
                 ],
@@ -616,24 +641,22 @@
                 }
             }
         },
-        "Userers": {
-            "description": "Userers This is the start of the description This is the start of the description This is the start of the description\nUser represents the user for this application This is the start of the description",
+        "UserSecret": {
+            "description": "UserSecret is a secret uploaded by a user",
             "type": "object",
-            "required": [
-                "id",
-                "name"
-            ],
             "properties": {
-                "id": {
-                    "description": "the id for this user",
-                    "type": "integer",
-                    "format": "int64",
-                    "minimum": 1
+                "Cert": {
+                    "$ref": "#/definitions/Certificate"
                 },
-                "name": {
-                    "description": "the name for this user",
-                    "type": "string",
-                    "minLength": 3
+                "Key": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "uint8"
+                    }
+                },
+                "Private": {
+                    "$ref": "#/definitions/PrivateKey"
                 }
             }
         }
