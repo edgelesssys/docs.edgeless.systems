@@ -8,7 +8,7 @@ To build your service, you can start with [Occlum's Introduction](https://github
 
 ## Configuration
 ### Premain executable
-Add our prebuilt [premain-libos](https://github.com/edgelesssys/marblerun/releases/download/latest/premain-libos) executable to your Occlum image, e.g., by copying it to `image/bin/premain-libos`. By default, Occlum restricts executable files to the `/bin` directory. If you placed the `premain-libos` binary to a different path, you need to adjust this setting accordingly.
+Add our pre-built [premain-libos](https://github.com/edgelesssys/marblerun/releases/download/latest/premain-libos) executable to your Occlum image, e.g., by copying it to `image/bin/premain-libos`. By default, Occlum restricts executable files to the `/bin` directory. If you placed the `premain-libos` binary to a different path, you need to adjust this setting accordingly.
 
 Finally, define the original entry point for your Occlum instance as the first `Argv` parameter for your Marble in MarbleRun's `manifest.json`. See [Defining a manifest](workflows/define-manifest.md) for more information on how to define the `Argv` parameters. This lets MarbleRun launch your application after it succeeded in authenticating with the Coordinator and provides entrypoint pinning similar to the one offered in `Occlum.json`.
 
