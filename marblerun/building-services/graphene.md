@@ -25,7 +25,7 @@ After the premain is done running, it will automatically spawn your application.
 ### Host environment variables
 The premain needs access to some host [environment variables for configuration](workflows/add-service.md#step-3-start-your-service):
 ```toml
-loader.insecure__use_host_env = 1
+loader.insecure__use_host_env = true
 ```
 The premain will remove all other variables before the actual application is launched, but there may still be risks. Don't use this on production until [secure forwarding of host environment variables](https://github.com/oscarlab/graphene/issues/2356) will be available.
 
@@ -38,7 +38,7 @@ sgx.allowed_files.uuid = "file:uuid"
 ### Remote attestation
 The Marble will send an SGX quote to the Coordinator for remote attestation:
 ```toml
-sgx.remote_attestation = 1
+sgx.remote_attestation = true
 ```
 
 ### Enclave size and threads
