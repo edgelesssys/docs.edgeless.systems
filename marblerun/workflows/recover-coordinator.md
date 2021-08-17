@@ -6,17 +6,31 @@ You have two options:
 
 1. Recover the sealed state by uploading the recovery secret, which was encrypted for the `RecoveryKeys` defined in the manifest
 
-    The recovery secret can be uploaded through the `/recover` client API endpoint. In order to do so a client needs to first extract the encrypted secret by decrypting it with the corresponding private key:
+    The recovery secret can be uploaded through the `/recover` client API endpoint. To do so, you need to:
+
+    * Get the temporary root certificate (valid only during recovery mode)
+    * Decode the Base64 encoded output that was returned to you during the upload of the manifest
+    * Decrypt the decoded output with the corresponding RSA private key of the key defined in the manifest
+    * Upload the binary decoded and decrypted key to the `/recover` endpoint
+
+    Assuming you saved the output from the manifest upload step in a file called `recovery_data` and the corresponding private key to the recovery key in a file called `private.pem`, perform recovery like this:
 
     ```bash
-    base64 -d recovery_key_encrypted_base64 > recovery_key_encrypted
-    openssl pkeyutl -inkey private_key.pem -in recovery_key_encrypted -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 -decrypt -out recovery_key_decrypted
+    base64 -d recovery_data \
+    | openssl pkeyutl -inkey private.pem -decrypt \
+        -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 -out recovery_key_decrypted
     ```
 
     The extracted secret can then be uploaded using the MarbleRun CLI.
 
     ```bash
     marblerun recover $MARBLERUN recovery_key_decrypted
+    ```
+
+    Alternatively, you can use `curl`:
+    ```bash
+    era -c coordinator-era.json -h $MARBLERUN -output-root marblerun-temp.pem
+    curl --cacert marblerun-temp.pem --data-binary @recovery_key_decrypted https://$MARBLERUN/recover
     ```
 
     If the recovery worked correctly, the Coordinator should apply the sealed state again without returning an error. In case the Coordinator was not able to restore the state with the uploaded key, an error will be returned in the logs and the `/recover` endpoint will stay open for further interaction.
