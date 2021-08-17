@@ -141,7 +141,7 @@ The domain is used as the CommonName in the Coordinator's TLS certificate.
 This certificate is used for the HTTPS communication of the Coordinator's client API.
 The HTTPS endpoint is exposed via a [Kubernetes LoadBalancer Service](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer).
 The public IP and associated DNS names of load balancer services are provisioned and managed by your cloud provider.
-You need to make sure that the domain you set via `--domain` matches the one you configured for the public IPs provisioned in your cluster.
+You need to make sure that the domain you set via `coordinator.hostname` matches the one you configured for the public IPs provisioned in your cluster.
 On Azure, you can [use a static public IP address with the Azure Kubernetes Service (AKS) load balancer](https://docs.microsoft.com/en-us/azure/aks/static-ip#create-a-static-ip-address),
 The client API can be used by users/clients of your application to obtain one concise remote attestation statement for your cluster.
 
