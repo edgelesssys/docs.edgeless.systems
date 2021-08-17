@@ -2,6 +2,10 @@
 
 This guide walks you through setting up MarbleRun in your Kubernetes cluster.
 
+The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [Helm repo.]((https://github.com/edgelesssys/helm)) \
+The installation consists of a deployment for the Coordinator and an admission controller.
+For more details see our section on [Kubernetes Integration](features/auto-injection.md).
+
 ## Prerequisites
 
 ### SGX device plugin on Kubernetes
@@ -87,6 +91,8 @@ You can install MarbleRun using the CLI as follows:
     ```bash
     marblerun install --domain=mycluster.uksouth.cloudapp.azure.com --simulation
     ```
+
+This command will pull the latest Helm chart from [our repository](https://github.com/edgelesssys/helm) and manages the installation of said chart.
 
 By default `--domain` is set to `localhost`.
 The domain is used as the CommonName in the Coordinator's TLS certificate.
