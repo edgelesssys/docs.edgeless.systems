@@ -2,11 +2,12 @@
 
 As described in the [recovery chapter](features/recovery.md), different situations can require the *recovery* of the Coordinator.
 If the Coordinator finds a sealed state during its startup which it is unable to unseal using the host-specific SGX sealing key, it will wait for further instructions.
+
+!> You will need the corresponding private key to the `RecoveryKeys` which were defined in the manifest, and you will need the recovery secret that was returned to you during the initial upload of the manifest. If either or both of these are not available to you, recovery cannot be performed.
+
 You have two options:
 
 1. Recover the sealed state by uploading the recovery secret, which was encrypted for the `RecoveryKeys` defined in the manifest.
-
-    !> If no `RecoveryKeys` were defined in the manifest, recovery cannot be performed.
 
     The recovery secret can be uploaded through the `/recover` client API endpoint. To do so, you need to:
 
