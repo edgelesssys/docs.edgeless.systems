@@ -22,8 +22,6 @@ loader.argv0_override = "hello"
 ```
 After the premain is done running, it will automatically spawn your application.
 
-For a better illustration of the differences between the two premain variants, check out our ["Hello World" sample on GitHub.](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-hello)
-
 ### Host environment variables
 The premain needs access to some host [environment variables for configuration](workflows/add-service.md#step-3-start-your-service):
 ```toml
