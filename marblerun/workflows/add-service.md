@@ -28,7 +28,8 @@ Now that your service is ready, you need to make two types of entries in the man
 
 As is described in more detail in our [writing a manifest hands-on](workflows/define-manifest.md#manifestpackages), the manifest contains a section `Packages`, in which allowed enclave software packages are defined.
 
-To add an entry for your service, run the `oesign` tool on the enclave file you built in the previous step as follows. (`oesign` is installed with [Edgeless RT](https://github.com/edgelesssys/edgelessrt).)
+#### EGo / EdgelessRT
+To add an entry for your EGo / EdgelessRT service, run the `oesign` tool on the enclave file you built in the previous step as follows. (`oesign` is installed with [Edgeless RT](https://github.com/edgelesssys/edgelessrt).)
 
 ```bash
 oesign eradump -e enclave.signed
@@ -44,6 +45,52 @@ The tool's output will look like the following.
     "ProductID": 3
 }
 ```
+
+#### Graphene
+
+To add an entry for your Graphene service, run the `graphene-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`graphene-sgx-get-token` is installed with [Graphene](https://github.com/oscarlab/graphene/).)
+
+
+```bash
+graphene-sgx-get-token --sig hello.sig
+```
+
+The tool's output will look like the following.
+
+```json
+Attributes:
+    mr_enclave:  72612ea17be998f098459ff3cdc0daa0d592cec85115db8e152b10fc6df033a7
+    mr_signer:   ed81204cd726dcff2dc4c498bdfcef63a2b02009ef188e7e2914c37a7e99b547
+    isv_prod_id: 1
+    isv_svn:     3
+    attr.flags:  0600000000000000
+    attr.xfrm:   1f00000000000000
+    misc_select: 00000000
+    misc_mask:   00000000
+    modulus:     09d6497ec75a05a2280974b7e5b39422...
+    exponent:    3
+    signature:   4b6db90216e6a5e8447812f7f0107317...
+    date:        2021-08-18
+```
+
+#### Occlum
+
+To add an entry for your Occlum service, run the MarbleRun CLI on the Occlum instance you built in the previous step as follows.
+
+```bash
+marblerun sgxsdk-package-info ./occlum-instance
+```
+
+The output will look like the following.
+
+```json
+PackageProperties for Occlum image at './occlum-instance':
+UniqueID (MRENCLAVE)      : ccad2391e0b79d9108209135c26b2c276c5a24f4f55bc67ccf5ab90fd3f5fc22
+SignerID (MRSIGNER)       : 83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc08c7ce9e
+ProductID (ISVPRODID)     : 1
+SecurityVersion (ISVSVN)  : 3
+```
+
 
 Use `UniqueID` (i.e., `MRENCLAVE` in Intel SGX speak) or the triplet of `SignerID` (i.e., `MRSIGNER`), `SecurityVersion`, and `ProductID` to add an entry in the `Packages` section.
 
@@ -65,7 +112,10 @@ EDG_MARBLE_DNS_NAMES=localhost,myservice \
 erthost enclave.signed
 ```
 
-`erthost` is the generic host for Marbles, which will load your `enclave.signed`. The environment variables have the following purposes.
+`erthost` is the generic host for EdgelessRT Marbles, which will load your `enclave.signed`.
+For EGo (`ego run`), Graphene (`graphene-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
+
+The environment variables have the following purposes.
 
 * `EDG_MARBLE_COORDINATOR_ADDR` is the network address of the Coordinator's API for Marbles. When you deploy the Coordinator using our Helm repository as is described in our [deploying MarbleRun hands-on](deployment/kubernetes.md), the default address is `coordinator-mesh-api.marblerun:2001`.
 
