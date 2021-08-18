@@ -52,8 +52,8 @@ If your application has high memory demands, you may need to increase the size e
 ### Secret files
 A Marble's secrets, e.g. a certificate and private key, can be provisioned as files. You can utilize Graphene's in-memory filesystem [`tmpfs`](https://graphene.readthedocs.io/en/latest/manifest-syntax.html#fs-mount-points), so the secrets will never show up on the host's file system :
 ```toml
-fs.mount.[identifier].type = "tmpfs"
-fs.mount.[identifier].path = "/secrets"
+fs.mount.secrets.type = "tmpfs"
+fs.mount.secrets.path = "/secrets"
 ```
 You can specify the files' content in the MarbleRun manifest:
 ```javascript
