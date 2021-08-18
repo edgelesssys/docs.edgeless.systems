@@ -8,7 +8,7 @@ MarbleRun exposes the `/quote` endpoint that returns a quote and a certificate c
 
 The simplest way to verify the quote is via the Edgeless Remote Attestation ([era](https://github.com/edgelesssys/era)) tool.
 
-To verify the coordinator, Era requires the Coordinator's UniqueID (or MRENCLAVE in SGX terms) or the tuple ProductID, SecurityVersion, SignerID (MRSIGNER) to verify the quote. Era contacts the Coordinator, and receives an SGX quote from it which contains the actual UniqueID or ProductID/SecurityVersion/SignerID tuple of the running instance. The tool verifies it against the values the expected values defined in `coordinator-era.json` and can therefore determine if an authentic copy of the Coordinator is running, or if an unknown version is contacted. 
+To verify the coordinator, `era` requires the Coordinator's UniqueID (or MRENCLAVE in SGX terms) or the tuple ProductID, SecurityVersion, SignerID (MRSIGNER) to verify the quote. `era` contacts the Coordinator, and receives an SGX quote from it which contains the actual UniqueID or ProductID/SecurityVersion/SignerID tuple of the running instance. The tool verifies it against the values the expected values defined in `coordinator-era.json` and can therefore determine if an authentic copy of the Coordinator is running, or if an unknown version is contacted. 
 
 In production, the expected values in `coordinator-era.json` would be generated when building the Coordinator and distributed to your clients. When you build MarbleRun from source, you can find the file in your build directory.
 For testing with a pre-built release, we have published a Coordinator image at `ghcr.io/edgelesssys/coordinator`.
@@ -18,7 +18,7 @@ You can pull the corresponding `coordinator-era.json` file from our release page
 wget https://github.com/edgelesssys/marblerun/releases/latest/download/coordinator-era.json
 ```
 
-After installing Era, you can verify the quote with the following command:
+After installing `era`, you can verify the quote with the following command:
 
 ```bash
 era -c coordinator-era.json -h $MARBLERUN -output-chain marblerun-chain.pem -output-root marblerun-root.pem -output-intermediate marblerun-intermedite.pem
