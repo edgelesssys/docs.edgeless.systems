@@ -30,8 +30,8 @@ symmetric_key_shared:
 
 A user can upload secrets via the HTTP REST API in JSON format. The secrets need to be marked as `UserDefined`.
 
-For secrets of the types `cert-rsa`, `cert-ecdsa` and `cert-ed25519` the CLI supports directly uploading a PEM encoded certificate and key.
-Take for example this file containing a certificate and corresponding private key:
+For secrets of the types `cert-rsa`, `cert-ecdsa` and `cert-ed25519` the CLI supports directly uploading a PEM encoded certificate and key from a file.
+Take for example the `secret_file.pem`  containing a certificate and corresponding private key:
 ```
 -----BEGIN CERTIFICATE-----
 MIICpjC ... zrNxzg==
@@ -41,9 +41,12 @@ MIICpjC ... zrNxzg==
 MIICeAI ... 8bu8Z+Fe
 -----END PRIVATE KEY-----
 ```
-The following command sets this certificate as a secret named `user-certificate`:
+The CLI will look for the first instance of an encoded certificate and/or key in the file, perform a conversion to JSON format, and upload them to the Coordinator.
+The name of the secret you are trying to set is specified using the `--from-pem` flag.
+
+The following command uploads the key and certificate pair stored in the `secret_file.pem` as a secret named `user-certificate`:
 ```bash
-marblerun secret set secret_file.pem $MARBLERUN --from-pem user-secret --cert=admin-cert.pem --key=admin-key.pem --era-config=era.json
+marblerun secret set secret_file.pem $MARBLERUN --from-pem user-certificate --cert=admin-cert.pem --key=admin-key.pem --era-config=era.json
 ```
 
 To upload different types, or a batch of secrets, a file with the secrets in JSON format is needed.
