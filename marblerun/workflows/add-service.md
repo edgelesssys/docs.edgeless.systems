@@ -113,7 +113,7 @@ erthost enclave.signed
 ```
 
 `erthost` is the generic host for EdgelessRT Marbles, which will load your `enclave.signed`.
-For EGo (`ego run`), Graphene (`graphene-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
+For EGo (`ego marblerun`), Graphene (`graphene-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
 
 The environment variables have the following purposes.
 
