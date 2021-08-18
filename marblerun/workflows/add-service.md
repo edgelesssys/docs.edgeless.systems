@@ -35,7 +35,7 @@ To add an entry for your EGo / EdgelessRT service, run the `oesign` tool on the 
 oesign eradump -e enclave.signed
 ```
 
-The tool's output will look like the following.
+The tool's output is similar to the following.
 
 ```json
 {
@@ -81,7 +81,7 @@ To add an entry for your Occlum service, run the MarbleRun CLI on the Occlum ins
 marblerun sgxsdk-package-info ./occlum-instance
 ```
 
-The output will look like the following.
+The output is similar to the following.
 
 ```json
 PackageProperties for Occlum image at './occlum-instance':
