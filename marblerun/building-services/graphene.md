@@ -50,26 +50,30 @@ sgx.thread_num = 16
 
 If your application has high memory demands, you may need to increase the size even further.
 ### Secret files
-A Marble's secrets, e.g. a certificate and private key, can be provisioned as files. Ideally, these would be placed in the Marble's in-memory filesystem. Graphene does not support this yet, but you can fall back on *Graphene Protected Files* instead:
+A Marble's secrets, e.g. a certificate and private key, can be provisioned as files. You can utilize Graphene's in-memory filesystem [`tmpfs`](https://graphene.readthedocs.io/en/latest/manifest-syntax.html#fs-mount-points), so the secrets will never show up on the host's file system :
 ```toml
-sgx.protected_files.cert = "file:server.crt"
-sgx.protected_files.privkey = "file:server.key"
+fs.mount.[identifier].type = "tmpfs"
+fs.mount.[identifier].path = "/secrets"
 ```
 You can specify the files' content in the MarbleRun manifest:
 ```javascript
 ...
     "Parameters": {
         "Files": {
-            "/dev/attestation/protected_files_key": "{{ hex .Marblerun.SealKey }}",
-            "server.crt": "{{ pem .Secrets.server_cert.Cert }}",
-            "server.key": "{{ pem .Secrets.server_cert.Private }}"
+            "/secrets/server.crt": "{{ pem .Secrets.server_cert.Cert }}",
+            "/secrets/server.key": "{{ pem .Secrets.server_cert.Private }}"
         }
     }
 ...
 ```
-Note that Graphene requires to initialize the protected files key by writing it hex-encoded to the virtual `protected_files_key` device. This can be easily done through the above manifest configuration.
 
-You can see this in action in the [nginx example](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-nginx).
+Note that Graphene also allows to store files encrypted on the host's file system. The so called `protected files` require to initialize the protected files key by writing it hex-encoded to the virtual `protected_files_key` device:
+
+```
+sgx.protected_files_key = "[16-byte hex value]"
+sgx.protected_files.[identifier] = "[URI]"
+```
+You can see how this key can be initializied with MarbleRun in the [nginx example](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-nginx).
 
 ## Troubleshooting
 ### aesm_service returned error: 30
