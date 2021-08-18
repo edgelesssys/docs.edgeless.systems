@@ -120,6 +120,22 @@ Entries for these types can be defined in two ways:
         * `hex`: Same as `base64`, but [Hex Encoding](https://pkg.go.dev/encoding/hex) is used instead
     * `NoTemplates`: If this flag is set, content in `Data` is not processed for templates. Use this if your file contains [Go Templates](https://golang.org/pkg/text/template/) structures that should not be interpreted by MarbleRun.
 
+### Argv
+Command line arguments are defined as an array. Entries are passed to the Marble in order, with the first being `argv[0]`.
+In most cases, `argv[0]` is expected to be the name of the executable.
+Templates are not supported.
+
+The general format is the following:
+```javascript
+"Argv": [
+    "<AppName>"
+    "<FirstArg>"
+    "<SecondArg>"
+    //...
+    "<LastArg>"
+]
+```
+
 ### Templates
 
 `Parameters` are passed from the Coordinator to secure enclaves (i.e., Marbles) after successful initial remote attestation. In the remote attestation step, the Coordinator ensures that enclaves run the software defined in the `Packages` section. It is important to note that `Parameters` are only accessible from within the corresponding secure enclave. `Parameters` may contain arbitrary static data. However, they can also be used to securely communicate different types of dynamically generated cryptographic keys and certificates to Marbles. For this, we use [Go Templates](https://golang.org/pkg/text/template/) with the following syntax.
