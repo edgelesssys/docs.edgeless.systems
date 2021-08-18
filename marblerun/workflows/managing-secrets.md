@@ -41,6 +41,9 @@ MIICpjC ... zrNxzg==
 MIICeAI ... 8bu8Z+Fe
 -----END PRIVATE KEY-----
 ```
+The CLI will look for the first instance of an encoded certificate and/or key in the file, perform a conversion to JSON format, and upload them to the Coordinator.
+The name of the secret is specified using the `--from-pem` flag.
+
 The following command sets this certificate as a secret named `user-certificate`:
 ```bash
 marblerun secret set secret_file.pem $MARBLERUN --from-pem user-secret --cert=admin-cert.pem --key=admin-key.pem --era-config=era.json
