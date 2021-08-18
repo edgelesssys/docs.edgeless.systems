@@ -7,7 +7,7 @@ Yet, updates play an important role to ensure your software stays secure. To avo
 In order to deploy an update, you need to be in possession of a certificate/private key pair belonging to a user from the `Users` section of the original manifest, as described in ["defining a manifest"](workflows/define-manifest.md#manifestmarbles).
 Furthermore the user needs to be [permitted to update](workflows/define-manifest.md#manifestroles) the chosen packages.
 
-If no administrator has been initially set up, no updates can be applied.
+If no user with the permission for updates has been initially set up, no updates can be applied.
 
 ## Defining an update manifest
 The format of an update manifest follows the syntax of the original manifest, though it only expects to contain a package name and a new `SecurityVersion` value set for it.
