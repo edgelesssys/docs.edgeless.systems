@@ -55,7 +55,7 @@ To add an entry for your Graphene service, run the `graphene-sgx-get-token` tool
 graphene-sgx-get-token --sig hello.sig
 ```
 
-The tool's output will look like the following.
+The tool's output is similar to the following.
 
 ```json
 Attributes:
