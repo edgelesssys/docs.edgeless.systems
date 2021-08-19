@@ -30,7 +30,7 @@ For errors, `data` will always be `null`, and `message` contains the specific er
 
 ## Endpoints
 
-The API currently contains the following endpoints. If an endpoint specifies *Returns* for either HTTP GET or HTTP POST, it means that the specified data can be found encoded inside the `data` block if the response was successful. If no Returns are specified for a given endpoint, or in case all possible return values for an endpoint are declared as optional, `data` can just be `null`.
+The API currently contains the following endpoints. If an endpoint specifies *Returns* for either HTTP GET or HTTP POST, it means that the specified data can be found encoded inside the `data` block if the response was successful. If no return values are specified for a given endpoint, or in case all possible return values for an endpoint are declared as optional, `data` can just be `null`.
 
 ## /manifest
 
@@ -40,6 +40,7 @@ Users can retrieve and inspect the manifest through this endpoint before interac
 
 ### GET
 **Returns**:
+
 | Field value       | Type   | Description                                                                                                |
 | ----------------- | ------ | ---------------------------------------------------------------------------------------------------------- |
 | ManifestSignature | string | The SHA-256 ckecksum of the currently set manifest. Does not change when an update has been applied.       |
@@ -73,6 +74,7 @@ Both the provider and the users of the confidential application can use this end
 
 ### GET
 **Returns**:
+
 | Field value | Type   | Description                                                                                                                                                               |
 | ----------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Cert        | string | A PEM-encoded certificate chain containing the Coordinator's Root CA and Intermediate CA, which can be used for trust establishment between a client and the Coordinator. |
@@ -137,7 +139,7 @@ This API endpoint only works when `Users` were defined in the manifest. For more
 
 Each GET request allows specifying one or more secrets in the form of a query string, where each parameter `s` specifies one secret.
 A query string for the secrets `symmetric_key_shared` and `cert_shared` may look like this:
-```php
+```
 s=symmetric_key_shared&s=cert_shared
 ```
 
