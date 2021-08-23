@@ -27,7 +27,7 @@ You have two options:
     The extracted secret can then be uploaded using the MarbleRun CLI.
 
     ```bash
-    marblerun recover $MARBLERUN recovery_key_decrypted
+    marblerun recover recovery_key_decrypted $MARBLERUN
     ```
 
     Alternatively, you can use `curl`:

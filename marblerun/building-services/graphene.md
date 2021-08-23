@@ -60,8 +60,8 @@ You can specify the files' content in the MarbleRun manifest:
 ...
     "Parameters": {
         "Files": {
-            "/secrets/server.crt": "{{ pem .Secrets.server_cert.Cert }}",
-            "/secrets/server.key": "{{ pem .Secrets.server_cert.Private }}"
+            "/secrets/server.crt": "{{ pem .Secrets.serverCert.Cert }}",
+            "/secrets/server.key": "{{ pem .Secrets.serverCert.Private }}"
         }
     }
 ...

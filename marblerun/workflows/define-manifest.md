@@ -48,7 +48,7 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
 {
     // ...
     "Marbles": {
-        "backend_first": {
+        "backendFirst": {
             "Package": "backend",
             "MaxActivations": 1,
             "Parameters": {
@@ -74,7 +74,7 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
                 ]
             },
             "TLS": [
-                "backend_first_tls"
+                "backendFirstTLS"
             ]
         },
         "frontend": {
@@ -88,7 +88,7 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
                 }
             },
             "TLS": [
-                "frontend_tls_1", "frontend_tls_2"
+                "frontendTLS1", "frontendTLS2"
             ]
         }
     }
@@ -166,12 +166,12 @@ In the [previous section](#manifestmarbles), we discussed how certain cryptograp
 {
     //...
     "Secrets": {
-        "secret_aes_key": {
+        "secretAESKey": {
             "Type": "symmetric-key",
             "Size": 128,
             "Shared": true
         },
-        "rsa_cert": {
+        "rsaCert": {
             "Type": "cert-rsa",
             "Size": 2048,
             "Shared": false,
@@ -182,7 +182,7 @@ In the [previous section](#manifestmarbles), we discussed how certain cryptograp
                 }
             }
         },
-        "secret_key_unset": {
+        "secretKeyUnset": {
             "Type": "symmetric-key",
             "Size": 128,
             "UserDefined": true
@@ -274,10 +274,10 @@ Refer to the [previous section](#manifestmarbles) for a list of supported encodi
 
 The following gives some examples.
 
-* Inject the certificate of custom secret `rsa_cert` in PEM format: `{{ pem .Secrets.rsa_cert.Cert }}`
-* Inject the corresponding private key in PKCS#8 format: `{{ raw .Secrets.rsa_cert.Private }}`
-* Inject the corresponding public key PKIX-encoded and in PEM format: `{{ pem .Secrets.rsa_cert.Public }}`
-* Inject a symmetric key in hex format: `{{ hex .Secrets.secret_aes_key }}`
+* Inject the certificate of custom secret `rsaCert` in PEM format: `{{ pem .Secrets.rsaCert.Cert }}`
+* Inject the corresponding private key in PKCS#8 format: `{{ raw .Secrets.rsaCert.Private }}`
+* Inject the corresponding public key PKIX-encoded and in PEM format: `{{ pem .Secrets.rsaCert.Public }}`
+* Inject a symmetric key in hex format: `{{ hex .Secrets.secretAESKey }}`
 
 ## Users
 The optional entry `Users` defines user credentials and role bindings for authentication and access control.
@@ -291,15 +291,15 @@ Users with the appropriate roles can [update a manifest](workflows/update-manife
         "alice": {
             "Certificate": "-----BEGIN CERTIFICATE-----\nMIIFPjCCA...",
             "Roles": [
-                "secret_manager",
-                "update_frontend"
+                "secretManager",
+                "updateFrontend"
             ]
         },
         "bob": {
             "Certificate": "-----BEGIN CERTIFICATE-----\nMIIFP...",
             "Roles": [
-                "secret_manager",
-                "update_backend"
+                "secretManager",
+                "updateBackend"
             ]
         }
     }
@@ -332,21 +332,21 @@ Valid `Actions` are:
 {
     //...
     "Roles": {
-        "update_frontend": {
+        "updateFrontend": {
             "ResourceType": "Packages",
             "ResourceNames": ["frontend"],
             "Actions": ["UpdateSecurityVersion"]
         },
-        "update_backend": {
+        "updateBackend": {
             "ResourceType": "Packages",
             "ResourceNames": ["backend"],
             "Actions": ["UpdateSecurityVersion"]
         },
-        "secret_manager": {
+        "secretManager": {
             "ResourceType": "Secrets",
             "ResourceNames": [
-                "secret_key_unset",
-                "generic_secret"
+                "secretKeyUnset",
+                "genericSecret"
             ],
             "Actions": [
                 "ReadSecret",
@@ -404,7 +404,7 @@ Incoming connections are defined by `Port`. For services used by external client
     //...
     "TLS":
     {
-        "frontend_tls_1": {
+        "frontendTLS1": {
             "Outgoing": [
                 {
                     "Port": "8080",
@@ -421,12 +421,12 @@ Incoming connections are defined by `Port`. For services used by external client
                 },
                 {
                     "Port": "8080",
-                    "Cert": "rsa_cert",
+                    "Cert": "rsaCert",
                     "DisableClientAuth": true
                 }
             ]
         },
-        "backend_first_tls": {
+        "backendFirstTLS": {
             // ...
         }
     }
