@@ -51,15 +51,19 @@ spec:
         command: <exec>
         resources:
           limits:
-            sgx.intel.com/epc: 10
+            sgx.intel.com/epc: 10Mi
+            sgx.intel.com/enclave: 1
+            sgx.intel.com/provision: 1
 ```
 
 Note, that every plugin uses its own way of injecting SGX resources into deployments. Please refer to the documentation for your plugin of choice. This is an example of the Intel plugin.
 
 MarbleRun supports [automatic injection](features/auto-injection.md) of those values for a selection of popular plugins:
 
-* [Intel](https://intel.github.io/intel-device-plugins-for-kubernetes/cmd/sgx_plugin/README.html) using `sgx.intel.com/epc`
+* [Intel](https://intel.github.io/intel-device-plugins-for-kubernetes/cmd/sgx_plugin/README.html) using `sgx.intel.com/epc`, `sgx.intel.com/enclave`, and `sgx.intel.com/provision`
 * [Azure](https://github.com/Azure/aks-engine/blob/master/docs/topics/sgx.md#deploying-the-sgx-device-plugin) using `kubernetes.azure.com/sgx_epc_mem_in_MiB`
+* [Alibaba Cloud](https://github.com/AliyunContainerService/sgx-device-plugin) using `alibabacloud.com/sgx_epc_MiB`
+* You can use the `--resource-key` flag, during installation with the CLI, to declare your own SGX resource key for injection
 
 ?> If you are using a different plugin please let us know, so we can add support!
 
