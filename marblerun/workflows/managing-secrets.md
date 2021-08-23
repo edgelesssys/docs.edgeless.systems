@@ -13,13 +13,13 @@ Similarly, predefined users can retrieve particular secrets from the Coordinator
 
 Authorized users can use the client API to read secrets in JSON format.
 
-For example, the following command requests a secret named `symmetric_key_shared`:
+For example, the following command requests a secret named `symmetricKeyShared`:
 ```bash
-marblerun secret get symmetric_key_shared $MARBLERUN --cert=admin-cert.pem --key=admin-key.pem --era-config=era.json
+marblerun secret get symmetricKeyShared $MARBLERUN --cert=admin-cert.pem --key=admin-key.pem --era-config=era.json
 ```
 If the user has the required permissions, the secret is returned:
 ```
-symmetric_key_shared:
+symmetricKeyShared:
 	Type:          symmetric-key
 	UserDefined:   false
 	Size:          128
@@ -68,18 +68,18 @@ Each entry in the file is a JSON object labeled by the name of the secret and co
 * For the type `plain`:
   * `Key`: arbitrary data in base64 encoding. This may be a key of unspecified length, a confidential config file, or any kind of data only some Marbles and/or users should have access to.
 
-The following gives an example for a file to set the secrets `user_defined_symmetric_key`, `user_defined_cert`, and `generic_secret`:
+The following gives an example for a file to set the secrets `userDefinedSymmetricKey`, `userDefinedCert`, and `genericSecret`:
 
 ```javascript
 {
-  "user_defined_symmetric_key": {
+  "userDefinedSymmetricKey": {
     "Key": "AAECAwQFBgcICQoLDA0ODw=="
   },
-  "user_defined_cert": {
+  "userDefinedCert": {
     "Cert": "MIIBjDCCATOgAwIBAgICBTkwCgYIKoZIzj0EAwIwMjEwMC4GA1UEAxMnTWFyYmxlcnVuIENvb3JkaW5hdG9yIC0gSW50ZXJtZWRpYXRlIENBMB4XDTIxMDYxNTA4NTY0M1oXDTIxMDYyMjA4NTY0M1owLTEcMBoGA1UEAxMTTWFyYmxlcnVuIFVuaXQgVGVzdDENMAsGA1UEBRMEMTMzNzAqMAUGAytlcAMhAEPOc066G5XmvLizOKTENSR+U9lv3geZ0/a2+XkhJRvDo20wazAOBgNVHQ8BAf8EBAMCAoQwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwLAYDVR0RBCUwI4IJbG9jYWxob3N0hwR/AAABhxAAAAAAAAAAAAAAAAAAAAABMAoGCCqGSM49BAMCA0cAMEQCIGOlRcynaPaj/flSr2ZEvmTmhuvtmTb4QkwPFtxFz3EJAiB77ijxAcJNxPKcKmgMB+c8NORC+6N/St2iP/oX/vqQvg==",
     "Private": "MC4CAQAwBQYDK2VwBCIEIPlmAOOhAStk8ytxzvekPr8zLaQa9+lxnHK+CizDrMds"
   },
-  "generic_secret": {
+  "genericSecret": {
     "Key": "SGVsbG8gZnJvbSB0aGUgTWFyYmxlcnVuIERvY3MhCg=="
   }
 }

@@ -406,8 +406,8 @@ These flags apply to all subcommands of manifest
   Successfully verified Coordinator, now requesting update log
   Update log:
   {"time":"2021-07-01T09:10:23.128Z","update":"initial manifest set"}
-  {"time":"2021-07-01T09:32:54.207Z","update":"secret set","user":"admin","secret":"symmetric_key_unset","type":"symmetric-key"}
-  {"time":"2021-07-01T09:32:54.207Z","update":"secret set","user":"admin","secret":"cert_unset","type":"cert-ed25519"}
+  {"time":"2021-07-01T09:32:54.207Z","update":"secret set","user":"admin","secret":"symmetricKeyUnset","type":"symmetric-key"}
+  {"time":"2021-07-01T09:32:54.207Z","update":"secret set","user":"admin","secret":"certUnset","type":"cert-ed25519"}
   {"time":"2021-07-01T10:05:44.791Z","update":"SecurityVersion increased","user":"admin","package":"world","new version":4}
   ```
 
@@ -585,7 +585,7 @@ marblerun recover <recovery_key_decrypted> <IP:PORT> [flags]
 **Examples**
 
 ```bash
-marblerun recover $MARBLERUN recovery_key_decrypted --era-config=era.json
+marblerun recover recovery_key_decrypted $MARBLERUN --era-config=era.json
 ```
 
 The output is similar to the following:
@@ -629,17 +629,17 @@ These flags apply to all `secret` subcommands
   **Examples**
 
   ```bash
-  marblerun secret get generic_secret symmetric_key_shared $MARBLERUN -c admin.crt -k admin.key
+  marblerun secret get genericSecret symmetricKeyShared $MARBLERUN -c admin.crt -k admin.key
   ```
 
   The output is similar to the following:
 
   ```
-  generic_secret:
+  genericSecret:
   	Type:          plain
   	Data:          SGVsbG8gZnJvbSB0aGUgTWFyYmxlcnVuIERvY3MhCg==
 
-  symmetric_key_shared:
+  symmetricKeyShared:
   	Type:          symmetric-key
   	UserDefined:   false
   	Size:          128
@@ -671,7 +671,7 @@ These flags apply to all `secret` subcommands
   ```
 
   ```bash
-  marblerun secret set certificate.pem $MARBLERUN -c admin.crt -k admin.key --from-pem certificate_secret
+  marblerun secret set certificate.pem $MARBLERUN -c admin.crt -k admin.key --from-pem certificateSecret
   ```
 
   The output is the following:
