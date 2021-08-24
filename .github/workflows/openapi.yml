@@ -15,5 +15,5 @@ jobs:
         destination_branch: "main"
         pr_title: "Update OpenAPI specification"
         pr_body: |
-          :robot: *This is an automated PR.*
+          :robot: *This is an automated PR.* :robot:
         github_token: ${{ secrets.GITHUB_TOKEN }}
