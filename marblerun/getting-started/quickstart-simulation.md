@@ -20,7 +20,7 @@ marblerun check
 
 This command will wait until all components of MarbleRun are ready to be used or return an error after a timeout period is reached.
 
-Port forward the Coordinator's Client API
+Port forward the Coordinator's Client API:
 
 ```bash
 kubectl -n marblerun port-forward svc/coordinator-client-api 4433:4433 --address localhost >/dev/null &
