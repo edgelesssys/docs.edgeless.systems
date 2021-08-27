@@ -1,6 +1,6 @@
 # Defining a manifest
 
-The manifest is a simple JSON file that determines the key properties of your cluster: `Packages`, `Marbles`, `Secrets`, and `RecoveryKeys`.
+The manifest is a simple JSON file that determines the key properties of your cluster: [`Packages`](workflows/define-manifest#packages), [`Marbles`](workflows/define-manifest#marbles), [`Secrets`](workflows/define-manifest#secrets), [`Users`](workflows/define-manifest#users), [`Roles`](workflows/define-manifest#roles), [`RecoveryKeys`](workflows/define-manifest#recoverykeys), and [`TLS`](workflows/define-manifest#tls).
 This article describes how to define these in your `manifest.json`.
 
 For a working example see the manifest of the [emojivoto demo](https://github.com/edgelesssys/emojivoto/blob/main/tools/manifest.json). See also the [sample and template manifests](https://github.com/edgelesssys/marblerun/tree/master/samples).
