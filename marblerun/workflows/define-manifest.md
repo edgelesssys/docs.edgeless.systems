@@ -140,7 +140,7 @@ The general format is the following:
 
 `{{ <encoding> <name of secret> }}`
 
-The following enconding types are available to `Files` and `Env`:
+The following enconding types are available to both `Files` and `Env`:
 
 * `hex`: hex string
 * `base64`: Base64 encoding
@@ -153,7 +153,7 @@ The following encoding types are only available to `Files`:
 
 The following encoding types are only available to `Env`:
 
-* `string`: similar to `raw`, but does not allow [NULL bytes](https://man7.org/linux/man-pages/man7/environ.7.html). Since the content in non-user-defined secrets is random, and can't be controlled, only secrets with `UserDefined=true` are allowed to use this encoding
+* `string`: similar to `raw`, but does not allow [NULL bytes](https://man7.org/linux/man-pages/man7/environ.7.html). Since the content in non-user-defined secrets is random, and cannot be controlled, only secrets with `UserDefined` set to `true` are allowed to use this encoding.
 
 The following named keys and certificates are always available.
 
