@@ -63,9 +63,9 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
                 },
                 "Env": {
                     "IS_FIRST": "true",
-                    "ROOT_CA": "{{ pem .Marblerun.RootCA.Cert }}",
-                    "MARBLE_CERT": "{{ pem .Marblerun.MarbleCert.Cert }}",
-                    "MARBLE_KEY": "{{ pem .Marblerun.MarbleCert.Private }}"
+                    "ROOT_CA": "{{ pem .MarbleRun.RootCA.Cert }}",
+                    "MARBLE_CERT": "{{ pem .MarbleRun.MarbleCert.Cert }}",
+                    "MARBLE_KEY": "{{ pem .MarbleRun.MarbleCert.Private }}"
                 },
                 "Argv": [
                     "--first",
@@ -80,9 +80,9 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
             "Package": "frontend",
             "Parameters": {
                 "Env": {
-                    "ROOT_CA": "{{ pem .Marblerun.RootCA.Cert }}",
-                    "MARBLE_CERT": "{{ pem .Marblerun.MarbleCert.Cert }}",
-                    "MARBLE_KEY": "{{ pem .Marblerun.MarbleCert.Private }}"
+                    "ROOT_CA": "{{ pem .MarbleRun.RootCA.Cert }}",
+                    "MARBLE_CERT": "{{ pem .MarbleRun.MarbleCert.Cert }}",
+                    "MARBLE_KEY": "{{ pem .MarbleRun.MarbleCert.Private }}"
                 }
             },
             "TLS": [
@@ -157,9 +157,9 @@ The following encoding types are only available to `Env`:
 
 The following named keys and certificates are always available.
 
-* `.Marblerun.RootCA.Cert`: the root certificate of the cluster issued by the Coordinator; this can be used to verify the certificates of all Marbles in the cluster.
-* `.Marblerun.MarbleCert.Cert`: the Marble's certificate; this is issued by the `.Marblerun.RootCA.Cert` and is for Marble-to-Marble and Marble-to-client authentication.
-* `.Marblerun.MarbleCert.Private`: the Marble's private key corresponding to `.Marblerun.MarbleCert.Cert`
+* `.MarbleRun.RootCA.Cert`: the root certificate of the cluster issued by the Coordinator; this can be used to verify the certificates of all Marbles in the cluster.
+* `.MarbleRun.MarbleCert.Cert`: the Marble's certificate; this is issued by the `.MarbleRun.RootCA.Cert` and is for Marble-to-Marble and Marble-to-client authentication.
+* `.MarbleRun.MarbleCert.Private`: the Marble's private key corresponding to `.MarbleRun.MarbleCert.Cert`
 
 Finally, the optional field `MaxActivations` can be used to restrict the number of distinct instances that can be created of a Marble.
 

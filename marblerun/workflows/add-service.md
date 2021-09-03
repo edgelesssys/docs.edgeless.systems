@@ -98,7 +98,7 @@ Use `UniqueID` (i.e., `MRENCLAVE` in Intel SGX speak) or the triplet of `SignerI
 
 Now you can define with which parameters (i.e., files, environment variables, and command line arguments) your service is allowed to run. This is done in the `Marbles` section of the manifest as is described in our [writing a manifest hands-on](workflows/define-manifest.md#manifestmarbles). When using EGo, define all TTLS connections as described in the [manifest hands-on](workflows/define-manifest.md#manifesttls).
 
-Otherwise, as discussed in [Step #1](#make-your-service-use-the-provided-tls-credentials), you need to make sure that the TLS credentials for your service (i.e., `Marblerun.MarbleCert.Cert` and `Marblerun.MarbleCert.Private`) are injected such that your service will find them at runtime.
+Otherwise, as discussed in [Step #1](#make-your-service-use-the-provided-tls-credentials), you need to make sure that the TLS credentials for your service (i.e., `MarbleRun.MarbleCert.Cert` and `MarbleRun.MarbleCert.Private`) are injected such that your service will find them at runtime.
 
 ## **Step 3:** Start your service
 
