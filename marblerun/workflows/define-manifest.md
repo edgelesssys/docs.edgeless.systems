@@ -63,10 +63,9 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
                 },
                 "Env": {
                     "IS_FIRST": "true",
-                    "ROOT_CA": "{{ pem .Marblerun.RootCA.Cert }}",
-                    "SEAL_KEY": "{{ hex .Marblerun.SealKey }}",
-                    "MARBLE_CERT": "{{ pem .Marblerun.MarbleCert.Cert }}",
-                    "MARBLE_KEY": "{{ pem .Marblerun.MarbleCert.Private }}"
+                    "ROOT_CA": "{{ pem .MarbleRun.RootCA.Cert }}",
+                    "MARBLE_CERT": "{{ pem .MarbleRun.MarbleCert.Cert }}",
+                    "MARBLE_KEY": "{{ pem .MarbleRun.MarbleCert.Private }}"
                 },
                 "Argv": [
                     "--first",
@@ -81,10 +80,9 @@ Marbles represent the actual services in your mesh. They are defined in the `Mar
             "Package": "frontend",
             "Parameters": {
                 "Env": {
-                    "ROOT_CA": "{{ pem .Marblerun.RootCA.Cert }}",
-                    "SEAL_KEY": "{{ hex .Marblerun.SealKey }}",
-                    "MARBLE_CERT": "{{ pem .Marblerun.MarbleCert.Cert }}",
-                    "MARBLE_KEY": "{{ pem .Marblerun.MarbleCert.Private }}"
+                    "ROOT_CA": "{{ pem .MarbleRun.RootCA.Cert }}",
+                    "MARBLE_CERT": "{{ pem .MarbleRun.MarbleCert.Cert }}",
+                    "MARBLE_KEY": "{{ pem .MarbleRun.MarbleCert.Private }}"
                 }
             },
             "TLS": [
@@ -142,19 +140,26 @@ The general format is the following:
 
 `{{ <encoding> <name of secret> }}`
 
-The following enconding types are available.
+The following enconding types are available to both `Files` and `Env`:
 
-* `raw`: raw bytes
 * `hex`: hex string
 * `base64`: Base64 encoding
 * `pem`: PEM encoding with a header matching the type of the requested key or certificate
 
+
+The following encoding types are only available to `Files`:
+
+* `raw`: raw bytes
+
+The following encoding types are only available to `Env`:
+
+* `string`: similar to `raw`, but does not allow [NULL bytes](https://man7.org/linux/man-pages/man7/environ.7.html). Since the content in non-user-defined secrets is random, and cannot be controlled, only secrets with `UserDefined` set to `true` are allowed to use this encoding.
+
 The following named keys and certificates are always available.
 
-* `.Marblerun.RootCA.Cert`: the root certificate of the cluster issued by the Coordinator; this can be used to verify the certificates of all Marbles in the cluster.
-* `.Marblerun.MarbleCert.Cert`: the Marble's certificate; this is issued by the `.Marblerun.RootCA.Cert` and is for Marble-to-Marble and Marble-to-client authentication.
-* `.Marblerun.MarbleCert.Private`: the Marble's private key corresponding to `.Marblerun.MarbleCert.Cert`
-* `.Marblerun.SealKey`: a 128-bit symmetric encryption key, which can be used for sealing data to disk in a host-independent way; if a Marble is scheduled or restarted on a new host, this "virtual sealing key" will still allow for unsealing data from the disk even though the host's actual sealing key might have changed.
+* `.MarbleRun.RootCA.Cert`: the root certificate of the cluster issued by the Coordinator; this can be used to verify the certificates of all Marbles in the cluster.
+* `.MarbleRun.MarbleCert.Cert`: the Marble's certificate; this is issued by the `.MarbleRun.RootCA.Cert` and is for Marble-to-Marble and Marble-to-client authentication.
+* `.MarbleRun.MarbleCert.Private`: the Marble's private key corresponding to `.MarbleRun.MarbleCert.Cert`
 
 Finally, the optional field `MaxActivations` can be used to restrict the number of distinct instances that can be created of a Marble.
 
