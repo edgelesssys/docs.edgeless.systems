@@ -12,7 +12,8 @@ This should give the following output:
 ```shell-session
 [erthost] loading enclave ...
 [erthost] entering enclave ...
-[EDB] 2021/07/27 15:50:12 DB has not been initialized, waiting for manifest.
+[EDB] 2021/09/13 10:31:38 DB has not been initialized, waiting for manifest.
+[EDB] 2021/09/13 10:31:39 HTTP REST API listening on :8080
 ```
 
 EdgelessDB is now waiting for the [manifest](concepts.md#manifest).

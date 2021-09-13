@@ -13,10 +13,11 @@ This should give the following output:
 [erthost] running in simulation mode
 [erthost] loading enclave ...
 [erthost] entering enclave ...
-[EDB] 2021/07/27 15:50:12 DB has not been initialized, waiting for manifest.
-...
-ERROR: SGX Plugin _get_report(): failed to get ecdsa report. OE_PLATFORM_ERROR (oe_result_t=OE_PLATFORM_ERROR) [openenclave-src/enclave/sgx/attester.c:_get_report:320]
-Failed to get quote: OE_PLATFORM_ERROR
+[EDB] 2021/09/13 10:34:42 DB has not been initialized, waiting for manifest.
+ERROR: can't get report in simulation mode (oe_result_t=OE_UNSUPPORTED) [openenclave-src/enclave/sgx/report.c:oe_get_report_v2:182]
+[EDB] 2021/09/13 10:34:42 Failed to get quote: OE_UNSUPPORTED
+[EDB] 2021/09/13 10:34:42 Attestation will not be available.
+[EDB] 2021/09/13 10:34:42 HTTP REST API listening on :8080
 ```
 
 The error is expected, because EdgelessDB can't get an SGX attestation quote in simulation mode. EdgelessDB is now waiting for the [manifest](concepts.md#manifest).
