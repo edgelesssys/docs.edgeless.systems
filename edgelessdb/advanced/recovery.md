@@ -33,13 +33,13 @@ Copy the escaped public key into the manifest:
 ```
 
 ## Performing the recovery
-If EdgelessDB is unable to unseal the master key upon launch, it will enter recovery mode. You will have to upload the key via the `/recovery` endpoint of the HTTP REST API.
+If EdgelessDB is unable to unseal the master key upon launch, it will enter recovery mode. You will have to upload the key via the `/recover` endpoint of the HTTP REST API.
 
 To do so, you need to:
 * Get the temporary root certificate (valid only during recovery mode)
 * Decode the Base64 encoded output that was returned to you during the upload of the manifest
 * Decrypt the decoded output with the corresponding RSA private key of the key defined in the manifest
-* Upload the binary decoded and decrypted key to the `/recovery` endpoint
+* Upload the binary decoded and decrypted key to the `/recover` endpoint
 
 Assuming you saved the output from the manifest upload step in a file called `master_key`, perform recovery like this:
 
@@ -48,7 +48,7 @@ era -c edgelessdb-sgx.json -h localhost:8080 -output-root edb_temp.pem
 base64 -d master_key \
   | openssl pkeyutl -inkey private.pem -decrypt \
     -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 \
-  | curl --cacert edb_temp.pem --data-binary @- https://localhost:8080/recovery
+  | curl --cacert edb_temp.pem --data-binary @- https://localhost:8080/recover
 ```
 
 On success this should give the following output:
