@@ -2,7 +2,7 @@
 
 This guide walks you through setting up MarbleRun in your Kubernetes cluster.
 
-The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [Helm repo.]((https://github.com/edgelesssys/helm)) \
+The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [Helm repo.]((https://helm.edgeless.systems)) \
 The installation consists of a deployment for the Coordinator and an admission controller.
 For more details see our section on [Kubernetes Integration](features/auto-injection.md).
 
@@ -96,7 +96,7 @@ You can install MarbleRun using the CLI as follows:
     marblerun install --domain=mycluster.uksouth.cloudapp.azure.com --simulation
     ```
 
-This command will pull the latest Helm chart from [our repository](https://github.com/edgelesssys/helm) and manages the installation of said chart.
+This command will pull the latest Helm chart from [our repository](https:/helm.edgeless.systems) and manages the installation of said chart.
 
 By default `--domain` is set to `localhost`.
 The domain is used as the CommonName in the Coordinator's TLS certificate.
@@ -128,7 +128,7 @@ Update the hostname with your cluster's FQDN.
 * For a cluster with SGX support:
 
     ```bash
-    helm install marblerun-coordinator edgeless/marblerun-coordinator \
+    helm install marblerun edgeless/marblerun \
         --create-namespace \
         -n marblerun \
         --set coordinator.hostname=mycluster.uksouth.cloudapp.azure.com
@@ -137,7 +137,7 @@ Update the hostname with your cluster's FQDN.
 * For a cluster without SGX support:
 
     ```bash
-    helm install marblerun-coordinator edgeless/marblerun-coordinator \
+    helm install marblerun edgeless/marblerun \
         --create-namespace \
         -n marblerun \
         --set coordinator.resources=null \
