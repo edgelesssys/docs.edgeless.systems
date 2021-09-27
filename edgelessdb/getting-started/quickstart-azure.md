@@ -4,19 +4,19 @@ This guide will show you how to set up EdgelessDB using the Microsoft Azure Mark
 ## Get the machine
 Visit the Azure Marketplace and get [EdglessDB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/edgelesssystems.edb?tab=Overview).
 
-![azure_create](_media/azure/azure_get.png)
+![EdgelessDB on Azure Marketplace](_media/azure/azure_get.png)
 
-After that you have to configure the virtual machine in the creation wizard.
+Then configure the virtual machine in the creation wizard.
 
-!> Important: For EdgelessDB to work properly on Microsoft Azure, you must choose a [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series) virtual machine. This guarantees, that your virtual machine supports Intel SGX.
+!> Important: For EdgelessDB to work properly on Microsoft Azure, you must choose a [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series) virtual machine. This guarantees that your virtual machine supports Intel SGX.
 
-Create the resource group for your machine in [one of the regions](https://azure.microsoft.com/de-de/global-infrastructure/services/?products=virtual-machines&regions=all) where the DCsv2 series is available.
+Create the resource group for your machine in [one of the regions](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines) where the DCsv2 series is available.
 
 The value for the `Virtual machine name` can be freely selected.
 The value for the `Username` **must** be set to _edb_.
 Finally, press the blue `Review + Create` button and then the `Create` button to finish the setup process.
 
-![azure_wizard](_media/azure/azure_wizard.png)
+![Create a virtual machine](_media/azure/azure_wizard.png)
 
 ## Get the IP
 After you have created the machine, get the public IP address of the database you just created, so you can interact with it.
