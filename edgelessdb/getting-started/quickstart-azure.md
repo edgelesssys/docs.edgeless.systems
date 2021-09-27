@@ -1,29 +1,29 @@
 # Quickstart: Microsoft Azure
-In this guide, you will set up EdgelessDB using the Microsoft Azure Marketplace.
+This guide will show you how to set up EdgelessDB using the Microsoft Azure Marketplace.
 
 ## Get the machine
 Visit the Azure Marketplace and get [EdglessDB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/edgelesssystems.edb?tab=Overview).
 
-![azure_create](../_assets/azure/azure_get.png)
+![azure_create](../_media/azure/azure_get.png)
 
 After that you have to configure the virtual machine in the creation wizard.
 
-!> Important: To experience the full potential of EDB we recommend to choose a virtual machine size of the [DCsv2-series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series). This guarantees, that your virtual machine supports Intel SGX.
+!> Important: For EdgelessDB to work properly on Microsoft Azure, you must choose a [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series) virtual machine. This guarantees, that your virtual machine supports Intel SGX.
 
-The resource group you deploy your machine to has to be created in one of the regions where the DCsV2 sizes are [available](https://azure.microsoft.com/de-de/global-infrastructure/services/?products=virtual-machines&regions=all).
+Create the resource group for your machine in [one of the regions](https://azure.microsoft.com/de-de/global-infrastructure/services/?products=virtual-machines&regions=all) where the DCsv2 series is available.
 
 The value for the `Virtual machine name` can be freely selected.
 The value for the `Username` **must** be set to _edb_.
-Finally press the blue button `Review + Create` and after that the `Create` button to finish the setup process.
+Finally, press the blue `Review + Create` button and then the `Create` button to finish the setup process.
 
-![azure_wizard](../_assets/azure/azure_wizard_edited.png)
+![azure_wizard](../_media/azure/azure_wizard.png)
 
 ## Get the IP
-After you have created the machine you need the public IP address to interact with it.
-For that naviagte to the resource group your virtual machine was created in and select the virtual machine.
+After you have created the machine, get the public IP address of the database you just created, so you can interact with it.
+Naviagte to the resource group your virtual machine was created in and select the virtual machine.
 The public IP address is displayed on the right hand side in the `Essentials` section.
 
-Alternatively you can use the [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to get the public IP address:
+Alternatively, you can use the [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to get the public IP address:
 ```bash
  az vm show -d -g <resource-group> -n <vm-name> --query publicIps -o tsv
 ```
@@ -64,15 +64,10 @@ Before you can trust your EdgelessDB instance, you first need to verify that it 
 Once you've installed `era`, you can get the attested root certificate of your EdgelessDB instance as follows:
 ```bash
 wget https://github.com/edgelesssys/edgelessdb/releases/latest/download/edgelessdb-sgx.json
-era -c edgelessdb-sgx.json -h <your-azure-ip>:8080 -output-root edb.pem -skip-quote
+era -c edgelessdb-sgx.json -h <your-azure-ip>:8080 -output-root edb.pem
 ```
 
-Here, `edgelessdb-sgx.json` contains the expected properties of your EdgelessDB instance. However, in simulation mode, you need to skip the actual verification of the properties via the `-skip-quote` option.
-
-```shell-session
-WARNING: Skipping quote verification
-Root certificate written to edb.pem
-```
+Here, `edgelessdb-sgx.json` contains the expected properties of your EdgelessDB instance.
 
 ## Set the manifest
 You're now ready to send the manifest over a secure TLS connection based on the attested root certificate of your EdgelessDB instance:
