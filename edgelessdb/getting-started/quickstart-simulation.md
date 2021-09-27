@@ -1,5 +1,5 @@
 # Quickstart: simulation mode
-In this guide, you will set up EdgelessDB with a minimal manifest and connect to it with the `mysql` client.
+This guide will show you how to set up EdgelessDB with a minimal manifest and connect to it with the `mysql` client.
 
 !> Simulation mode is only suitable for evaluating EdgelessDB. The setup is not secure in terms of confidential computing. For a setup in production, continue with [SGX mode](quickstart-sgx.md).
 
@@ -53,7 +53,7 @@ Create a file `manifest.json` with the following contents:
 Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 
 ## Verify your EdgelessDB instance
-Before you can trust your EdgelessDB instance, you first need to verify that it is in a good shape. You can use the [Edgeless Remote Attestation (era)](https://github.com/edgelesssys/era) tool for this. If you're just getting started, you may also skip this part.
+Before you can trust your EdgelessDB instance, you first need to verify its confidentiality. You can use the [Edgeless Remote Attestation (era)](https://github.com/edgelesssys/era) tool for this. If you're just getting started, you may also skip this part.
 
 Once you've installed `era`, you can get the attested root certificate of your EdgelessDB instance as follows:
 ```bash
