@@ -57,15 +57,6 @@ You can check that the state of MarbleRun changed and is now ready to authentica
 marblerun status $MARBLERUN --insecure
 ```
 
-Create and annotate the emojivoto namespace for [auto-injection](features/auto-injection.md):
-
-```bash
-kubectl create namespace emojivoto
-marblerun namespace add emojivoto --no-sgx-injection
-```
-
-Using the `--no-sgx-injection` flag we tell MarbleRun to not inject configurations specific to SGX into starting pods.
-
 ### Step 2.2: Deploy emojivoto
 
 Finally, install the demo application onto your cluster.

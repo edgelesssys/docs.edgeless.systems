@@ -4,14 +4,7 @@ MarbleRun provides its data-plane configuration through Kubernetes resource defi
 
 MarbleRun optionally injects [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) and [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for its SGX device plugin. See the [Kubernetes deployment](deployment/kubernetes.md#sgx-device-plugin-on-kubernetes) section for more information.
 
-You can enable auto-injection of the data-plane configuration for a namespace using the MarbleRun CLI:
-
-```bash
-marblerun namespace add NAMESPACE [--no-sgx-injection]
-```
-
-This will add the labels `marblerun/inject=enabled` and `marblerun/inject-sgx=enabled` to the chosen namespace and allow the admission webhook to intercept the creation of deployments, pods, etc. in that namespace.
-Use the `--no-sgx-injection` flag to set the label `marblerun/inject-sgx` to `disabled`, preventing injection of SGX resources. This is useful when using your own SGX device plugin, or if you want to set the resources yourself.
+You can enable auto-injection of the data-plane configuration for a namespace using Pod labels.
 
 ## The Marbletype label
 
@@ -38,8 +31,8 @@ metadata:
 ```
 
 We use this label to map Kubernetes Pods to MarbleRun Marbles.
-When you deploy your application, MarbleRun will read out this label's value, `voting-svc` in the example above.
-It will then inject environment variables and SGX resources into the containers of the Pod.
+When you deploy your application with the `marblerun/marbletype` label, the Pod's creation is intercepted by MarbleRun.
+It will then inject environment variables and SGX resources into the containers of the Pod based on the value of the label.
 If the `marblerun/marbletype` label is missing, the Pod's injection is skipped.
 
 ## The Marblecontainer label
@@ -47,6 +40,11 @@ If the `marblerun/marbletype` label is missing, the Pod's injection is skipped.
 By default MarbleRun will inject environment variables and resource requests into all containers of the Pod.
 You can use the `marblerun/marblecontainer=<ContainerName>` label to limit injection to the specified container.
 This is useful if your configuration uses multiple containers in the same Pod, e.g. a sidecar proxy, and you wish to prevent non enclave containers taking up resources.
+
+## The resource-injection label
+
+To prevent MarbleRun from injecting SGX resource request, you can set the label `marblerun/resource-injection=disabled`.
+Use this if you want to set your own SGX resource requests, or if you need to start a Marble in simulation mode without any SGX resources.
 
 ## Injected environment variables
 

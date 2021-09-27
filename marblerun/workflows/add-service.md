@@ -130,15 +130,9 @@ The environment variables have the following purposes.
 Typically, you'll write a Kubernetes resource definition for your service, which you'll deploy with the Kubernetes CLI, Helm, or similar tools.
 
 For your services to take advantage of MarbleRun, they need to be "added to the mesh" by having the data plane configuration injected into their pods.
-This is typically done by labeling the namespace, deployment, or pod with the `marblerun/inject=enabled` Kubernetes label.
+This is typically done by labeling the deployment, or pod with the `marblerun/marbletype` Kubernetes label.
 This label triggers automatic configuration injection when the resources are created. (See the [auto-injection page](features/auto-injection.md) for more on how this works.)
-Alternatively, you can enable a namespace for auto-injection using the MarbleRun CLI:
 
-```bash
-marblerun namespace add NAMESPACE [--no-sgx-injection]
-```
-
-For our injection service to know which type of Marble your service corresponds to, you also need to add the `marblerun/marbletype` Kubernetes label.
 An example for a Marble of type `web` could look like this:
 
 ```yaml
@@ -151,7 +145,6 @@ metadata:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: emojivoto
     app.kubernetes.io/version: v1
-    marblerun/inject: enabled
     marblerun/marbletype: web
 ```
 
@@ -161,13 +154,13 @@ This will result in the following configuration being injected when your resourc
 spec:
   containers:
     - env:
-    - name: EDG_MARBLE_COORDINATOR_ADDR
+      - name: EDG_MARBLE_COORDINATOR_ADDR
         value: coordinator-mesh-api.marblerun:2001
-    - name: EDG_MARBLE_TYPE
+      - name: EDG_MARBLE_TYPE
         value: web
-    - name: EDG_MARBLE_DNS_NAMES
+      - name: EDG_MARBLE_DNS_NAMES
         value: "web,web.emojivoto,web.emojivoto.svc.cluster.local"
-    - name: EDG_MARBLE_UUID_FILE
+      - name: EDG_MARBLE_UUID_FILE
         value: "$PWD/uuid"
 ```
 
