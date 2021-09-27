@@ -4,7 +4,7 @@ This guide will show you how to set up EdgelessDB using the Microsoft Azure Mark
 ## Get the machine
 Visit the Azure Marketplace and get [EdglessDB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/edgelesssystems.edb?tab=Overview).
 
-![azure_create](../_media/azure/azure_get.png)
+![azure_create](_media/azure/azure_get.png)
 
 After that you have to configure the virtual machine in the creation wizard.
 
@@ -16,7 +16,7 @@ The value for the `Virtual machine name` can be freely selected.
 The value for the `Username` **must** be set to _edb_.
 Finally, press the blue `Review + Create` button and then the `Create` button to finish the setup process.
 
-![azure_wizard](../_media/azure/azure_wizard.png)
+![azure_wizard](_media/azure/azure_wizard.png)
 
 ## Get the IP
 After you have created the machine, get the public IP address of the database you just created, so you can interact with it.
@@ -59,7 +59,7 @@ Create a file `manifest.json` with the following contents:
 Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 
 ## Verify your EdgelessDB instance
-Before you can trust your EdgelessDB instance, you first need to verify that it is in a good shape. You can use the [Edgeless Remote Attestation (era)](https://github.com/edgelesssys/era) tool for this. If you're just getting started, you may also skip this part.
+Before you can trust your EdgelessDB instance, you first need to verify its confidentiality. You can use the [Edgeless Remote Attestation (era)](https://github.com/edgelesssys/era) tool for this. If you're just getting started, you may also skip this part.
 
 Once you've installed `era`, you can get the attested root certificate of your EdgelessDB instance as follows:
 ```bash
