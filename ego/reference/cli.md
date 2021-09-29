@@ -80,3 +80,11 @@ For example, run
 ego env make
 ```
 to build a Go project that uses a Makefile.
+
+## install
+Install drivers and other components.
+Use "ego install" to list the available components for your system. Then install the component you want.
+```
+ego install
+ego install <component>
+```
