@@ -27,6 +27,14 @@ ls /dev/*sgx*
 ```
 If the output is empty, install the driver.
 
+The easiest way to install the driver is using ego install:
+```bash
+sudo ego install sgx-driver
+```
+
+
+As an  alternative way you can install it manually. 
+
 If your system supports FLC (see above):
 ```bash
 wget https://download.01.org/intel-sgx/sgx-linux/2.12/distro/ubuntu`lsb_release -rs`-server/sgx_linux_x64_driver_1.36.2.bin
@@ -43,6 +51,11 @@ sudo ./sgx_linux_x64_driver_2.11.0_2d2b795.bin
 
 ### Required packages
 If your system doesn't support FLC, install the `libsgx-launch` package:
+```bash
+sudo ego install libsgx-launch
+```
+
+Or manually:
 ```bash
 wget -qO- https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | apt-key add
 sudo add-apt-repository "deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu `lsb_release -cs` main"
