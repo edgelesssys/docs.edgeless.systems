@@ -4,6 +4,10 @@ For remote attestation, both the attester and the verifier expect a *quote provi
 ## Azure
 Install the Azure DCAP client:
 ```bash
+sudo ego install az-dcap-client
+```
+Or manually:
+```bash
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/ubuntu/`lsb_release -rs`/prod `lsb_release -cs` main"
 sudo apt install az-dcap-client
