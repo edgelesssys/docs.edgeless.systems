@@ -4,7 +4,7 @@ For remote attestation, both the attester and the verifier expect a *quote provi
 ## Azure
 Install the Azure DCAP client:
 ```bash
-ego install az-dcap-client
+sudo ego install az-dcap-client
 ```
 
 ## On-premises or other cloud
