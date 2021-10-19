@@ -1,5 +1,13 @@
 # Remote Attestation
 
+## Requirements
+
+Make sure to install the following services to be able to use remote attestation:
+- [Quote Provider](#quote-provider)
+- [PCCS Server](#pccs-server)
+
+After you've installed the requirements, you can test whether your setup works using our ego sample for [remote-attestation](https://github.com/edgelesssys/ego/tree/master/samples/remote_attestation).
+
 ## Quote provider
 For remote attestation, both the attester and the verifier expect a *quote provider* to be installed on the system. If no quote provider can be found, you will see the `OE_QUOTE_PROVIDER_LOAD_ERROR` error. The required quote provider depends on your environment.
 
