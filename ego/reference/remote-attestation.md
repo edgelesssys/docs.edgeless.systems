@@ -37,4 +37,4 @@ On Alibaba Cloud you only have to configure the `/etc/sgx_default_qcnl.conf` to 
 If your cloud provider does not provide their own PCCS Server or you are using your own infrastructure, you need to setup a PCCS Server that caches the required data for remote attestation.
 Follow our [instructions on GitHub](https://github.com/edgelesssys/era/blob/master/pccs/README.md) to easily run a PCCS Server using Docker.
 
-If you don't want to use any of the above, you can also follow the [guide from Intel](https://www.intel.com/content/www/us/en/developer/articles/guide/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html) on how to setup the PCCS Server.
+You may also follow the [guide from Intel](https://www.intel.com/content/www/us/en/developer/articles/guide/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html) to setup and configure your own PCCS Server.
