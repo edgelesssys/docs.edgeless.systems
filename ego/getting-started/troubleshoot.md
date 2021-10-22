@@ -69,4 +69,4 @@ If EGo works in SGX mode (i.e., without `OE_SIMULATION`), but attestation fails,
 Attestation only works on [SGX-FLC](#hardware) systems.
 
 ### Quote provider
-You must install a [quote provider](../reference/quoteprov.md).
+You must install a [quote provider](../reference/remote-attestation.md).
