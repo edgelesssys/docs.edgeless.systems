@@ -10,7 +10,7 @@ Depending on your setup you may follow the [quickstart for SGX-enabled clusters]
 
 ## Step 0: Setup
 
-First, ensure you have access to a Kubernetes cluster and kubectl installed and configured. Probably the easiest way to get started is to run Kubernetes on your local machine using [Minikube](https://kubernetes.io/docs/workflows/tools/install-minikube/). Please check our [prerequisites](deployment/kubernetes.md#prerequisites) if you want to setup an SGX-enabled cluster. Another easy way is to use [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal), which offers SGX-enabled nodes.
+First, ensure you have access to a Kubernetes cluster and kubectl installed and configured. Probably the easiest way to get started is to run Kubernetes on your local machine using [Minikube](https://minikube.sigs.k8s.io/docs/start/). Please check our [prerequisites](deployment/kubernetes.md#prerequisites) if you want to setup an SGX-enabled cluster. Another easy way is to use [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal), which offers SGX-enabled nodes.
 
 You can validate your setup by running:
 
