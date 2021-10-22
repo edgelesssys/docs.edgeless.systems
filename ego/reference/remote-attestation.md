@@ -32,7 +32,7 @@ Otherwise you can follow the [guide from Open Enclave](https://github.com/openen
 
 ## PCCS Server
 Some environments already provide a PCCS Server that runs by default. On Azure, e.g., the az-dcap-client automatically establishes the function of the PCCS Server.
-On Alibaba Cloud you only have to configure the `/etc/sgx_default_qcnl.conf` to connect your Quote Provider to the PCCS Server as seen in our [Alibaba Cloud instructions for MarbleRun](https://github.com/edgelesssys/docs.edgeless.systems/blob/7aaf466cd94dfdde605aeb2623b8e5bb351a24b7/marblerun/deployment/cloud.md#alibaba-cloud-elastic-compute-service).
+On Alibaba Cloud you only have to configure the `/etc/sgx_default_qcnl.conf` to connect your Quote Provider to the PCCS Server. For more information please refer to the [official Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/208095.htm) for setting up remote attestation in your VM.
 
 If your cloud provider does not provide their own PCCS Server or you are using your own infrastructure, you need to setup a PCCS Server that caches the required data for remote attestation.
 Follow our [instructions on GitHub](https://github.com/edgelesssys/era/blob/master/pccs/README.md) to easily run a PCCS Server using Docker.
