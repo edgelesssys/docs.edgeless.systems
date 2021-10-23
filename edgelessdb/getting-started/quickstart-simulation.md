@@ -27,9 +27,9 @@ You will now create a manifest that defines a root user. This user is authentica
 
 Generate a certificate authority (CA) and a corresponding user certificate:
 ```bash
-openssl req -x509 -newkey rsa -nodes -subj '/CN=My CA' -keyout ca-key.pem -out ca-cert.pem
+openssl req -x509 -newkey rsa -nodes -days 3650 -subj '/CN=My CA' -keyout ca-key.pem -out ca-cert.pem
 openssl req -newkey rsa -nodes -subj '/CN=rootuser' -keyout key.pem -out csr.pem
-openssl x509 -req -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -in csr.pem -out cert.pem
+openssl x509 -req -days 3650 -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -in csr.pem -out cert.pem
 ```
 
 Escape the line breaks of the CA certificate:
