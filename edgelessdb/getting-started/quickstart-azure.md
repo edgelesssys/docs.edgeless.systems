@@ -72,7 +72,7 @@ Here, `edgelessdb-sgx.json` contains the expected properties of your EdgelessDB 
 ## Set the manifest
 You're now ready to send the manifest over a secure TLS connection based on the attested root certificate of your EdgelessDB instance:
 ```bash
-curl --cacert edb.pem --data-binary @manifest.json https://<your-azure-ip>:8080/manifest
+curl --cacert edb.pem --data-binary @manifest.json --resolve edb:8080:<your-azure-ip> https://edb:8080/manifest
 ```
 
 In case you skipped the verification step above, just replace `--cacert edb.pem` with `-k` in the above command.
