@@ -33,7 +33,7 @@ sudo ego install sgx-driver
 ```
 
 
-As an  alternative way you can install it manually. 
+As an alternative way you can install it manually.
 
 If your system supports FLC (see above):
 ```bash
@@ -69,4 +69,4 @@ If EGo works in SGX mode (i.e., without `OE_SIMULATION`), but attestation fails,
 Attestation only works on [SGX-FLC](#hardware) systems.
 
 ### Quote provider
-You must install a [quote provider](../reference/remote-attestation.md).
+You must install a [quote provider](../reference/attest.md).

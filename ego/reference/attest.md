@@ -1,4 +1,4 @@
-# Remote Attestation
+# Remote attestation
 
 ## Requirements
 

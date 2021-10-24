@@ -9,5 +9,5 @@
     * [CLI](/reference/cli.md)
     * [Configuration file](/reference/config.md)
     * [Go library ↗](https://pkg.go.dev/github.com/edgelesssys/ego)
-    * [Remote attestation](/reference/remote-attestation.md)
+    * [Remote attestation](/reference/attest.md)
 * [Changelog ↗](https://github.com/edgelesssys/ego/releases)
