@@ -30,7 +30,7 @@
     * [Recovering the Coordinator](workflows/recover-coordinator.md)
 * **Building services**
     * [EGo](building-services/ego.md)
-    * [Graphene](building-services/graphene.md)
+    * [Gramine](building-services/gramine.md)
     * [Occlum](building-services/occlum.md)
 * [**Examples**](examples.md)
 * **Reference**

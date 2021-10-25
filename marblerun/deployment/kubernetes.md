@@ -74,7 +74,7 @@ Intel SGX supports two modes for obtaining remote attestation quotes:
 * In-process: The software generating the quote is part of the enclave application
 * Out-of-process: The software generating the quote is not part of the actual enclave application. This requires the Intel SGX Architectural Enclave Service Manager (AESM) to run on the system
 
-While Marbles built with [Ego](building-services/ego.md) perform in-process attestation, other frameworks, such as [Graphene](building-services/graphene.md), use out-of-process attestation.
+While Marbles built with [Ego](building-services/ego.md) perform in-process attestation, other frameworks, such as [Gramine](building-services/gramine.md), use out-of-process attestation.
 If your confidential application uses out-of-process attestation, you will need to expose the AESM device to your container.
 
 You can follow [the AKS guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-out-of-proc-attestation) to make your deployments able to use AESM for quote generation. Note, that in this case, your Kubernetes nodes need the AESM service installed. See the [Intel installation guide](https://download.01.org/intel-sgx/sgx-linux/2.12/docs/Intel_SGX_Installation_Guide_Linux_2.12_Open_Source.pdf) for more information.
