@@ -7,7 +7,7 @@ Adding a service to your application requires three steps, which are described i
 To get your service ready for MarbleRun, you need to rebuild it with one of the supported [runtimes](features/runtimes.md):
 * [EGo](building-services/ego.md)
 * [Edgeless RT](https://github.com/edgelesssys/marblerun/blob/master/samples/helloc%2B%2B)
-* [Graphene](building-services/graphene.md)
+* [Gramine](building-services/gramine.md)
 * [Occlum](building-services/occlum.md)
 
 ### Make your service use the provided TLS credentials
@@ -46,13 +46,13 @@ The tool's output is similar to the following.
 }
 ```
 
-#### Graphene
+#### Gramine
 
-To add an entry for your Graphene service, run the `graphene-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`graphene-sgx-get-token` is installed with [Graphene](https://github.com/oscarlab/graphene/).)
+To add an entry for your Gramine service, run the `gramine-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`gramine-sgx-get-token` is installed with [Gramine](https://github.com/oscarlab/gramine/).)
 
 
 ```bash
-graphene-sgx-get-token --sig hello.sig
+gramine-sgx-get-token --sig hello.sig
 ```
 
 The tool's output is similar to the following.
@@ -113,7 +113,7 @@ erthost enclave.signed
 ```
 
 `erthost` is the generic host for EdgelessRT Marbles, which will load your `enclave.signed`.
-For EGo (`ego marblerun`), Graphene (`graphene-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
+For EGo (`ego marblerun`), Gramine (`gramine-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
 
 The environment variables have the following purposes.
 
