@@ -1,18 +1,14 @@
 # Remote attestation
+Use *remote attestation* to verify that an EGo app is indeed running inside an enclave and to identify it by its hash.
 
-## Requirements
+Attestation relies on external SGX services:
+* The *Provisioning Certificate Caching Service (PCCS)* caches attestation data from Intel. It is either operated by the cloud provider or must be hosted by yourself.
+* The *quote provider* helps EGo to connect to the PCCS. Both the attester and the verifier must install it.
 
-For remote attestation, make sure you have access to the following services:
-- [Quote Provider](#quote-provider)
-- [PCCS Server](#pccs-server)
+The required setup varies depending on the environment.
 
-You can test whether your setup works using our ego sample for [remote-attestation](https://github.com/edgelesssys/ego/tree/master/samples/remote_attestation).
-
-## Quote provider
-Both the attester and the verifier expect a *quote provider* to be installed on the system. If no quote provider can be found, you will see the `OE_QUOTE_PROVIDER_LOAD_ERROR` error on remote attestation. The required quote provider depends on your environment.
-
-### Azure
-Install the Azure DCAP client:
+## Azure
+Azure operates a PCCS. Use it by installing the Azure DCAP client as quote provider:
 ```bash
 sudo ego install az-dcap-client
 ```
@@ -23,18 +19,36 @@ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/ubuntu/
 sudo apt install az-dcap-client
 ```
 
-### On-premises or other cloud
-If the enclave app runs on-premises or on another cloud that doesn't provide its own attestation infrastructure, you can use `ego install` to install the required Quote Provider Library:
-```bash
-sudo ego install libsgx-dcap-default-qpl
-```
-Otherwise you can follow the [guide from Open Enclave](https://github.com/openenclave/openenclave/blob/master/docs/GettingStartedDocs/Contributors/NonAccMachineSGXLinuxGettingStarted.md#3-set-up-intel-dcap-quote-provider-library-qpl) to do the steps manually.
+## Alibaba Cloud
+Alibaba operates a PCCS that can be used with the default quote provider.
+1. Install the default quote provider:
+   ```bash
+   sudo ego install libsgx-dcap-default-qpl
+   ```
+   Or manually by following the [guide from Open Enclave](https://github.com/openenclave/openenclave/blob/master/docs/GettingStartedDocs/Contributors/NonAccMachineSGXLinuxGettingStarted.md#3-set-up-intel-dcap-quote-provider-library-qpl).
 
-## PCCS Server
-Some environments already provide a PCCS Server that runs by default. On Azure, e.g., the az-dcap-client automatically establishes the function of the PCCS Server.
-On Alibaba Cloud you only have to configure the `/etc/sgx_default_qcnl.conf` to connect your Quote Provider to the PCCS Server. For more information please refer to the [official Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/208095.htm) for setting up remote attestation in your VM.
+1. Set the `PCCS_URL` in `/etc/sgx_default_qcnl.conf` as explained in [Alibaba's documentation](https://www.alibabacloud.com/help/doc-detail/208095.htm#step-fn4-02q-tj4)
 
-If your cloud provider does not provide their own PCCS Server or you are using your own infrastructure, you need to setup a PCCS Server that caches the required data for remote attestation.
-Follow our [instructions on GitHub](https://github.com/edgelesssys/era/blob/master/pccs/README.md) to easily run a PCCS Server using Docker.
+## On-premises or other cloud
+You must host a PCCS yourself and use the default quote provider to connect to it.
 
-You may also follow the [guide from Intel](https://www.intel.com/content/www/us/en/developer/articles/guide/intel-software-guard-extensions-data-center-attestation-primitives-quick-install-guide.html) to setup and configure your own PCCS Server.
+### Set up the PCCS
+1. Register with [Intel](https://api.portal.trustedservices.intel.com/provisioning-certification) to get a PCCS API key
+1. Run the PCCS:
+   ```bash
+   docker run -e APIKEY=<your-API-key> -p 8081:8081 --name pccs -d ghcr.io/edgelesssys/pccs
+   ```
+1. Verify that the PCCS is running:
+   ```bash
+   curl -kv https://localhost:8081/sgx/certification/v3/rootcacrl
+   ```
+   You should see a 200 status code.
+
+### Set up the quote provider
+1. Install the default quote provider:
+   ```bash
+   sudo ego install libsgx-dcap-default-qpl
+   ```
+   Or manually by following the [guide from Open Enclave](https://github.com/openenclave/openenclave/blob/master/docs/GettingStartedDocs/Contributors/NonAccMachineSGXLinuxGettingStarted.md#3-set-up-intel-dcap-quote-provider-library-qpl).
+
+1. If the PCCS runs on another machine than the quote provider, change the host of the `PCCS_URL` in `/etc/sgx_default_qcnl.conf` to the PCCS machine.
