@@ -31,6 +31,16 @@ Here's an example configuration:
             "name": "PWD",
             "value": "/data"
         }
+    ],
+    "files": [
+        {
+            "source": "some_datafile",
+            "target": "/some/path/to/datafile"
+        },
+        {
+            "source": "/etc/ssl/certs/ca-certificates.crt",
+            "target": "/etc/ssl/certs/ca-certificates.crt"
+        }
     ]
 }
 ```
@@ -72,3 +82,10 @@ By default, `/` is initialized as an empty `memfs` file system. To expose certai
   * `fromHost`: When set to `true`, the current value of the requested environment variable will be copied over if it exists on the host. If the host does not hold this variable, it will either fall back to the value set in `value` (if it exists), or will not be created at all.
 
 A special environment variable is `PWD`. Depending on the mount options you have set in your configuration, you can set the initial working directory of your enclave by specifying your desired path as a value for `PWD`. Note that this directory needs to exist in the context of the enclave, not your host file system.
+
+## Embedded files
+`files` specifies files that should be embedded into the enclave. Embedded files are included in the enclave measurement and thus can't be manipulated. At runtime they are accessible via the in-enclave-memory filesystem.
+
+`source` is the path to the file that should be embedded. `target` Is the path within the in-enclave-memory filesystem where the file will reside at runtime.
+
+A common use case is to embed CA certificates so that an app can make secure TLS connections from inside the enclave.
