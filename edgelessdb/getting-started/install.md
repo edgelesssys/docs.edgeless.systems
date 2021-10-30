@@ -70,3 +70,23 @@ This exposes two services:
 
 ## Storage
 If EdgelessDB is run with one of the commands above, all data is stored inside the docker container in the `/data` directory. For a production deployment, consider using one of the [data management approaches of Docker](https://docs.docker.com/storage). E.g., to mount a directory on the host system, add `-v /my/own/datadir:/data` to the command line.
+
+## Remote attestation
+If you're on Azure, remote attestation works out of the box.
+
+Otherwise, you must use a *Provisioning Certificate Caching Service (PCCS)*, which caches attestation data from Intel.
+
+### Set up the PCCS
+1. Register with [Intel](https://api.portal.trustedservices.intel.com/provisioning-certification) to get a PCCS API key
+1. Run the PCCS:
+   ```bash
+   docker run -e APIKEY=<your-API-key> -p 8081:8081 --name pccs -d ghcr.io/edgelesssys/pccs
+   ```
+1. Verify that the PCCS is running:
+   ```bash
+   curl -kv https://localhost:8081/sgx/certification/v3/rootcacrl
+   ```
+   You should see a 200 status code.
+
+### Configure EdgelessDB to use the PCCS
+Add `-e PCCS_ADDR=<your-pccs-address>` to the Docker command line. E.g., if the PCCS runs on the same host, use `-e PCCS_ADDR=172.17.0.1:8081` (the gateway of Docker's default network bridge + the default PCCS port).
