@@ -8,9 +8,9 @@ Visit the Azure Marketplace and get [EdgelessDB](https://azuremarketplace.micros
 
 Then configure the virtual machine in the creation wizard.
 
-!> Important: For EdgelessDB to work properly on Microsoft Azure, you must choose a [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series) virtual machine. This guarantees that your virtual machine supports Intel SGX.
+!> Important: For EdgelessDB to work properly on Microsoft Azure, you must choose a VM size that has an Intel® SGX® CPU. There are currently two VM sizes that we recommend: The new [DCsv3 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv3-series) powered by Intel® Xeon® (Ice Lake), and the older [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series).
 
-Create the resource group for your machine in [one of the regions](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines) where the DCsv2 series is available.
+Create the resource group for your machine in [one of the regions](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines) where the DCsv3/DCsv2 series is available.
 
 The value for the `Virtual machine name` can be freely selected.
 The value for the `Username` **must** be set to _edb_.
