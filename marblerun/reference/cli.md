@@ -42,7 +42,6 @@ Available Commands:
   help             Help about any command
   install          Installs marblerun on a kubernetes cluster
   manifest         Manages manifest for the MarbleRun Coordinator
-  namespace        Manages namespaces associated with MarbleRun installations
   precheck         Check if your kubernetes cluster supports SGX
   recover          Recovers the MarbleRun Coordinator from a sealed state
   secret           Manages secrets for the MarbleRun Coordinator
@@ -216,7 +215,7 @@ marblerun install [flags]
 | Name, shorthand          | Default           | Description                                                                                                                                                  |
 | :----------------------- | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | --client-server-port     | 4433              | Set the client server port. Needs to be configured to the same <br> port as in your client tool stack                                                        |
-| --disable-auto-injection |                   | Disable automatic injection of selected namespaces                                                                                                           |
+| --disable-auto-injection |                   | Install MarbleRun without auto-injection webhook                                                                                                             |
 | --domain                 | localhost         | Sets the CNAME for the Coordinator certificate                                                                                                               |
 | --help, -h               |                   | help for install                                                                                                                                             |
 | --marblerun-chart-path   |                   | Path to marblerun helm chart                                                                                                                                 |
@@ -449,84 +448,6 @@ These flags apply to all subcommands of manifest
   If the signatures match, the output is the following:
   ```bash
   OK
-  ```
-
-## Command `namespace`
-
-Add namespaces to MarbleRun.
-If the auto-injection feature is enabled. All new pods in those namespaces will get their MarbleRun configuration automatically injected.
-
-* ### `add`
-
-  Add a namespace to the MarbleRun mesh by creating a new label
-
-  **Usage**
-
-  ```bash
-  marblerun namespace add NAMESPACE ... [flags]
-  ```
-
-  **Flags**
-
-  | Name, shorthand | Default | Description                                                             |
-  | --------------- | ------- | ----------------------------------------------------------------------- |
-  | --inject-sgx    |         | Set to enable automatic injection of SGX tolerations for <br> namespace |
-
-  **Examples**
-
-  ```bash
-  marblerun namespace add default testspace
-  ```
-
-  The output is the following:
-
-  ```bash
-  Added namespace [default] to MarbleRun mesh
-  Added namespace [testspace] to MarbleRun mesh
-  ```
-
-* ### `remove`
-
-  Remove a namespace from the MarbleRun mesh
-
-  **Usage**
-
-  ```bash
-  marblerun namespace remove NAMESPACE [flags]
-  ```
-
-  **Examples**
-
-  ```bash
-  marblerun namespace remove default
-  ```
-
-  The output is the following:
-
-  ```bash
-  Namespace [default] successfully removed from the MarbleRun mesh
-  ```
-
-* ### `list`
-
-  List all namespaces currently associated with the MarbleRun mesh
-
-  **Usage**
-
-  ```bash
-  marblerun namespace list
-  ```
-
-  **Examples**
-
-  ```bash
-  marblerun namespace list
-  ```
-
-  The output is the following:
-
-  ```bash
-  testspace
   ```
 
 ## Command `precheck`
