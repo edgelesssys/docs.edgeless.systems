@@ -4,7 +4,7 @@ MarbleRun provides its data-plane configuration through Kubernetes resource defi
 
 MarbleRun optionally injects [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) and [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for its SGX device plugin. See the [Kubernetes deployment](deployment/kubernetes.md#sgx-device-plugin-on-kubernetes) section for more information.
 
-You can enable auto-injection of the data-plane configuration for a namespace using Pod labels.
+You can enable auto-injection of the data-plane configuration using Pod labels.
 
 ## The Marbletype label
 
