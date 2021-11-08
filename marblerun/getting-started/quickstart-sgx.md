@@ -70,14 +70,6 @@ You can check that the state of MarbleRun changed and is now ready to authentica
 marblerun status $MARBLERUN
 ```
 
-Create and annotate the emojivoto namespace for [auto-injection](features/auto-injection.md):
-
-```bash
-kubectl create namespace emojivoto
-marblerun namespace add emojivoto
-```
-
-
 ### Step 3.2: Deploy emojivoto
 
 Finally, install the demo application onto your cluster.
@@ -85,7 +77,7 @@ Please make sure you have [Helm](https://helm.sh/docs/intro/install/) ("the pack
 Install emojivoto into the emojivoto namespace by running:
 
 ```bash
-helm install -f ./kubernetes/sgx_values.yaml emojivoto ./kubernetes -n emojivoto
+helm install -f ./kubernetes/sgx_values.yaml emojivoto ./kubernetes --create-namespace -n emojivoto
 ```
 
 ## Step 4: Watch it run

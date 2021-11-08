@@ -7,7 +7,7 @@ Adding a service to your application requires three steps, which are described i
 To get your service ready for MarbleRun, you need to rebuild it with one of the supported [runtimes](features/runtimes.md):
 * [EGo](building-services/ego.md)
 * [Edgeless RT](https://github.com/edgelesssys/marblerun/blob/master/samples/helloc%2B%2B)
-* [Graphene](building-services/graphene.md)
+* [Gramine](building-services/gramine.md)
 * [Occlum](building-services/occlum.md)
 
 ### Make your service use the provided TLS credentials
@@ -46,13 +46,13 @@ The tool's output is similar to the following.
 }
 ```
 
-#### Graphene
+#### Gramine
 
-To add an entry for your Graphene service, run the `graphene-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`graphene-sgx-get-token` is installed with [Graphene](https://github.com/oscarlab/graphene/).)
+To add an entry for your Gramine service, run the `gramine-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`gramine-sgx-get-token` is installed with [Gramine](https://github.com/oscarlab/gramine/).)
 
 
 ```bash
-graphene-sgx-get-token --sig hello.sig
+gramine-sgx-get-token --sig hello.sig
 ```
 
 The tool's output is similar to the following.
@@ -113,7 +113,7 @@ erthost enclave.signed
 ```
 
 `erthost` is the generic host for EdgelessRT Marbles, which will load your `enclave.signed`.
-For EGo (`ego marblerun`), Graphene (`graphene-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
+For EGo (`ego marblerun`), Gramine (`gramine-sgx`), and Occlum (`occlum run`) use their particular launch mechanism instead.
 
 The environment variables have the following purposes.
 
@@ -130,15 +130,9 @@ The environment variables have the following purposes.
 Typically, you'll write a Kubernetes resource definition for your service, which you'll deploy with the Kubernetes CLI, Helm, or similar tools.
 
 For your services to take advantage of MarbleRun, they need to be "added to the mesh" by having the data plane configuration injected into their pods.
-This is typically done by labeling the namespace, deployment, or pod with the `marblerun/inject=enabled` Kubernetes label.
+This is typically done by labeling the deployment, or pod with the `marblerun/marbletype` Kubernetes label.
 This label triggers automatic configuration injection when the resources are created. (See the [auto-injection page](features/auto-injection.md) for more on how this works.)
-Alternatively, you can enable a namespace for auto-injection using the MarbleRun CLI:
 
-```bash
-marblerun namespace add NAMESPACE [--no-sgx-injection]
-```
-
-For our injection service to know which type of Marble your service corresponds to, you also need to add the `marblerun/marbletype` Kubernetes label.
 An example for a Marble of type `web` could look like this:
 
 ```yaml
@@ -151,7 +145,6 @@ metadata:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: emojivoto
     app.kubernetes.io/version: v1
-    marblerun/inject: enabled
     marblerun/marbletype: web
 ```
 
@@ -161,13 +154,13 @@ This will result in the following configuration being injected when your resourc
 spec:
   containers:
     - env:
-    - name: EDG_MARBLE_COORDINATOR_ADDR
+      - name: EDG_MARBLE_COORDINATOR_ADDR
         value: coordinator-mesh-api.marblerun:2001
-    - name: EDG_MARBLE_TYPE
+      - name: EDG_MARBLE_TYPE
         value: web
-    - name: EDG_MARBLE_DNS_NAMES
+      - name: EDG_MARBLE_DNS_NAMES
         value: "web,web.emojivoto,web.emojivoto.svc.cluster.local"
-    - name: EDG_MARBLE_UUID_FILE
+      - name: EDG_MARBLE_UUID_FILE
         value: "$PWD/uuid"
 ```
 

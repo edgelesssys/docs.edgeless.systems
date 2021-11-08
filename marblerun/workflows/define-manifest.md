@@ -396,7 +396,7 @@ awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' public_key.pem
 
 ## TLS
 
-!> The Transparent TLS feature is currently only available for EGo and Edgeless RT Marbles. Graphene and Occlum are not supported yet.
+!> The Transparent TLS feature is currently only available for EGo and Edgeless RT Marbles. Gramine and Occlum are not supported yet.
 
 The TLS entry holds a list of tags which can be used in a Marble's definition. Each tag can define multiple `Incoming` and `Outgoing` connections. To elevate the connection between two marbles to TLS, the client needs to set the server under `Outgoing` and the server needs to define its service under `Incoming`.
 

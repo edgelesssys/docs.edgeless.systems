@@ -19,10 +19,10 @@ We provide a hands-on example for a confidential multi-stakeholder inference ser
 * Check it out [on GitHub](https://github.com/edgelesssys/marblerun-tensorflow-demo)
 
 
-## Graphene-based examples
-We provide two examples for Graphene-based Marbles:
-* A [helloworld](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-hello) example to get you started. 🤓
-* An [NGINX webserver](https://github.com/edgelesssys/marblerun/tree/master/samples/graphene-nginx) for an example of converting an existing Graphene application to a Marble. :rocket:
+## Gramine-based examples
+We provide two examples for Gramine-based Marbles:
+* A [helloworld](https://github.com/edgelesssys/marblerun/tree/master/samples/gramine-hello) example to get you started. 🤓
+* An [NGINX webserver](https://github.com/edgelesssys/marblerun/tree/master/samples/gramine-nginx) for an example of converting an existing Gramine application to a Marble. :rocket:
 
 ## Occlum-based examples
 

@@ -2,7 +2,7 @@
 
 This guide walks you through setting up MarbleRun in your Kubernetes cluster.
 
-The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [Helm repo.]((https://github.com/edgelesssys/helm)) \
+The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [source repo](https://github.com/edgelesssys/marblerun/tree/master/charts) and installed via our [Helm repo.](https://helm.edgeless.systems) \
 The installation consists of a deployment for the Coordinator and an admission controller.
 For more details see our section on [Kubernetes Integration](features/auto-injection.md).
 
@@ -74,7 +74,7 @@ Intel SGX supports two modes for obtaining remote attestation quotes:
 * In-process: The software generating the quote is part of the enclave application
 * Out-of-process: The software generating the quote is not part of the actual enclave application. This requires the Intel SGX Architectural Enclave Service Manager (AESM) to run on the system
 
-While Marbles built with [Ego](building-services/ego.md) perform in-process attestation, other frameworks, such as [Graphene](building-services/graphene.md), use out-of-process attestation.
+While Marbles built with [Ego](building-services/ego.md) perform in-process attestation, other frameworks, such as [Gramine](building-services/gramine.md), use out-of-process attestation.
 If your confidential application uses out-of-process attestation, you will need to expose the AESM device to your container.
 
 You can follow [the AKS guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-out-of-proc-attestation) to make your deployments able to use AESM for quote generation. Note, that in this case, your Kubernetes nodes need the AESM service installed. See the [Intel installation guide](https://download.01.org/intel-sgx/sgx-linux/2.12/docs/Intel_SGX_Installation_Guide_Linux_2.12_Open_Source.pdf) for more information.
@@ -96,7 +96,7 @@ You can install MarbleRun using the CLI as follows:
     marblerun install --domain=mycluster.uksouth.cloudapp.azure.com --simulation
     ```
 
-This command will pull the latest Helm chart from [our repository](https://github.com/edgelesssys/helm) and manages the installation of said chart.
+This command will pull the latest Helm chart from [our repository](https:/helm.edgeless.systems) and manages the installation of said chart.
 
 By default `--domain` is set to `localhost`.
 The domain is used as the CommonName in the Coordinator's TLS certificate.
@@ -128,7 +128,7 @@ Update the hostname with your cluster's FQDN.
 * For a cluster with SGX support:
 
     ```bash
-    helm install marblerun-coordinator edgeless/marblerun-coordinator \
+    helm install marblerun edgeless/marblerun \
         --create-namespace \
         -n marblerun \
         --set coordinator.hostname=mycluster.uksouth.cloudapp.azure.com
@@ -137,7 +137,7 @@ Update the hostname with your cluster's FQDN.
 * For a cluster without SGX support:
 
     ```bash
-    helm install marblerun-coordinator edgeless/marblerun-coordinator \
+    helm install marblerun edgeless/marblerun \
         --create-namespace \
         -n marblerun \
         --set coordinator.resources=null \
@@ -169,3 +169,25 @@ If you're using an ingress-controller or gateway for managing access to the `coo
 
 * For the NGINX ingress controller add the [`nginx.ingress.kubernetes.io/ssl-passthrough`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-passthrough) annotation.
 * For Istio Gateways set the [tls-mode PASSTHROUGH](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-sni-passthrough/#configure-an-ingress-gateway)
+
+## DCAP configuration
+
+By default the Coordinator will generate its quote using the [Azure-DCAP-Client](https://github.com/microsoft/Azure-DCAP-Client). If you choose to use this, no additional steps are required.
+If you want to use a PCCS other than Azure's you can do so by setting the [necessary configuration](https://github.com/intel/SGXDataCenterAttestationPrimitives/blob/master/QuoteGeneration/qpl/README.md#configuration) during installation:
+
+
+* Using the CLI
+  ```bash
+  marblerun install --dcap-qpl intel --dcap-pccs-url <PCCS_URL> --dcap-secure-cert <TRUE/FALSE>
+  ```
+
+* Using Helm
+  ```bash
+  helm install marblerun-coordinator edgeless/marblerun-coordinator \
+        --create-namespace \
+        -n marblerun \
+        --set coordinator.hostname=mycluster.uksouth.cloudapp.azure.com \
+        --set coordinator.dcapQpl=intel \
+        --set dcap.pccsUrl=<PCCS_URL> \
+        --set dcap.useSecureCert=<TRUE/FALSE>
+  ```

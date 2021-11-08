@@ -38,11 +38,10 @@ Available Commands:
   certificate      Retrieves the certificate of the MarbleRun Coordinator
   check            Check the status of MarbleRun's control plane
   completion       Output script for specified shell to enable autocompletion
-  graphene-prepare Modifies a Graphene manifest for use with MarbleRun
+  gramine-prepare  Modifies a Gramine manifest for use with MarbleRun
   help             Help about any command
   install          Installs marblerun on a kubernetes cluster
   manifest         Manages manifest for the MarbleRun Coordinator
-  namespace        Manages namespaces associated with MarbleRun installations
   precheck         Check if your kubernetes cluster supports SGX
   recover          Recovers the MarbleRun Coordinator from a sealed state
   secret           Manages secrets for the MarbleRun Coordinator
@@ -154,34 +153,34 @@ Once enabled, command completion is just one keypress away:\
   `marblerun manifest`
 
 
-## Command `graphene-prepare`
-This command helps you if you want to add Graphene-based services to your MarbleRun service mesh.
-It prepares your Graphene project to be used as a Marble by replacing the original entrypoint of your application with the bootstrapping Marble premain process which eventually spawns your application.
-Given your [Graphene manifest template](https://graphene.readthedocs.io/en/latest/manifest-syntax.html), it will suggest the required adjustments needed and adds our bootstrapping data-plane code to your Graphene image.
-See [Building a service: Graphene](building-services/graphene.md) for detailed information on MarbleRun’s Graphene integration and our changes in your Graphene manifest.
+## Command `gramine-prepare`
+This command helps you if you want to add Gramine-based services to your MarbleRun service mesh.
+It prepares your Gramine project to be used as a Marble by replacing the original entrypoint of your application with the bootstrapping Marble premain process which eventually spawns your application.
+Given your [Gramine manifest template](https://gramine.readthedocs.io/en/latest/manifest-syntax.html), it will suggest the required adjustments needed and adds our bootstrapping data-plane code to your Gramine image.
+See [Building a service: Gramine](building-services/gramine.md) for detailed information on MarbleRun’s Gramine integration and our changes in your Gramine manifest.
 
 Please note that this only works on a best-effort basis and may not instantly work correctly.
-While suggestions should be made for every valid TOML Graphene configuration, changes can only be performed for non-hierarchically sorted configurations. as the official Graphene examples.
+While suggestions should be made for every valid TOML Gramine configuration, changes can only be performed for non-hierarchically sorted configurations. as the official Gramine examples.
 The unmodified manifest is saved as a backup under the old path with an added ".bak" suffix, allowing you to try out and roll back any changes performed.
 
-Remember, you need to create a [MarbleRun manifest](workflows/define-manifest.md) in addition to the Graphene manifest. Adding Graphene packages to your manifest is straightforward and follows the same principles as any other SGX enclave. If you configured the arguments to your Graphene application through the [Graphene manifest](https://graphene.readthedocs.io/en/latest/manifest-syntax.html#command-line-arguments) before, you need to transfer those to the [MarbleRun manifest](workflows/define-manifest.md#manifestmarbles">}}).
+Remember, you need to create a [MarbleRun manifest](workflows/define-manifest.md) in addition to the Gramine manifest. Adding Gramine packages to your manifest is straightforward and follows the same principles as any other SGX enclave. If you configured the arguments to your Gramine application through the [Gramine manifest](https://gramine.readthedocs.io/en/latest/manifest-syntax.html#command-line-arguments) before, you need to transfer those to the [MarbleRun manifest](workflows/define-manifest.md#manifestmarbles">}}).
 
   **Usage**
 
   ```bash
-  marblerun graphene-prepare <path>
+  marblerun gramine-prepare <path>
   ```
 
   **Examples**
   ```bash
-  marblerun graphene-prepare nginx.manifest.template
+  marblerun gramine-prepare nginx.manifest.template
   ```
 
   Output:
   ```bash
   Reading file: nginx.manifest.template
 
-  MarbleRun suggests the following changes to your Graphene manifest:
+  MarbleRun suggests the following changes to your Gramine manifest:
   libos.entrypoint = "file:premain-libos"
   loader.argv0_override = "$(INSTALL_DIR)/sbin/nginx"
   loader.insecure__use_host_env = 1
@@ -216,7 +215,7 @@ marblerun install [flags]
 | Name, shorthand          | Default           | Description                                                                                                                                                  |
 | :----------------------- | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | --client-server-port     | 4433              | Set the client server port. Needs to be configured to the same <br> port as in your client tool stack                                                        |
-| --disable-auto-injection |                   | Disable automatic injection of selected namespaces                                                                                                           |
+| --disable-auto-injection |                   | Install MarbleRun without auto-injection webhook                                                                                                             |
 | --domain                 | localhost         | Sets the CNAME for the Coordinator certificate                                                                                                               |
 | --help, -h               |                   | help for install                                                                                                                                             |
 | --marblerun-chart-path   |                   | Path to marblerun helm chart                                                                                                                                 |
@@ -449,84 +448,6 @@ These flags apply to all subcommands of manifest
   If the signatures match, the output is the following:
   ```bash
   OK
-  ```
-
-## Command `namespace`
-
-Add namespaces to MarbleRun.
-If the auto-injection feature is enabled. All new pods in those namespaces will get their MarbleRun configuration automatically injected.
-
-* ### `add`
-
-  Add a namespace to the MarbleRun mesh by creating a new label
-
-  **Usage**
-
-  ```bash
-  marblerun namespace add NAMESPACE ... [flags]
-  ```
-
-  **Flags**
-
-  | Name, shorthand | Default | Description                                                             |
-  | --------------- | ------- | ----------------------------------------------------------------------- |
-  | --inject-sgx    |         | Set to enable automatic injection of SGX tolerations for <br> namespace |
-
-  **Examples**
-
-  ```bash
-  marblerun namespace add default testspace
-  ```
-
-  The output is the following:
-
-  ```bash
-  Added namespace [default] to MarbleRun mesh
-  Added namespace [testspace] to MarbleRun mesh
-  ```
-
-* ### `remove`
-
-  Remove a namespace from the MarbleRun mesh
-
-  **Usage**
-
-  ```bash
-  marblerun namespace remove NAMESPACE [flags]
-  ```
-
-  **Examples**
-
-  ```bash
-  marblerun namespace remove default
-  ```
-
-  The output is the following:
-
-  ```bash
-  Namespace [default] successfully removed from the MarbleRun mesh
-  ```
-
-* ### `list`
-
-  List all namespaces currently associated with the MarbleRun mesh
-
-  **Usage**
-
-  ```bash
-  marblerun namespace list
-  ```
-
-  **Examples**
-
-  ```bash
-  marblerun namespace list
-  ```
-
-  The output is the following:
-
-  ```bash
-  testspace
   ```
 
 ## Command `precheck`
