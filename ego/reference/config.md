@@ -8,6 +8,7 @@ Here's an example configuration:
     "key": "private.pem",
     "debug": true,
     "heapSize": 512,
+    "executableHeap": false,
     "productID": 1,
     "securityVersion": 1,
     "mounts": [
@@ -57,6 +58,8 @@ openssl genrsa -out private.pem -3 3072
 If `debug` is true, the enclave will be debuggable.
 
 `heapSize` specifies the heap size available to the enclave in MB. It should be at least 512 MB.
+
+If `executableHeap` is true, the enclave heap will be executable. This is required if you use libraries that JIT-compile code.
 
 `productID` is assigned by the developer and enables the attester to distinguish between different enclaves signed with the same key.
 
