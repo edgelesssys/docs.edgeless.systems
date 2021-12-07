@@ -5,6 +5,9 @@
 * **Workflows**
     * [Build your app](/workflows/build.md)
     * [Debug your app](/workflows/debug.md)
+* **Knowledge**
+    * [Programming model](/knowledge/model.md)
+    * [Limitations](/knowledge/limitations.md)
 * **Reference**
     * [CLI](/reference/cli.md)
     * [Configuration file](/reference/config.md)
