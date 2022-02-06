@@ -73,4 +73,6 @@ Now you can use EdgelessDB like any other SQL database:
 mysql -h127.0.0.1 -uroot --ssl-ca edb.pem --ssl-cert cert.pem --ssl-key key.pem
 ```
 
+In case you skipped the verification step above, omit `--ssl-ca edb.pem` in the above command.
+
 For an example of EdgelessDB's confidential-computing features, see the [demo of a secure multi-party data processing app](https://github.com/edgelesssys/edgelessdb/tree/main/demo).
