@@ -74,12 +74,14 @@ You're now ready to send the manifest over a secure TLS connection based on the 
 curl --cacert edb.pem --data-binary @manifest.json https://localhost:8080/manifest
 ```
 
-In case you skipped the verification step above, just replace `--cacert edb.pem` with `-k` in the above command.
+In case you skipped the [verification step](#verify-your-edgelessdb-instance), just replace `--cacert edb.pem` with `-k` in the `curl` command.
 
 ## Use EdgelessDB
 Now you can use EdgelessDB like any other SQL database:
 ```bash
 mysql -h127.0.0.1 -uroot --ssl-ca edb.pem --ssl-cert cert.pem --ssl-key key.pem
 ```
+
+In case you skipped the [verification step](#verify-your-edgelessdb-instance), omit `--ssl-ca edb.pem` in the `mysql` command.
 
 For an example of EdgelessDB's confidential-computing features, see the [demo of a secure multi-party data processing app](https://github.com/edgelesssys/edgelessdb/tree/main/demo).
