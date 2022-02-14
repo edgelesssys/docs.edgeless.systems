@@ -4,6 +4,7 @@ Most Go apps can be compiled and run with EGo without modifications. However, th
 * An EGo app is a single process. Spawning other processes isn't possible.
 * cgo support is experimental
   * Libraries must be statically linked. Shared objects are unsupported.
+* Stripped executables (e.g., `ego-go build -ldflags -s`) are unsupported
 
 ## (Partially) unsupported packages
 These usually compile, but return an error at runtime.
