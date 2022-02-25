@@ -49,7 +49,7 @@ Here's an example configuration:
 ## Basic settings
 `exe` is the (relative or absolute) path to the executable that should be signed.
 
-`key` is the path to the private RSA key of the signer. When invoking `ego sign` and the key file does not exist, a key with the required parameters is automatically generated. You can also generate it yourself with:
+`key` is the path to the private RSA key of the signer. When invoking `ego sign` and the key file doesn't exist, a key with the required parameters is automatically generated. You can also generate it yourself with:
 
 ```bash
 openssl genrsa -out private.pem -3 3072
@@ -75,19 +75,19 @@ If `executableHeap` is true, the enclave heap will be executable. This is requir
 
 By default, `/` is initialized as an empty `memfs` file system. To expose certain directories to the enclave, you can use the `hostfs` mounts with the options mentioned above. You can also choose to define additional `memfs` mount points, but note that there is no explicit isolation between them. They can be accessed either via the path specified in `target` or also via `/edg/mnt/<target>`, which is where the files of the additional `memfs` mount are stored internally.
 
-!> It is not recommended to use the mount options to remount `/` as `hostfs` other than for testing purposes. You might involuntarily expose files to the host which should stay inside the enclave, risking the confidentiality of your data.
+!> It's not recommended to use the mount options to remount `/` as `hostfs` other than for testing purposes. You might involuntarily expose files to the host which should stay inside the enclave, risking the confidentiality of your data.
 
 ## Environment variables
 `env` holds environment variables to set or take over from the host inside the enclave. By default, all environment variables not starting with `EDG_` are dropped when entering the enclave.
 
   * `name` (required): The name of the environment variable
   * `value` (required if not `fromHost`): The value of the environment variable
-  * `fromHost`: When set to `true`, the current value of the requested environment variable will be copied over if it exists on the host. If the host does not hold this variable, it will either fall back to the value set in `value` (if it exists), or will not be created at all.
+  * `fromHost`: When set to `true`, the current value of the requested environment variable will be copied over if it exists on the host. If the host doesn't hold this variable, it will either fall back to the value set in `value` (if it exists), or won't be created at all.
 
 A special environment variable is `PWD`. Depending on the mount options you have set in your configuration, you can set the initial working directory of your enclave by specifying your desired path as a value for `PWD`. Note that this directory needs to exist in the context of the enclave, not your host file system.
 
 ## Embedded files
-`files` specifies files that should be embedded into the enclave. Embedded files are included in the enclave measurement and thus can't be manipulated. At runtime they are accessible via the in-enclave-memory filesystem.
+`files` specifies files that should be embedded into the enclave. Embedded files are included in the enclave measurement and thus can't be manipulated. At runtime they're accessible via the in-enclave-memory filesystem.
 
 `source` is the path to the file that should be embedded. `target` Is the path within the in-enclave-memory filesystem where the file will reside at runtime.
 

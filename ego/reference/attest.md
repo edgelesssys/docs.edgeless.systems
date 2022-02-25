@@ -2,7 +2,7 @@
 Use *remote attestation* to verify that an EGo app is indeed running inside an enclave and to identify it by its hash.
 
 Attestation relies on external SGX services:
-* The *Provisioning Certificate Caching Service (PCCS)* caches attestation data from Intel. It is either operated by the cloud provider or must be hosted by yourself.
+* The *Provisioning Certificate Caching Service (PCCS)* caches attestation data from Intel. It's either operated by the cloud provider or must be hosted by yourself.
 * The *quote provider* helps EGo to connect to the PCCS. Both the attester and the verifier must install it.
 
 The required setup varies depending on the environment.

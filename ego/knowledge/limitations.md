@@ -12,7 +12,7 @@ These usually compile, but return an error at runtime.
 * `os`: `Pipe` and `StartProcess` are unsupported
 * `os/exec`: spawning processes is unsupported
 
-## cgo: unsupported libc functions
+## cgo: Unsupported libc functions
 Using these functions causes a build, sign, or runtime error.
 
 * `exec` family

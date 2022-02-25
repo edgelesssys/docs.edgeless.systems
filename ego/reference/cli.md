@@ -7,7 +7,7 @@ Usage:
 ego <command> [arguments]
 ```
 
-## sign
+## `sign`
 Sign an executable built with ego-go. Executables must be signed before they can be run in an enclave.
 ```
 ego sign [executable | config.json]
@@ -23,21 +23,21 @@ This command can be used in different modes:
 * `ego sign <config.json>`\
   Signs an executable according to a given [configuration](config.md).
 
-## run
+## `run`
 Run a signed executable in an enclave.
 ```
 ego run <executable> [args...]
 ```
 You can pass arbitrary arguments to the enclave.
 
-Environment variables are only readable from within the enclave if they start with "EDG_".
+Environment variables are only readable from within the enclave if they start with `EDG_`.
 
 You need an SGX-enabled machine to run an enclave. For development, you can also enable simulation mode by setting `OE_SIMULATION=1`, e.g.:
 ```
 OE_SIMULATION=1 ego run helloworld
 ```
 
-## marblerun
+## `marblerun`
 Run a signed executable with [MarbleRun](https://marblerun.sh/). MarbleRun is an open-source and cloud-native framework for managing clusters of confidential microservices.
 ```
 ego marblerun <executable>
@@ -58,19 +58,19 @@ Requires the following configuration environment variables:
 
 Set `OE_SIMULATION=1` to run in simulation mode.
 
-## signerid
-Print the SignerID either from a signed executable or by reading a keyfile.
+## `signerid`
+Print the SignerID either from a signed executable or by reading a key file.
 ```
 ego signerid <executable | key.pem>
 ```
 
-## uniqueid
+## `uniqueid`
 Print the UniqueID of a signed executable.
 ```
 ego uniqueid <executable>
 ```
 
-## env
+## `env`
 Run a command within the ego build environment.
 ```
 ego env ...
@@ -81,7 +81,7 @@ ego env make
 ```
 to build a Go project that uses a Makefile.
 
-## install
+## `install`
 Install drivers and other components.
 
 Use `ego install` to list the available components for your system. Then install the component you want.
