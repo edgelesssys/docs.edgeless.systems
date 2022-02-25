@@ -3,9 +3,11 @@ attestable
 cgo
 [Cc]loud
 debuggable
+hostname
 libc
 Makefile
 tmpfs
 syscall
 untrusted
 Wasmer
+Xeon

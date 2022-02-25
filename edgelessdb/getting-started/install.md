@@ -28,7 +28,7 @@ This should give you output like the following:
 
 * `SGX: Software Guard Extensions supported` is true if the hardware supports it.
 * `SGX_LC: SGX launch config supported` is true if the hardware also supports FLC.
-* `SGX1 supported` is true if it is enabled in the BIOS.
+* `SGX1 supported` is true if it's enabled in the BIOS.
 
 ### Driver
 The SGX driver exposes a device:
