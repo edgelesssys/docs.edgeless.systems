@@ -2,7 +2,7 @@
 
 Just installed EGo? Here are some examples to start your confidential development process.
 
-## [Hello world!](https://github.com/edgelesssys/ego/blob/master/samples/helloworld)
+## [Hello world](https://github.com/edgelesssys/ego/blob/master/samples/helloworld)
 
 An enclave saying "hello" to the world; works with any CPU, no special hardware required.
 
