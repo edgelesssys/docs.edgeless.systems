@@ -10,7 +10,7 @@ EdgelessDB generates a *master key* for encryption. This key is then sealed to d
 
 To obtain the master key, [the manifest allows for specifying a designated *recovery key*](../reference/manifest.md). The recovery key is a public RSA key. During the initial upload of the manifest, EdgelessDB returns the master key RSA-encrypted with the public key specified in the manifest.
 
-!> The holder of the corresponding private key can recover the database and, therefore, access the contents of the database. It's important that this key is kept secure. After the initial upload of the manifest, EdgelessDB will not release the master key.
+!> The holder of the corresponding private key can recover the database and, therefore, access the contents of the database. It's important that this key is kept secure. After the initial upload of the manifest, EdgelessDB won't release the master key.
 
 ## Adding a recovery key to the manifest
 Generate an RSA key pair:

@@ -44,7 +44,7 @@ Create a file `manifest.json` with the following contents:
 }
 ```
 
-`sql` is a list of SQL statements that define the initial state of the database. The two statements above create a root user that is authenticated by the user certificate you just generated.
+`sql` is a list of SQL statements that define the initial state of the database. The two statements above create a root user that's authenticated by the user certificate you just generated.
 
 Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 

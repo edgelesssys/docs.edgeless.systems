@@ -8,19 +8,19 @@ Visit the Azure Marketplace and get [EdgelessDB](https://azuremarketplace.micros
 
 Then configure the virtual machine in the creation wizard.
 
-!> Important: For EdgelessDB to work properly on Microsoft Azure, you must choose a VM size that has an Intel® SGX® CPU. There are currently two VM sizes that we recommend: The new [DCsv3 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv3-series) powered by Intel® Xeon® (Ice Lake), and the older [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series).
+!> Important: For EdgelessDB to work on Microsoft Azure, you must choose a VM size that has an Intel® SGX® CPU. There are currently two VM sizes: The new [DCsv3 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv3-series) powered by Intel® Xeon® (Ice Lake), and the older [DCsv2 series](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series).
 
 Create the resource group for your machine in [one of the regions](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=virtual-machines) where the DCsv3/DCsv2 series is available.
 
-The value for the `Virtual machine name` can be freely selected.
-The value for the `Username` **must** be set to _edb_.
+The value for the `Virtual machine name` can be arbitrarily selected.
+The value for the `Username` **must** be set to `edb`.
 Finally, press the blue `Review + Create` button and then the `Create` button to finish the setup process.
 
 ![Create a virtual machine](_media/azure/azure_wizard.png)
 
 ## Get the IP
 After you have created the machine, get the public IP address of the database you just created, so you can interact with it.
-Naviagte to the resource group your virtual machine was created in and select the virtual machine.
+Navigate to the resource group your virtual machine was created in and select the virtual machine.
 The public IP address is displayed on the right hand side in the `Essentials` section.
 
 Alternatively, you can use the [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to get the public IP address:
@@ -54,7 +54,7 @@ Create a file `manifest.json` with the following contents:
 }
 ```
 
-`sql` is a list of SQL statements that define the initial state of the database. The two statements above create a root user that is authenticated by the user certificate you just generated.
+`sql` is a list of SQL statements that define the initial state of the database. The two statements above create a root user that's authenticated by the user certificate you just generated.
 
 Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 

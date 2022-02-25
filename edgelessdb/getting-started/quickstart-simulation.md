@@ -1,7 +1,7 @@
-# Quickstart: simulation mode
+# Quickstart: Simulation mode
 This guide will show you how to set up EdgelessDB with a minimal manifest and connect to it with the `mysql` client.
 
-!> Simulation mode is only suitable for evaluating EdgelessDB. The setup is not secure in terms of confidential computing. For a setup in production, continue with [SGX mode](quickstart-sgx.md).
+!> Simulation mode is only suitable for evaluating EdgelessDB. The setup isn't secure in terms of confidential computing. For a setup in production, continue with [SGX mode](quickstart-sgx.md).
 
 ## Start EdgelessDB
 Run the EdgelessDB Docker image:
@@ -48,7 +48,7 @@ Create a file `manifest.json` with the following contents:
 }
 ```
 
-`sql` is a list of SQL statements that define the initial state of the database. The two statements above create a root user that is authenticated by the user certificate you just generated.
+`sql` is a list of SQL statements that define the initial state of the database. The two statements above create a root user that's authenticated by the user certificate you just generated.
 
 Replace the value of `ca` with the escaped content of `ca-cert.pem`.
 
