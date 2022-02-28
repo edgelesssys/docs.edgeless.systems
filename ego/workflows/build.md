@@ -2,7 +2,7 @@
 
 ## `ego-go` replaces `go`
 
-EGo provides a simple way to build your Go project: `ego-go`, an adapted Go compiler that builds enclave-compatible executables from a given Go project—while providing the same CLI as the original Go compiler. You can build your app with
+EGo provides a simple way to build your Go project: `ego-go`, an adapted Go compiler. It builds enclave-compatible executables from a given Go project—while providing the same CLI as the original Go compiler. You can build your app with
 
 ```bash
 ego-go build
