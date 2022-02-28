@@ -74,7 +74,7 @@ VMs and exposes the underlying confidential compute hardware.
 
 ### Prerequisites
 
-Follow the instructions on the [AKS Confidential Computing Quick Start guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-nodes-aks-get-started)
+Follow the instructions on the [AKS Confidential Computing Quick Start guide](https://docs.microsoft.com/en-us/azure/confidential-computing/confidential-enclave-nodes-aks-get-started)
 to provision an AKS cluster with Intel SGX enabled worker nodes.
 
 ### Deploy MarbleRun
