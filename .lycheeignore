@@ -1,0 +1,9 @@
+file:///github/workspace/\w+/\$%7Bhref%7D
+file:///github/workspace/.+/_media/
+file:///github/workspace/marblerun/.+\.md
+file:///github/workspace/marblerun/deployment/https:/sgx-dcap-server(-vpc)?.\[Region-ID].aliyuncs.com/sgx/certification/v3
+https://download.01.org/intel-sgx/sgx-linux/2.1.+/distro/ubuntu$
+https://edb:8080/manifest
+https://helm.edgeless.systems/stable
+https://localhost:8\d+/
+https://\$marblerun/recover

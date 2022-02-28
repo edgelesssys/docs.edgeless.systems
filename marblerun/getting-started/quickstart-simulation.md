@@ -9,7 +9,7 @@ marblerun install --simulation
 ```
 
 The `marblerun install` command generates a Kubernetes manifest with all the necessary control plane resources.
-This includes a deployment for the Coordinator and for MarbleRun's [admission controller.](features/auto-injection)
+This includes a deployment for the Coordinator and for MarbleRun's [admission controller.](features/auto-injection.md)
 The simulation flag tells MarbleRun that real SGX hardware might not be present and the SGX-layer should be emulated.
 
 Wait for the control plane to finish installing:

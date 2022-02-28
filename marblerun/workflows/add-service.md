@@ -48,7 +48,7 @@ The tool's output is similar to the following.
 
 #### Gramine
 
-To add an entry for your Gramine service, run the `gramine-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`gramine-sgx-get-token` is installed with [Gramine](https://github.com/oscarlab/gramine/).)
+To add an entry for your Gramine service, run the `gramine-sgx-get-token` tool on the `.sig` file you built in the previous step as follows. (`gramine-sgx-get-token` is installed with [Gramine](https://github.com/gramineproject/gramine/).)
 
 
 ```bash
