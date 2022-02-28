@@ -131,7 +131,7 @@ Typically, you'll write a Kubernetes resource definition for your service, which
 
 For your services to take advantage of MarbleRun, they need to be "added to the mesh" by having the data plane configuration injected into their pods.
 This is typically done by labeling the deployment, or pod with the `marblerun/marbletype` Kubernetes label.
-This label triggers automatic configuration injection when the resources are created. (See the [auto-injection page](features/auto-injection.md) for more on how this works.)
+This label triggers automatic configuration injection when the resources are created. (See [auto injection](features/auto-injection.md) for more on how this works.)
 
 An example for a Marble of type `web` could look like this:
 
