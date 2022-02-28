@@ -13,7 +13,7 @@ The `Packages` section of the manifest lists all the secure enclave software pac
 * `SignerID`: this value limits MarbleRun to only accept releases signed by a given public key. On SGX, this corresponds to the `MRSIGNER` value, which is the SHA-256 hash of the enclave issuer's RSA-3072 public key.
 * `ProductID`: an integer that uniquely identifies the enclave software for a given `SignerID`. Can only be used in conjunction with `SignerID`.
 * `SecurityVersion`: an integer that reflects the security-patch level of the enclave software. Can only be used in conjunction with `SignerID`.
-* `Debug`: set to `true` if the enclave is to be run in debug mode. This allows you to experiment with deploying your application with MarbleRun without having to worry about setting correct values for the above properties, but note that enclaves in debug mode are not secure.
+* `Debug`: set to `true` if the enclave is to be run in debug mode. This allows you to experiment with deploying your application with MarbleRun without having to worry about setting correct values for the above properties, but note that enclaves in debug mode aren't secure.
 
 The following gives an example of a simple `Packages` section with made-up values.
 
@@ -36,13 +36,13 @@ The following gives an example of a simple `Packages` section with made-up value
 }
 ```
 
-In this example, `backend` is identified through `UniqueID`. Since `UniqueID` is the hash of the enclave software package, this means that `backend` cannot be updated. (That is because any update to the package will change the hash.)
+In this example, `backend` is identified through `UniqueID`. Since `UniqueID` is the hash of the enclave software package, this means that `backend` can't be updated. (That' s because any update to the package will change the hash.)
 
-In contrast, `frontend` is identified through the triplet `SignerID`, `ProductID`, and `SecurityVersion`. `SignerID` cryptographically identifies the vendor of the package; `ProductID` is an arbitrary product ID chosen by the vendor, and `SecurityVersion` is the security-patch level of the product. See our [adding a service hands-on](workflows/add-service.md#step-21-define-the-enclave-software package) on how to get these values for a given service.
+In contrast, `frontend` is identified through the triplet `SignerID`, `ProductID`, and `SecurityVersion`. `SignerID` cryptographically identifies the vendor of the package; `ProductID` is an arbitrary product ID chosen by the vendor, and `SecurityVersion` is the security-patch level of the product. See our [adding a service hands-on](workflows/add-service.md#step-21-define-the-enclave-software-package) on how to get these values for a given service.
 
 ## Marbles
 
-Marbles represent the actual services in your mesh. They are defined in the `Marbles` section, which typically looks somewhat like the following example.
+Marbles represent the actual services in your mesh. They're defined in the `Marbles` section, which typically looks somewhat like the following example.
 
 ```javascript
 {
@@ -114,14 +114,14 @@ Entries for these types can be defined in two ways:
     * `Data`: The file content
     * `Encoding`: Allows users to encode the `Data` field of the manifest. Marbles receive the decoded value. The following options are available:
         * `string`: No encoding. This is the default
-        * `base64`: The manifest contains `Data` in [Base64](https://pkg.go.dev/encoding/base64). This can be useful to set content that can otherwise not be parsed in JSON format, or to avoid having to worry about correctly escaping newlines in a multiline document
+        * `base64`: The manifest contains `Data` in [Base64](https://pkg.go.dev/encoding/base64). This can be useful to set content that can otherwise not be parsed in JSON format, or to avoid having to worry about correctly escaping newlines in a multi-line document
         * `hex`: Same as `base64`, but [Hex Encoding](https://pkg.go.dev/encoding/hex) is used instead
-    * `NoTemplates`: If this flag is set, content in `Data` is not processed for templates. Use this if your file contains [Go Templates](https://golang.org/pkg/text/template/) structures that should not be interpreted by MarbleRun.
+    * `NoTemplates`: If this flag is set, content in `Data` isn't processed for templates. Use this if your file contains [Go Templates](https://golang.org/pkg/text/template/) structures that shouldn't be interpreted by MarbleRun.
 
 ### Argv
 Command line arguments are defined as an array. Entries are passed to the Marble in order, with the first being `argv[0]`.
-In most cases, `argv[0]` is expected to be the name of the executable.
-Templates are not supported.
+Usually, `argv[0]` is expected to be the name of the executable.
+Templates aren't supported.
 
 The general format is the following:
 ```javascript
@@ -136,11 +136,11 @@ The general format is the following:
 
 ### Templates
 
-`Parameters` are passed from the Coordinator to secure enclaves (i.e., Marbles) after successful initial remote attestation. In the remote attestation step, the Coordinator ensures that enclaves run the software defined in the `Packages` section. It is important to note that `Parameters` are only accessible from within the corresponding secure enclave. `Parameters` may contain arbitrary static data. However, they can also be used to securely communicate different types of dynamically generated cryptographic keys and certificates to Marbles. For this, we use [Go Templates](https://golang.org/pkg/text/template/) with the following syntax.
+`Parameters` are passed from the Coordinator to secure enclaves (i.e., Marbles) after successful initial remote attestation. In the remote attestation step, the Coordinator ensures that enclaves run the software defined in the `Packages` section. It's important to note that `Parameters` are only accessible from within the corresponding secure enclave. `Parameters` may contain arbitrary static data. However, they can also be used to securely communicate different types of dynamically generated cryptographic keys and certificates to Marbles. For this, we use [Go Templates](https://golang.org/pkg/text/template/) with the following syntax.
 
 `{{ <encoding> <name of secret> }}`
 
-The following enconding types are available to both `Files` and `Env`:
+The following encoding types are available to both `Files` and `Env`:
 
 * `hex`: hex string
 * `base64`: Base64 encoding
@@ -153,7 +153,7 @@ The following encoding types are only available to `Files`:
 
 The following encoding types are only available to `Env`:
 
-* `string`: similar to `raw`, but does not allow [NULL bytes](https://man7.org/linux/man-pages/man7/environ.7.html). Since the content in non-user-defined secrets is random, and cannot be controlled, only secrets with `UserDefined` set to `true` are allowed to use this encoding.
+* `string`: similar to `raw`, but does not allow [NULL bytes](https://man7.org/linux/man-pages/man7/environ.7.html). Since the content in non-user-defined secrets is random, and can't be controlled, only secrets with `UserDefined` set to `true` are allowed to use this encoding.
 
 The following named keys and certificates are always available.
 
@@ -200,11 +200,11 @@ In the [previous section](#manifestmarbles), we discussed how certain cryptograp
 When defining a custom key or certificate, the following fields are available.
 
 * `Type`: can be either `symmetric-key` for a symmetric encryption key, `cert-rsa`, `cert-ecdsa`, `cert-ed25519` or `plain`. Secrets of type `plain` contain arbitrary data uploaded by users, and are never generated by the Coordinator.
-* `Size`: the size of the key in bits. For symmetric keys, this needs to be a multiple of `8`. For ECDSA, this needs to map to a curve supported by Go's crypto library, currently: `224`, `256`, `384`, or `521`. For Ed25519, this should be ommitted.
+* `Size`: the size of the key in bits. For symmetric keys, this needs to be a multiple of `8`. For ECDSA, this needs to map to a curve supported by Go's `crypto` library, currently: `224`, `256`, `384`, or `521`. For Ed25519, this should be omitted.
 * `Shared` (default: `false`): specifies if the secret should be shared across all Marbles (`true`), or if the secret should be uniquely generated for each Marble (`false`). See [Secrets management](features/secrets-management.md) for more info.
-* `ValidFor` (only for certificates, default: `365`): validity of the certificate in days; cannot be specified in combination with the `NotAfter`.
+* `ValidFor` (only for certificates, default: `365`): validity of the certificate in days; can't be specified in combination with the `NotAfter`.
 * `Cert` (only for certificates): allows for the specification of additional X.509 certificate properties. See below for details.
-* `UserDefined` (default: `false`): specifies if the secret should be generated by MarbleRun (`false`), or if it will be [uploaded by a user](workflows/managing-secrets.md) at a later date  (`true`).
+* `UserDefined` (default: `false`): specifies if the secret should be generated by MarbleRun (`false`), or if it will be [uploaded by a user](workflows/managing-secrets.md) later (`true`).
 
 ### Available `Cert` fields
 
@@ -258,7 +258,7 @@ Typically, you only define a subset of these. Commonly used properties include f
 * `KeyUsage` & `ExtKeyUsage`
 * `Subject` (+ children)
 
-The following X.509 properties cannot be specified because they are set by the Coordinator when creating a certificate.
+The following X.509 properties can't be specified because they're set by the Coordinator when creating a certificate.
 * `Issuer`: always set to "MarbleRun Coordinator"
 * `SerialNumber`: always set to a unique, random value
 * `BasicConstraintsValid`: always set to "true"
@@ -311,7 +311,7 @@ Users with the appropriate roles can [update a manifest](workflows/update-manife
     //...
 }
 ```
-When verifying certificates in this context, MarbleRun ignores their `issuer`, `subject`, and `expiration date` fields. Thus, users cannot lock themselves out through expired certificates.
+When verifying certificates in this context, MarbleRun ignores their `issuer`, `subject`, and `expiration date` fields. Thus, users can't lock themselves out through expired certificates.
 
 Use OpenSSL to generate a compatible certificate.
 
@@ -396,7 +396,7 @@ awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' public_key.pem
 
 ## TLS
 
-!> The Transparent TLS feature is currently only available for EGo and Edgeless RT Marbles. Gramine and Occlum are not supported yet.
+!> The Transparent TLS feature is currently only available for EGo and Edgeless RT Marbles. Gramine and Occlum aren't supported yet.
 
 The TLS entry holds a list of tags which can be used in a Marble's definition. Each tag can define multiple `Incoming` and `Outgoing` connections. To elevate the connection between two marbles to TLS, the client needs to set the server under `Outgoing` and the server needs to define its service under `Incoming`.
 

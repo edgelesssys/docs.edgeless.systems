@@ -96,10 +96,10 @@ kubectl -n emojivoto port-forward svc/web-svc 8443:443 --address 0.0.0.0
 
 Now visit [https://localhost:8443](https://localhost:8443).
 You'll be presented with a certificate warning because your browser by default does not trust certificates signed by MarbleRun.
-You can safely ignore this error for now and proceed to the website.\
+You can ignore this error for now and proceed to the website.\
 Voila! Your emoji votes have never been safer!
 
-## That’s it! 👏
+## That’s it 👏
 
 Congratulations, you’re now a MarbleRun user! Here are some suggested next steps:
 

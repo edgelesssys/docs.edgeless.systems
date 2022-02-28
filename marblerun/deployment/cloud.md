@@ -4,7 +4,7 @@ This guide walks you through setting up MarbleRun on different CSP offerings ind
 
 ## Azure confidential computing VMs
 
-[Azure confidential computing services](https://azure.microsoft.com/en-us/solutions/confidential-compute/) are generally available and provide access to VMs with Intel SGX enabled in [DCsv2 VM instances](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series).
+[Azure confidential computing services](https://azure.microsoft.com/en-us/solutions/confidential-compute/) provide access to VMs with Intel SGX enabled in [DCsv2 VM instances](https://docs.microsoft.com/en-us/azure/virtual-machines/dcv2-series).
 The description below uses a VM running Ubuntu 18.04.
 
 ### Prerequisites
@@ -42,7 +42,7 @@ The description below uses a VM running Ubuntu 18.04.
 
 1. Set configuration for Alibaba Cloud SGX remote attestation service
 
-    Alibaba Cloud provides a PCCS for remote attestation, deployed on a per-region basis. For optimal stability it is recommended to access the service in your instance's region.
+    Alibaba Cloud provides a PCCS for remote attestation, deployed on a per-region basis. For optimal stability it's recommended to access the service in your instance's region.
     The configuration is set in `/etc/sgx_default_qcnl.conf`.
 
     * If your instance is assigned a public IP address, change the configuration to the following, where `[Region-ID]` is the ID of your instance's region:
@@ -63,7 +63,7 @@ The description below uses a VM running Ubuntu 18.04.
 
 ### Deploy MarbleRun
 
-You can run MarbleRun standalone on your Alibab Cloud ECS VM, see our [standalone guide](deployment/standalone.md).
+You can run MarbleRun standalone on your Alibaba Cloud ECS VM, see our [standalone guide](deployment/standalone.md).
 Alternatively, you can install a Kubernetes cluster, probably the simplest option would be [minikube](https://minikube.sigs.k8s.io/docs/start/), see our [Kubernetes guide](deployment/kubernetes.md) on how to install MarbleRun in minikube.
 
 ## Azure Kubernetes Services (AKS)

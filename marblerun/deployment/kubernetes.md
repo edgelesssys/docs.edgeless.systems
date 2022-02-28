@@ -2,7 +2,7 @@
 
 This guide walks you through setting up MarbleRun in your Kubernetes cluster.
 
-The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [source repo](https://github.com/edgelesssys/marblerun/tree/master/charts) and installed via our [Helm repo.](https://helm.edgeless.systems) \
+The Kubernetes deployment is managed through the use of a [Helm chart](https://helm.sh/), which can be found in our [source repository](https://github.com/edgelesssys/marblerun/tree/master/charts) and installed via our [Helm repository.](https://helm.edgeless.systems) \
 The installation consists of a deployment for the Coordinator and an admission controller.
 For more details see our section on [Kubernetes Integration](features/auto-injection.md).
 
@@ -19,7 +19,7 @@ The SGX device plugin can either be deployed manually or as a DaemonSet in the c
 
 
 ?> If you are using a CC-enlightened, managed Kubernetes cluster, you will usually already have an SGX device plugin installed.
-For example, creating a confidential computing cluster on AKS has a preconfigured SGX device plugin.
+For example, creating a confidential computing cluster on AKS has a pre-configured SGX device plugin.
 
 ### Manually deploying an SGX device plugin
 
@@ -72,7 +72,7 @@ MarbleRun supports [automatic injection](features/auto-injection.md) of those va
 
 Intel SGX supports two modes for obtaining remote attestation quotes:
 * In-process: The software generating the quote is part of the enclave application
-* Out-of-process: The software generating the quote is not part of the actual enclave application. This requires the Intel SGX Architectural Enclave Service Manager (AESM) to run on the system
+* Out-of-process: The software generating the quote isn't part of the actual enclave application. This requires the Intel SGX Architectural Enclave Service Manager (AESM) to run on the system
 
 While Marbles built with [Ego](building-services/ego.md) perform in-process attestation, other frameworks, such as [Gramine](building-services/gramine.md), use out-of-process attestation.
 If your confidential application uses out-of-process attestation, you will need to expose the AESM device to your container.
@@ -161,13 +161,13 @@ See the [how to add a service](workflows/add-service.md) documentation for more 
 
 The Coordinator creates a [`LoadBalancer`](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) service called `coordinator-client-api` exposing the client API on the default port 4433.
 Depending on your deployment type you can provision a LoadBalancer that exposes this service to the outside world, or you deploy an Ingress Gateway forwarding the traffic.
-If you are running with Minikube you can expose this service to localhost with `kubectl -n marblerun port-forward svc/coordinator-client-api 4433:4433 --address localhost`.
+If you are running with minikube you can expose this service to localhost with `kubectl -n marblerun port-forward svc/coordinator-client-api 4433:4433 --address localhost`.
 
 ### Ingress/Gateway configuration
 
 If you're using an ingress-controller or gateway for managing access to the `coordinator-client-api` service, make sure you're enabling SNI for your TLS connections.
 
-* For the NGINX ingress controller add the [`nginx.ingress.kubernetes.io/ssl-passthrough`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-passthrough) annotation.
+* For the nginx ingress controller add the [`nginx.ingress.kubernetes.io/ssl-passthrough`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#ssl-passthrough) annotation.
 * For Istio Gateways set the [tls-mode PASSTHROUGH](https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-sni-passthrough/#configure-an-ingress-gateway)
 
 ## DCAP configuration

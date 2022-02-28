@@ -1,8 +1,8 @@
 # Building a service: Gramine
-Running a Gramine app with MarbleRun requires some changes to its manifest. These are explained in the following. See also the [helloworld example](https://github.com/edgelesssys/marblerun/tree/master/samples/gramine-hello).
+Running a Gramine app with MarbleRun requires some changes to its manifest. These are explained in the following. See also the [hello world example](https://github.com/edgelesssys/marblerun/tree/master/samples/gramine-hello).
 
 ## Requirements
-First, get Gramine up and running. Gramine is available [as a debian package](https://github.com/gramineproject/gramine/releases). Alternatively you can follow either the [Building](https://gramine.readthedocs.io/en/latest/devel/building.html) or [Cloud Deployment](https://gramine.readthedocs.io/en/latest/cloud-deployment.html) guide to build and install Gramine from source.
+First, get Gramine up and running. Gramine is available [as a Debian package](https://github.com/gramineproject/gramine/releases). Alternatively you can follow either the [Building](https://gramine.readthedocs.io/en/latest/devel/building.html) or [Cloud Deployment](https://gramine.readthedocs.io/en/latest/cloud-deployment.html) guide to build and install Gramine from source.
 
 Before running your application, make sure you got the prerequisites for ECDSA remote attestation installed on your system. You can collectively install them with the following command:
 ```sh
@@ -36,8 +36,8 @@ loader.env.EDG_MARBLE_UUID_FILE = { passthrough = true }
 loader.env.EDG_MARBLE_DNS_NAMES = { passthrough = true }
 ```
 
-### uuid file
-The Marble must be able to store its uuid:
+### UUID file
+The Marble must be able to store its UUID:
 ```toml
 sgx.allowed_files.uuid = "file:uuid"
 ```
@@ -80,7 +80,7 @@ Note that Gramine also allows to store files encrypted on the host's file system
 sgx.protected_files_key = "[16-byte hex value]"
 sgx.protected_files.[identifier] = "[URI]"
 ```
-You can see how this key can be initializied with MarbleRun in the [nginx example](https://github.com/edgelesssys/marblerun/tree/master/samples/gramine-nginx).
+You can see how this key can be initialized with MarbleRun in the [nginx example](https://github.com/edgelesssys/marblerun/tree/master/samples/gramine-nginx).
 
 ## Troubleshooting
 ### aesm_service returned error: 30
