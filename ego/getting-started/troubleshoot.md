@@ -50,6 +50,8 @@ sudo ./sgx_linux_x64_driver_2.11.0_2d2b795.bin
 ```
 
 ### Required packages
+
+#### non-FLC system
 If your system doesn't support FLC, install the `libsgx-launch` package:
 ```bash
 sudo ego install libsgx-launch
@@ -57,9 +59,26 @@ sudo ego install libsgx-launch
 
 Or manually:
 ```bash
-wget -qO- https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | apt-key add
+wget -qO- https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | sudo apt-key add
 sudo add-apt-repository "deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu `lsb_release -cs` main"
 sudo apt install libsgx-launch
+```
+
+#### SGX device issues
+If the [SGX device exists](#driver), but you get one of these errors:
+* `Failed to open Intel SGX device.`
+* `ERROR: enclave_load_data failed (addr=0x..., prot=0x1, err=0x1001) (oe_result_t=OE_PLATFORM_ERROR)`
+
+Install the `libsgx-enclave-common` package:
+```bash
+sudo ego install libsgx-enclave-common
+```
+
+Or manually:
+```bash
+wget -qO- https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | sudo apt-key add
+sudo add-apt-repository "deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu `lsb_release -cs` main"
+sudo apt install --no-install-recommends libsgx-enclave-common
 ```
 
 ## Attestation
