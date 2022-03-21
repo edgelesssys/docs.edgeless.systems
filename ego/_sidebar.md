@@ -8,6 +8,7 @@
 * **Knowledge**
     * [Programming model](/knowledge/model.md)
     * [Limitations](/knowledge/limitations.md)
+    * [TLS inside the enclave](/knowledge/tls.md)
 * **Reference**
     * [CLI](/reference/cli.md)
     * [Configuration file](/reference/config.md)
