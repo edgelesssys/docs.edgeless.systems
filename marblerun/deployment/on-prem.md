@@ -34,7 +34,7 @@ Most of the popular hypervisors support SGX:
 * [XEN](https://wiki.xenproject.org/wiki/Xen_and_Intel_Hardware-Assisted_Virtualization_Security)
 * Hyper-V: Hyper-V will only expose SGX to Gen 2 VMs
 * [VMWare vSphere](https://blogs.vmware.com/vsphere/2020/04/vsphere-7-vsgx-secure-enclaves.html)
-* [ACRN](https://projectacrn.github.io/latest/tutorials/sgx_virtualization.html)
+* [ACRN](https://projectacrn.github.io/2.7/tutorials/sgx_virtualization.html)
 
 #### Driver
 
