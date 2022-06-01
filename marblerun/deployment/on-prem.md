@@ -9,7 +9,7 @@ This guide walks you through setting up MarbleRun for your on-premises deploymen
 #### CPU
 
 To deploy MarbleRun with Intel SGX, the machine or VM has to support Intel SGX.
-Particularly, MarbleRun requires support for the SGX Datacenter Attestation Primitives (DCAP).
+Particularly, MarbleRun requires support for the SGX Data Center Attestation Primitives (DCAP).
 You can verify [if your CPU supports DCAP](https://www.intel.com/content/www/us/en/support/articles/000057420/software/intel-security-products.html).
 
 For more information read this article on [detecting Intel Software Guard Extensions](https://software.intel.com/content/www/us/en/develop/articles/properly-detecting-intel-software-guard-extensions-in-your-applications.html) in your applications.
@@ -21,7 +21,7 @@ Currently, most of the SGX capable systems have SGX disabled by default in the B
 
 #### Updates
 
-As with any modern technology, Intel SGX has been affected by security vulnerabilities. Intel addresses these vulnerabilities by updating the microcode of CPUs, changing the hardware of new CPUs, and updating the system software. Each microcode update that patches an SGX vulnerability requires a BIOS update. During remote attestation, it is checked that the microcode of the CPU which is deployed by the BIOS is up to date. The microcode and platform enclaves are commonly called the platform `Trusted Computing Base (TCB)`.
+As with any modern technology, Intel SGX has been affected by security vulnerabilities. Intel addresses these vulnerabilities by updating the microcode of CPUs, changing the hardware of new CPUs, and updating the system software. Each microcode update that patches an SGX vulnerability requires a BIOS update. During remote attestation, it's checked that the microcode of the CPU which is deployed by the BIOS is up to date. The microcode and platform enclaves are commonly called the platform `Trusted Computing Base (TCB)`.
 
 If your BIOS/firmware is outdated, you will see errors as `Platform TCB (2) is not up-to-date (oe_result_t=OE_TCB_LEVEL_INVALID)` during remote attestation procedures.
 
@@ -41,7 +41,7 @@ Most of the popular hypervisors support SGX:
 You need to install the [DCAP SGX Driver](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/Intel_SGX_SW_Installation_Guide_for_Linux.pdf).
 Azure provides the instructions on [how to install this driver](https://docs.microsoft.com/en-us/azure/confidential-computing/quick-create-portal#2-install-the-intel-sgx-dcap-driver) that you can use for your on-premises machines.
 
-### SGX Datacenter Attestation Primitives (DCAP)
+### SGX Data Center Attestation Primitives (DCAP)
 
 DCAP is the new attestation mechanism for SGX [replacing EPID](https://software.intel.com/content/www/us/en/develop/blogs/an-update-on-3rd-party-attestation.html).
 You can find an overview of DCAP in the [official Intel docs](https://download.01.org/intel-sgx/sgx-dcap/1.11/linux/docs/DCAP_ECDSA_Orientation.pdf).
@@ -81,14 +81,14 @@ You currently have two options regarding PCCS for your on-premises machines and 
 
     If refreshing CRL fails, you can manually delete the `pckcache.db` database (default location `/opt/intel/sgx-dcap-pccs/pckcache.db`) and restart your PCCS.
 
-Our docker image for the [Marlberun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) comes with both the Azure-DCAP-Client and the default quote provider library by Intel.
-If you wish to use your own PCCS, you can instruct the image to use the Intel library by starting a container with the environmental variable `DCAP_LIBRARY=intel`, and by mounting the desired configuration to `/etc/sgx_default_qcnl.conf`.
+Our docker image for the [MarbleRun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) comes with both the Azure-DCAP-Client and the default quote provider library by Intel.
+To use your own PCCS, select the Intel library by starting a container with the environment variable `DCAP_LIBRARY=intel`, and mount the desired configuration to `/etc/sgx_default_qcnl.conf`.
 Similarly our [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) image comes preinstalled with both libraries.
 
 ## Deploy MarbleRun
 
 You have made sure your hardware supports SGX, updated all firmware, installed the SGX driver, and configured DCAP on all your machines and VMs?
-Great! Now it is time to install MarbleRun and get going.
+Great! Now it's time to install MarbleRun and get going.
 
 You can either follow our guide and [use MarbleRun in standalone mode](deployment/standalone.md) .
 
