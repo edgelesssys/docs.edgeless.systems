@@ -89,3 +89,10 @@ Attestation only works on [SGX-FLC](#hardware) systems.
 
 ### Quote provider
 You must install a [quote provider](../reference/attest.md).
+
+## Out of memory
+
+The amount of available memory to an SGX enclave is set when signing the binary.
+If you get a memory allocation error, try to increase the `heapSize` in [enclave.json](../reference/config.md) and sign the binary again.
+Note that the runtime itself also occupies memory and that the Go allocator may pre-allocate more memory than is currently in use.
+Thus, you usually have to give your enclave more memory than actually used by your app.
