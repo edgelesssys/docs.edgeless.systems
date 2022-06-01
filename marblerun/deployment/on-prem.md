@@ -81,15 +81,13 @@ You currently have two options regarding PCCS for your on-premises machines and 
 
     If refreshing CRL fails, you can manually delete the `pckcache.db` database (default location `/opt/intel/sgx-dcap-pccs/pckcache.db`) and restart your PCCS.
 
-Our docker image for the [MarbleRun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) comes with both the Azure-DCAP-Client and the default quote provider library by Intel.
+The docker image for the [MarbleRun Coordinator](https://github.com/edgelesssys/marblerun/pkgs/container/coordinator) comes with both the Azure-DCAP-Client and the default quote provider library by Intel.
 To use your own PCCS, select the Intel library by starting a container with the environment variable `DCAP_LIBRARY=intel`, and mount the desired configuration to `/etc/sgx_default_qcnl.conf`.
-Similarly our [EGo](https://github.com/orgs/edgelesssys/packages?repo_name=ego) image comes preinstalled with both libraries.
+Similarly, the [EGo image](https://github.com/orgs/edgelesssys/packages?repo_name=ego) comes preinstalled with both libraries.
 
 ## Deploy MarbleRun
 
 You have made sure your hardware supports SGX, updated all firmware, installed the SGX driver, and configured DCAP on all your machines and VMs?
 Great! Now it's time to install MarbleRun and get going.
 
-You can either follow our guide and [use MarbleRun in standalone mode](deployment/standalone.md) .
-
-Or you follow our instructions to [install MarbleRun in your Kubernetes cluster](deployment/kubernetes.md).
+You can either [use MarbleRun in standalone mode](deployment/standalone.md) or [install it in your Kubernetes cluster](deployment/kubernetes.md).
