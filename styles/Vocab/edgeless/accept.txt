@@ -5,6 +5,7 @@ Alibaba
 attestable
 cgo
 [Cc]loud
+collateral
 debuggable
 emojivoto
 Env
