@@ -2,6 +2,7 @@
 Most Go apps can be compiled and run with EGo without modifications. However, there are some limitations:
 
 * An EGo app is a single process. Spawning other processes isn't possible.
+* A nil pointer dereference aborts the process without calling deferred functions and without printing an error message.
 * cgo support is experimental
   * Libraries must be statically linked. Shared objects are unsupported.
   * Libraries must be compiled with `-fPIC`

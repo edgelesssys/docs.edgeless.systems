@@ -7,6 +7,7 @@ cgo
 [Cc]loud
 collateral
 debuggable
+dereference
 emojivoto
 Env
 Gramine
