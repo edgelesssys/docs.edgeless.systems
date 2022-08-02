@@ -43,6 +43,18 @@ chmod +x sgx_linux_x64_driver_1.36.2.bin
 sudo ./sgx_linux_x64_driver_1.36.2.bin
 ```
 
+### Packages
+
+On some systems you may need to install the `libsgx-enclave-common` package.
+
+On Ubuntu 18.04 or 20.04 you can do this by running:
+
+```bash
+wget -qO- https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key | sudo apt-key add
+sudo add-apt-repository "deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu `lsb_release -cs` main"
+sudo apt install --no-install-recommends libsgx-enclave-common
+```
+
 ## Run the Docker image
 Run EdgelessDB on an SGX-capable system:
 ```bash
