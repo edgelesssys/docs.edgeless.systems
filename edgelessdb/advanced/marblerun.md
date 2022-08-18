@@ -65,9 +65,9 @@ docker run -t \
   --name my-edb \
   -p3306:3306 \
   -p8080:8080 \
+  --device /dev/sgx_enclave --device /dev/sgx_provision \
   -e EDG_MARBLE_TYPE=edb_marble \
   -e EDG_MARBLE_COORDINATOR_ADDR=172.17.0.1:2001 \
-  --privileged -v /dev/sgx:/dev/sgx \
   ghcr.io/edgelesssys/edgelessdb-sgx-1gb \
   -marble
 ```

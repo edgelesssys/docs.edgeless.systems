@@ -6,7 +6,7 @@ This guide will show you how to set up EdgelessDB with a minimal manifest and co
 ## Start EdgelessDB
 Run the EdgelessDB Docker image:
 ```bash
-docker run --name my-edb -p3306:3306 -p8080:8080 -e OE_SIMULATION=1 -t ghcr.io/edgelesssys/edgelessdb-sgx-1gb
+docker run -t --name my-edb -p3306:3306 -p8080:8080 -e OE_SIMULATION=1 ghcr.io/edgelesssys/edgelessdb-sgx-1gb
 ```
 This should give the following output:
 ```shell-session
