@@ -38,9 +38,9 @@ ls /dev/*sgx*
 
 If the output is empty, install the driver:
 ```bash
-wget https://download.01.org/intel-sgx/sgx-linux/2.12/distro/ubuntu`lsb_release -rs`-server/sgx_linux_x64_driver_1.36.2.bin
-chmod +x sgx_linux_x64_driver_1.36.2.bin
-sudo ./sgx_linux_x64_driver_1.36.2.bin
+wget https://download.01.org/intel-sgx/latest/linux-latest/distro/ubuntu`lsb_release -rs`-server/sgx_linux_x64_driver_1.41.bin
+chmod +x sgx_linux_x64_driver_1.41.bin
+sudo ./sgx_linux_x64_driver_1.41.bin
 ```
 
 ### Packages
@@ -62,7 +62,7 @@ docker run -t \
   --name my-edb \
   -p3306:3306 \
   -p8080:8080 \
-  --privileged -v /dev/sgx:/dev/sgx \
+  --device /dev/sgx_enclave --device /dev/sgx_provision \
   ghcr.io/edgelesssys/edgelessdb-sgx-1gb
 ```
 
