@@ -2,7 +2,8 @@
 This guide will show you how to set up EdgelessDB using the Microsoft Azure Marketplace.
 
 ## Get the machine
-Visit the Azure Marketplace and get [EdgelessDB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/edgelesssystems.edb?tab=Overview).
+Visit the [Azure Marketplace offering of EdgelessDB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/edgelesssystems.edb?tab=Overview).
+Select **Get It Now** and follow the instructions until you are redirected to Azure Portal. Select **Create**:
 
 ![EdgelessDB on Azure Marketplace](_media/azure/azure_get.png)
 
