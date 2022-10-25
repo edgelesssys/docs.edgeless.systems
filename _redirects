@@ -1,3 +1,5 @@
 /constellation/* https://constellation-docs.netlify.app/:splat 200!
 /ego/* https://ego-docs.netlify.app/:splat 200!
+/marblerun/* https://marblerun-docs.netlify.app/:splat 200!
+/edgelessdb/* https://edgelessdb-docs.netlify.app/:splat 200!
 /6c320851-bdd2-41d5-bf10-e27427398692 /constellation
