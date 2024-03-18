@@ -1,7 +1,6 @@
 /constellation/* https://constellation-docs.netlify.app/:splat 200!
 /continuum/* https://continuum-docs.edgeless.systems/:splat 200!
-/contrast/* https://contrast-docs.edgeless.systems/:splat 200!
+/contrast/* https://edgelesssys.github.io/contrast/:splat 200!
 /edgelessdb/* https://edgelessdb-docs.netlify.app/:splat 200!
 /ego/* https://ego-docs.netlify.app/:splat 200!
 /marblerun/* https://marblerun-docs.netlify.app/:splat 200!
-
